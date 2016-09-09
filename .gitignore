@@ -1,0 +1,9 @@
+.idea/
+
+# Vagrant configures
+.vagrant/
+
+# Vendor
+vendor/
+
+composer.phar

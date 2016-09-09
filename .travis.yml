@@ -1,0 +1,24 @@
+language: bash
+services: docker
+
+install:
+  - git clone https://github.com/yiizh/yii2-swoole-camera.git ~/yii2-swoole-camera
+
+before_script:
+  - if [ "$TRAVIS_TAG" != "" ]; then
+        image_version="$TRAVIS_TAG";
+        push_image="yes";
+    elif [ "$TRAVIS_BRANCH" == "master" ]; then
+        image_version="latest";
+        push_image="yes";
+    else
+        image_version="latest";
+        push_image="no";
+    fi
+script:
+  - docker build -t "yiizh/yii2-swoole-camera:$image_version" .
+
+after_script:
+  - docker images
+
+# vim:set et ts=2 sw=2:
