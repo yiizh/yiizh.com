@@ -5,4 +5,10 @@
  * @license http://www.yiizh.com/license/
  */
 
-return [];
+return [
+    'adminEmail' => 'admin@yiizh.com',
+    'notificationEmail' => 'noreply@yiizh.com',
+    'supportEmail' => 'noreply@yiizh.com',
+    'user.passwordResetTokenExpire' => 3600,
+    'user.rememberMeDuration' => 3600 * 24 * 30,
+];

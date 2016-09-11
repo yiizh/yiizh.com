@@ -15,5 +15,7 @@ Yii::setAlias('@common', APP_SRC_ROOT . '/common');
 Yii::setAlias('@frontend', APP_SRC_ROOT . '/frontend');
 Yii::setAlias('@console', APP_SRC_ROOT . '/console');
 
-$env = new Dotenv\Dotenv(APP_ROOT, 'env.ini');
-$env->load();
+if (file_exists(APP_ROOT . '/.env')) {
+    $env = new Dotenv\Dotenv(APP_ROOT, '.env');
+    $env->load();
+}

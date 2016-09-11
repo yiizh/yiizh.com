@@ -21,5 +21,21 @@ return [
             'timeFormat' => 'php:H:i:s',
             'nullDisplay' => '无'
         ],
+        'db' => [
+            'class' => 'yii\db\Connection',
+            'dsn' => 'mysql:host=' . getenv('MYSQL_HOST') . ';dbname=' . getenv('MYSQL_DB'),
+            'username' => getenv('MYSQL_USER'),
+            'password' => getenv('MYSQL_PASS'),
+            'tablePrefix' => 'tbl_',
+            'charset' => 'utf8',
+        ],
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager',
+        ],
+        'mailer' => [
+            'class' => 'yii\swiftmailer\Mailer',
+            'viewPath' => '@common/mail',
+            'useFileTransport' => YII_DEBUG,
+        ],
     ],
 ];

@@ -7,6 +7,8 @@
         "php": ">=5.4.0",
         "yiisoft/yii2": ">=2.0.5",
         "yiisoft/yii2-bootstrap": "*",
+        "yiisoft/yii2-authclient": "*",
+        "yiisoft/yii2-swiftmailer": "*",
         "yiizh/yii2-fontawesome": "*",
         "vlucas/phpdotenv": "*"
     },
