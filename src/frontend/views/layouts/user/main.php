@@ -52,6 +52,7 @@ $this->beginContent('@frontend/views/layouts/main.php');
             ],
             'items' => [
                 ['label' => '我的主页', 'url' => ['/user/default/index', 'userId' => $user->id]],
+                ['label' => '文章', 'url' => ['/user/article/index', 'userId' => $user->id]],
                 ['label' => '管理中心', 'url' => ['/user/manage/default/index'],'visible'=>$user->id == $webUser->id],
             ]
         ]) ?>

@@ -26,6 +26,7 @@ $config = [
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
+            'rules' => require(__DIR__ . '/routes.php'),
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
