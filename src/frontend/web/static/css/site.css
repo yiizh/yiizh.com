@@ -33,6 +33,9 @@ h6 {
   color: #c55;
   font-style: italic;
 }
+a {
+  word-break: break-all;
+}
 /* add sorting icons to gridview sort links */
 a.asc:after,
 a.desc:after {
