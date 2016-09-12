@@ -1,2 +1,2 @@
-# demo.yiizh.com
-https://demo.yiizh.com/
+# yiizh.com
+https://www.yiizh.com/

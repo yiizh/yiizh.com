@@ -2,14 +2,14 @@
 # vi: set ft=ruby :
 
 domains = {
-  frontend: 'www.demo.dev.yiizh.com'
+  frontend: 'www.dev.yiizh.com'
 }
 
 Vagrant.configure(2) do |config|
 
   config.vm.box = "yiizh/php7"
 
-  config.vm.hostname = "demo.yiizh.dev"
+  config.vm.hostname = "yiizh.dev"
   config.vm.provider "virtualbox" do |v|
     v.memory = 1024
   end

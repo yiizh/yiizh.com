@@ -2,7 +2,7 @@ language: bash
 services: docker
 
 install:
-  - git clone https://github.com/yiizh/yii2-swoole-camera.git ~/yii2-swoole-camera
+  - git clone https://github.com/yiizh/yiizh.com.git ~/yiizh.com
 
 before_script:
   - if [ "$TRAVIS_TAG" != "" ]; then
@@ -16,7 +16,7 @@ before_script:
         push_image="no";
     fi
 script:
-  - docker build -t "yiizh/yii2-swoole-camera:$image_version" .
+  - docker build -t "yiizh/yiizh.com:$image_version" .
 
 after_script:
   - docker images
