@@ -22,9 +22,11 @@ $formatter = Yii::$app->formatter;
 <div class="row news-item">
     <div class="col-xs-2 text-right">
         <p>
-            <img src="<?= $user->getAvatarUrl() ?>" class="img-thumbnail">
+            <a href="<?= $user->getUrl() ?>"><img src="<?= $user->getAvatarUrl() ?>" class="img-thumbnail"></a>
         </p>
-        <p class="news-item-info text-center">@<?= $user->name ?></p>
+        <p class="news-item-info text-center">
+            <a href="<?= $user->getUrl() ?>">@<?= $user->name ?></a>
+        </p>
     </div>
     <div class="col-xs-10">
         <h3 class="news-item-title"><?= Html::a($model->title, ['/news/view', 'id' => $model->id]) ?></h3>

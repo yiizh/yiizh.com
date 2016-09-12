@@ -246,4 +246,12 @@ class User extends BaseUser implements IdentityInterface
             return Url::to('@web' . $this->avatar);
         }
     }
+
+    /**
+     * @return string
+     */
+    public function getUrl()
+    {
+        return Url::to(['/user/default/index', 'userId' => $this->id]);
+    }
 }

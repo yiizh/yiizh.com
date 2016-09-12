@@ -81,4 +81,17 @@ class News extends BaseNews
     {
         return $this->hasOne(User::className(), ['id' => 'userId']);
     }
+
+    public function afterSave($insert, $changedAttributes)
+    {
+        parent::afterSave($insert, $changedAttributes);
+        if (ArrayHelper::getValue($changedAttributes, 'status') != self::STATUS_PUBLISHED && $this->status == self::STATUS_PUBLISHED) {
+            // 创建作者动态
+            $activity = new Activity();
+            $activity->userId = $this->userId;
+            $activity->objectType = Activity::TYPE_NEWS;
+            $activity->objectId = $this->id;
+            $activity->save();
+        }
+    }
 }

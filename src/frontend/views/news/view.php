@@ -30,10 +30,10 @@ $formatter = Yii::$app->formatter;
             <div class="row news-item">
                 <div class="col-xs-2 text-right">
                     <p>
-                        <img src="<?= $user->getAvatarUrl() ?>" class="img-thumbnail">
+                        <a href="<?= $user->getUrl() ?>"><img src="<?= $user->getAvatarUrl() ?>" class="img-thumbnail"></a>
                     </p>
                     <p class="news-item-info text-center">
-                        @<?= $user->name ?>
+                        <a href="<?= $user->getUrl() ?>">@<?= $user->name ?></a>
                     </p>
                 </div>
                 <div class="col-xs-10">

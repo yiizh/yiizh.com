@@ -34,8 +34,8 @@ $this->beginContent('@frontend/views/layouts/main.php');
         ]],
         ['label' => '新闻', 'visible' => $user->can('manageNews'), 'items' => [
             ['label' => '投稿', 'url' => ['/manage/news/index', 'status' => News::STATUS_PROPOSED]],
-            ['label' => '发布', 'url' => ['/manage/news/index', 'status' => News::STATUS_REJECTED]],
-            ['label' => '拒绝', 'url' => ['/manage/news/index', 'status' => News::STATUS_PUBLISHED]],
+            ['label' => '发布', 'url' => ['/manage/news/index', 'status' => News::STATUS_PUBLISHED]],
+            ['label' => '拒绝', 'url' => ['/manage/news/index', 'status' => News::STATUS_REJECTED]],
         ]],
     ]
 ]) ?>

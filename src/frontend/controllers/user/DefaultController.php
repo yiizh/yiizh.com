@@ -8,7 +8,9 @@
 namespace frontend\controllers\user;
 
 
+use common\models\Activity;
 use frontend\components\BaseFrontendController;
+use yii\data\ActiveDataProvider;
 
 class DefaultController extends BaseFrontendController
 {
@@ -22,9 +24,14 @@ class DefaultController extends BaseFrontendController
     public function actionIndex($userId)
     {
         $model = $this->findUser($userId);
+        $activityProvider = new ActiveDataProvider([
+            'query' => Activity::find()->andWhere(['userId' => $model->id])->orderBy('createdAt DESC'),
+            'sort' => false,
+        ]);
 
         return $this->render('index', [
-            'model' => $model
+            'model' => $model,
+            'activityProvider' => $activityProvider
         ]);
     }
 }
