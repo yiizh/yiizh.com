@@ -6,6 +6,13 @@
  */
 
 return [
+    // Site
+    '/license' => '/site/license',
+    // News
+    '/news' => '/news/index',
+    '/news/<id:\d+>' => '/news/view',
+    '/news/<action:[\w-]+>' => '/news/<action>',
+
     '/user/<userId:\d+>' => '/user/default/index',
     '/user/<userId:\d+>/<controller:[\w-]+>' => '/user/<controller>/index',
     '/user/<userId:\d+>/<controller:[\w-]+>/<action:[\w-]+>' => '/user/<controller>/<action>',

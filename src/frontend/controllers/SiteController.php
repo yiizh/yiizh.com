@@ -18,6 +18,7 @@ use yii\authclient\AuthAction;
 use yii\authclient\ClientInterface;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
+use yii\web\ViewAction;
 
 class SiteController extends BaseFrontendController
 {
@@ -42,6 +43,9 @@ class SiteController extends BaseFrontendController
                 'class' => 'yii\captcha\CaptchaAction',
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
             ],
+            'page' => [
+                'class' => ViewAction::className(),
+            ]
         ];
     }
 
@@ -159,5 +163,11 @@ class SiteController extends BaseFrontendController
         return $this->render('reset-password', [
             'model' => $model,
         ]);
+    }
+
+    public function actionLicense()
+    {
+        header('Content-Type: text/plain; charset=utf-8', true);
+        echo file_get_contents(Yii::getAlias('@root') . '/LICENSE');
     }
 }
