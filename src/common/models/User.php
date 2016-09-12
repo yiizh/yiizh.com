@@ -3,6 +3,7 @@
 namespace common\models;
 
 use common\models\base\BaseUser;
+use common\models\query\UserQuery;
 use Yii;
 use yii\base\NotSupportedException;
 use yii\helpers\ArrayHelper;
@@ -21,6 +22,15 @@ class User extends BaseUser implements IdentityInterface
 
     const SCENARIO_PROFILE = 'profile';
     const SCENARIO_CHANGE_PASSWORD = 'changePassword';
+
+    /**
+     * @inheritdoc
+     * @return UserQuery the active query used by this AR class.
+     */
+    public static function find()
+    {
+        return new UserQuery(get_called_class());
+    }
 
     /**
      * @inheritDoc

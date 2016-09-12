@@ -42,6 +42,7 @@ if ($user->isGuest) {
     $rightItems[] = ['label' => '注册', 'url' => ['/site/register']];
 } else {
     $rightItems[] = ['label' => Html::img($identity->getAvatarUrl(), ['class' => 'top-user-avatar']) . ' ' . $identity->name, 'url' => ['/account/profile'], 'items' => [
+        ['label' => '我的主页', 'url' => ['/user/default/index', 'userId' => $identity->id]],
         ['label' => '个人资料', 'url' => ['/account/profile']],
         '<li class="divider"></li>',
         ['label' => '退出', 'url' => ['/site/logout'], 'linkOptions' => [

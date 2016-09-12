@@ -12,5 +12,5 @@ use common\components\BaseWebController;
 
 class BaseFrontendController extends BaseWebController
 {
-
+    use ModelFinderTrait;
 }
