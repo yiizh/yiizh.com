@@ -38,8 +38,13 @@ class RbacController extends BaseConsoleController
 
         // 新闻管理权限
         $manageNews = $auth->createPermission('manageNews');
-        $manageNews->description = 'Manage news';
+        $manageNews->description = '管理新闻';
         $auth->add($manageNews);
+
+        // 模块管理权限
+        $manageModule = $auth->createPermission('manageModule');
+        $manageModule->description = '管理模块';
+        $auth->add($manageModule);
 
         // 角色: 管理员
         $manager = $auth->createRole('manager');
@@ -57,6 +62,7 @@ class RbacController extends BaseConsoleController
         $auth->addChild($superManager, $manageNews);
         $auth->addChild($superManager, $manageProject);
         $auth->addChild($superManager, $manageSystem);
+        $auth->addChild($superManager, $manageModule);
 
         $this->stdout('权限树已重置。' . PHP_EOL, Console::FG_GREEN);
     }

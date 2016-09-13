@@ -11,4 +11,5 @@ return [
     'supportEmail' => 'noreply@yiizh.com',
     'user.passwordResetTokenExpire' => 3600,
     'user.rememberMeDuration' => 3600 * 24 * 30,
+    'moduleAutoloadPath' =>'@root/modules/installed'
 ];

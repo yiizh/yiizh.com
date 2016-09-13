@@ -28,6 +28,7 @@ $this->beginContent('@frontend/views/layouts/main.php');
     ],
     'items' => [
         ['label' => '系统设置', 'url' => ['/manage/system/index'], 'visible' => $user->can('manageSystem')],
+        ['label' => '模块', 'url' => ['/manage/module/index'], 'visible' => $user->can('manageModule')],
         ['label' => '项目', 'visible' => $user->can('manageProject'), 'items' => [
             ['label' => '所有项目', 'url' => ['/manage/project/index']],
             ['label' => '新增项目', 'url' => ['/manage/project/create']],

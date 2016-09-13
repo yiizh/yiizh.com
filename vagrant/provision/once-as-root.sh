@@ -21,6 +21,7 @@ ln -s /apps/vagrant/apache/apps.conf /etc/apache2/sites-enabled/apps.conf
 
 info "Install Composer Vendor"
 composer config -g repo.packagist composer https://packagist.phpcomposer.com
+composer config -g github-oauth.github.com 4b9576f0957903fa12044b7fb1bedf3b73fecdfc
 composer global require "fxp/composer-asset-plugin:~1.1.1"
 cd /apps && composer install -vvv --prefer-dist
 

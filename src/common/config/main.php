@@ -5,12 +5,19 @@
  * @license http://www.yiizh.com/license/
  */
 
+use common\components\bootstrap\ModuleAutoLoader;
+use common\components\ModuleManager;
+
 return [
     'name' => '演示',
     'language' => 'zh-CN',
     'timeZone' => 'Asia/Shanghai',
+    'bootstrap' => [ModuleAutoLoader::className()],
     'vendorPath' => APP_ROOT . '/vendor',
     'components' => [
+        'moduleManager' => [
+            'class' => ModuleManager::className()
+        ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
