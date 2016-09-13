@@ -12,6 +12,7 @@ use common\models\Module;
 use Yii;
 use yii\base\BootstrapInterface;
 use yii\base\Object;
+use yii\log\Logger;
 
 class ModuleAutoLoader extends Object implements BootstrapInterface
 {
@@ -19,29 +20,32 @@ class ModuleAutoLoader extends Object implements BootstrapInterface
 
     public function bootstrap($app)
     {
-        $modules = Yii::$app->cache->get(self::CACHE_KEY);
-        if ($modules === false) {
-            $modules = [];
+        try {
+            $modules = Yii::$app->cache->get(self::CACHE_KEY);
+            if ($modules === false) {
+                $modules = [];
 
-            $models = Module::find()->all();
-            $modulePath = Yii::getAlias(Yii::$app->params['moduleAutoloadPath']);
-            foreach ($models as $model) {
-                $moduleDir = $modulePath . DIRECTORY_SEPARATOR . $model->moduleId . '-' . $model->version;
-                if (is_dir($moduleDir) && is_file($moduleDir . DIRECTORY_SEPARATOR . 'config.php')) {
-                    try {
-                        $modules[$moduleDir] = require($moduleDir . DIRECTORY_SEPARATOR . 'config.php');
-                    } catch (\Exception $ex) {
+                $models = Module::find()->all();
+                $modulePath = Yii::getAlias(Yii::$app->params['moduleAutoloadPath']);
+                foreach ($models as $model) {
+                    $moduleDir = $modulePath . DIRECTORY_SEPARATOR . $model->moduleId . '-' . $model->version;
+                    if (is_dir($moduleDir) && is_file($moduleDir . DIRECTORY_SEPARATOR . 'config.php')) {
+                        try {
+                            $modules[$moduleDir] = require($moduleDir . DIRECTORY_SEPARATOR . 'config.php');
+                        } catch (\Exception $ex) {
+                        }
                     }
                 }
-            }
 
-            if (!YII_DEBUG) {
-                Yii::$app->cache->set(self::CACHE_KEY, $modules);
+                if (!YII_DEBUG) {
+                    Yii::$app->cache->set(self::CACHE_KEY, $modules);
+                }
             }
+            foreach ($modules as $basePath => $config) {
+                Yii::$app->moduleManager->register($basePath, $config);
+            }
+        } catch (\Exception $exception) {
+            Yii::getLogger()->log($exception->getMessage() . ': ' . $exception->getTraceAsString(), Logger::LEVEL_ERROR);
         }
-        foreach ($modules as $basePath => $config) {
-            Yii::$app->moduleManager->register($basePath, $config);
-        }
-
     }
 }
