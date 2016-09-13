@@ -21,4 +21,10 @@ script:
 after_script:
   - docker images
 
+after_success:
+  - if [ "$push_image" == "yes" ]; then
+    docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+    docker push "yiizh/yiizh.com:$image_version";
+    fi
+
 # vim:set et ts=2 sw=2:
