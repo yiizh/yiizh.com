@@ -15,7 +15,7 @@ use yii\httpclient\Client;
 
 class ModuleClient extends Component
 {
-    public $baseUrl = 'http://packagist.dev.yiizh.com';
+    public $baseUrl = 'http://packagist.yiizh.com';
 
     public function getModules()
     {
