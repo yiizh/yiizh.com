@@ -10,6 +10,8 @@ ARG MYSQL_PASS
 
 VOLUME ["/opt/composer/cache"]
 
+WORKDIR /app
+
 COPY . /app
 
 RUN chmod -R 777 /app/src/frontend/runtime \
@@ -22,6 +24,6 @@ RUN sed -i "s/'YII_DEBUG', true/'YII_DEBUG', false/g" /app/src/frontend/web/inde
 
 RUN sed -i "s/\/var\/www\/html/\/app\/src\/frontend\/web/g"  /etc/apache2/sites-available/000-default.conf
 
-WORKDIR /app
+RUN chmod +x /app/deploy/run.sh
 
 CMD ['/app/deploy/run.sh']
