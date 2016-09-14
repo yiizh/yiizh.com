@@ -14,6 +14,8 @@ WORKDIR /app
 
 COPY . /app
 
+RUN ln -s /app/deploy/run /usr/local/bin/run
+
 RUN chmod -R 777 /app/src/frontend/runtime \
     /app/src/frontend/web/assets \
     /app/src/frontend/web/uploads \
@@ -24,6 +26,4 @@ RUN sed -i "s/'YII_DEBUG', true/'YII_DEBUG', false/g" /app/src/frontend/web/inde
 
 RUN sed -i "s/\/var\/www\/html/\/app\/src\/frontend\/web/g"  /etc/apache2/sites-available/000-default.conf
 
-RUN chmod +x /app/deploy/run
-
-ENTRYPOINT ['bash','/app/deploy/run']
+CMD [run']
