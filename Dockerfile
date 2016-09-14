@@ -11,11 +11,7 @@ ARG MYSQL_PASS
 VOLUME ['/root/.composer']
 
 COPY . /app
-
-RUN cd /app && \
-    composer config -g repo.packagist composer https://packagist.phpcomposer.com && \
-    composer global require "fxp/composer-asset-plugin:~1.1.1" && \
-    composer install -vvv --prefer-dist --no-dev --optimize-autoloader
+COPY ./deploy/run.sh /run.sh
 
 RUN chmod -R 777 /app/src/frontend/runtime \
     /app/src/frontend/web/assets \
@@ -28,3 +24,5 @@ RUN sed -i "s/'YII_DEBUG', true/'YII_DEBUG', false/g" /app/src/frontend/web/inde
 RUN sed -i "s/\/var\/www\/html/\/app\/src\/frontend\/web/g"  /etc/apache2/sites-available/000-default.conf
 
 WORKDIR /app
+
+CMD ['/run.sh']
