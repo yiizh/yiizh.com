@@ -21,7 +21,8 @@ RUN chmod +x $APP_PATH/deploy/run && ln -s $APP_PATH/deploy/run /usr/local/bin/r
 RUN chmod -R 777 $APP_PATH/src/frontend/runtime \
     $APP_PATH/src/frontend/web/assets \
     $APP_PATH/src/frontend/web/uploads \
-    $APP_PATH/src/console/runtime
+    $APP_PATH/src/console/runtime \
+    $APP_PATH/modules \
 
 RUN sed -i "s/'YII_DEBUG', true/'YII_DEBUG', false/g" $APP_PATH/src/frontend/web/index.php && \
     sed -i "s/'YII_ENV', 'dev'/'YII_ENV', 'prod'/g" $APP_PATH/src/frontend/web/index.php
