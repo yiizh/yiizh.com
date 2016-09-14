@@ -10,6 +10,7 @@ namespace common\components;
 
 use Yii;
 use yii\base\Component;
+use yii\base\Event;
 use yii\base\InvalidConfigException;
 use yii\console\Application;
 
@@ -47,5 +48,12 @@ class ModuleManager extends Component
         }
         // Register Yii Module
         $app->setModule($config['id'], $moduleConfig);
+
+        // Register Event Handlers
+        if (isset($config['events'])) {
+            foreach ($config['events'] as $event) {
+                Event::on($event['class'], $event['event'], $event['callback']);
+            }
+        }
     }
 }

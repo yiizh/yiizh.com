@@ -6,8 +6,7 @@
  */
 
 use common\models\News;
-use yii\bootstrap\Nav;
-use yii\bootstrap\NavBar;
+use frontend\widgets\ManageBar;
 use yii\web\View;
 
 /**
@@ -17,17 +16,9 @@ use yii\web\View;
 $user = Yii::$app->user;
 $this->beginContent('@frontend/views/layouts/main.php');
 ?>
-<?php NavBar::begin([
-    'options' => [
-        'class' => 'navbar-inverse',
-    ],
-]) ?>
-<?= Nav::widget([
-    'options' => [
-        'class' => 'navbar-nav navbar-left'
-    ],
-    'items' => [
-        ['label' => '系统设置', 'url' => ['/manage/system/index'], 'visible' => $user->can('manageSystem')],
+<?php ManageBar::begin([
+    'items'=>[
+        'abc'=>['label' => '系统设置', 'url' => ['/manage/system/index'], 'visible' => $user->can('manageSystem')],
         ['label' => '模块', 'url' => ['/manage/module/index'], 'visible' => $user->can('manageModule')],
         ['label' => '项目', 'visible' => $user->can('manageProject'), 'items' => [
             ['label' => '所有项目', 'url' => ['/manage/project/index']],
@@ -40,6 +31,6 @@ $this->beginContent('@frontend/views/layouts/main.php');
         ]],
     ]
 ]) ?>
-<?php NavBar::end() ?>
+<?php ManageBar::end() ?>
 <?= $content ?>
 <?php $this->endContent(); ?>

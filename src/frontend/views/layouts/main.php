@@ -9,8 +9,7 @@ use common\components\SettingsManager;
 use common\models\Settings;
 use common\widgets\Alert;
 use frontend\assets\AppAsset;
-use yii\bootstrap\Nav;
-use yii\bootstrap\NavBar;
+use frontend\widgets\TopNavBar;
 use yii\helpers\Html;
 use yii\web\View;
 use yii\widgets\Breadcrumbs;
@@ -34,14 +33,20 @@ $description = $settings->get(Settings::SITE_DESCRIPTION);
 $this->registerMetaTag(['name' => 'keywords', 'content' => $keywords]);
 $this->registerMetaTag(['name' => 'description', 'content' => $description]);
 
-$rightItems = [];
-$rightItems[] = ['label' => '管理', 'url' => ['/manage/default/index'], 'visible' => Yii::$app->user->can('manager')];
+$items = [];
 
+// left items
+$items[] = ['label' => '首页', 'url' => ['/site/index'], 'position' => 'left'];
+$items[] = ['label' => '资讯', 'url' => ['/news/index'], 'position' => 'left'];
+$items['demo'] = ['label' => '演示', 'position' => 'left'];
+
+// right items
+$items[] = ['label' => '管理', 'url' => ['/manage/default/index'], 'visible' => Yii::$app->user->can('manager'), 'position' => 'right'];
 if ($user->isGuest) {
-    $rightItems[] = ['label' => '登录', 'url' => ['/site/login']];
-    $rightItems[] = ['label' => '注册', 'url' => ['/site/register']];
+    $items[] = ['label' => '登录', 'url' => ['/site/login'], 'position' => 'right'];
+    $items[] = ['label' => '注册', 'url' => ['/site/register'], 'position' => 'right'];
 } else {
-    $rightItems[] = ['label' => Html::img($identity->getAvatarUrl(), ['class' => 'top-user-avatar']) . ' ' . $identity->name, 'url' => ['/account/profile'], 'items' => [
+    $items[] = ['label' => Html::img($identity->getAvatarUrl(), ['class' => 'top-user-avatar']) . ' ' . $identity->name, 'url' => ['/account/profile'], 'items' => [
         ['label' => '我的主页', 'url' => ['/user/default/index', 'userId' => $identity->id]],
         ['label' => '个人资料', 'url' => ['/account/profile']],
         '<li class="divider"></li>',
@@ -50,7 +55,7 @@ if ($user->isGuest) {
                 'method' => 'post'
             ]
         ]],
-    ]];
+    ], 'position' => 'right'];
 }
 ?>
 <?php $this->beginPage() ?>
@@ -67,34 +72,16 @@ if ($user->isGuest) {
 <?php $this->beginBody() ?>
 
 <div class="wrap">
-    <?php
-    NavBar::begin([
+    <?= TopNavBar::widget([
+        'items' => $items,
         'id' => 'top-navbar',
-        'brandLabel' => Html::img('@web/static/images/brand-logo.png', ['alt' => $settings->get(Settings::SITE_NAME)]),
-        'brandUrl' => Yii::$app->homeUrl,
-        'brandOptions' => [
-            'title' => $settings->get(Settings::SITE_NAME)
-        ],
         'options' => [
+
+        ],
+        'navbarOptions' => [
             'class' => 'navbar-default navbar-fixed-top',
-        ],
-    ]);
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-left'],
-        'items' => [
-            ['label' => '首页', 'url' => ['/site/index']],
-            ['label' => '资讯', 'url' => ['/news/index']],
-        ],
-    ]);
-
-    echo Nav::widget([
-        'encodeLabels' => false,
-        'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => $rightItems,
-    ]);
-
-    NavBar::end();
-    ?>
+        ]
+    ]) ?>
 
     <div class="container">
         <?= Breadcrumbs::widget([
