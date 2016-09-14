@@ -8,7 +8,7 @@ ARG MYSQL_DB
 ARG MYSQL_USER
 ARG MYSQL_PASS
 
-VOLUME ['/root/.composer']
+VOLUME ["/root/.composer"]
 
 COPY . /app
 COPY ./deploy/run.sh /run.sh
