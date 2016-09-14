@@ -11,7 +11,6 @@ ARG MYSQL_PASS
 VOLUME ["/opt/composer/cache"]
 
 COPY . /app
-COPY ./deploy/run.sh /run.sh
 
 RUN chmod -R 777 /app/src/frontend/runtime \
     /app/src/frontend/web/assets \
@@ -25,4 +24,4 @@ RUN sed -i "s/\/var\/www\/html/\/app\/src\/frontend\/web/g"  /etc/apache2/sites-
 
 WORKDIR /app
 
-CMD ['/run.sh']
+CMD ['/app/deploy/run.sh']
