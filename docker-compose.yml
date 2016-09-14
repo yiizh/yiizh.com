@@ -22,7 +22,7 @@ services:
     volumes:
       - /opt/composer/cache:/opt/composer/cache
       - /opt/apps/yiizh.com/uploads:/app/src/frontend/web/uploads
-      - /opt/apps/yiizh.com/modules:/app/src/modules
+      - /opt/apps/yiizh.com/modules:/app/modules
     env_file: .env
     dns:
       - 223.5.5.5

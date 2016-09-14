@@ -21,12 +21,11 @@ class ModuleAutoLoader extends Object implements BootstrapInterface
         try {
             $modules = [];
             $models = Module::find()->all();
-            $modulePath = Yii::getAlias(Yii::$app->params['moduleAutoloadPath']);
             foreach ($models as $model) {
-                $moduleDir = $modulePath . DIRECTORY_SEPARATOR . $model->moduleId . '-' . $model->version;
-                if (is_dir($moduleDir) && is_file($moduleDir . DIRECTORY_SEPARATOR . 'config.php')) {
+                $modulePath = $model->getModulePath();
+                if (is_dir($modulePath) && is_file($modulePath . DIRECTORY_SEPARATOR . 'config.php')) {
                     try {
-                        $modules[$moduleDir] = require($moduleDir . DIRECTORY_SEPARATOR . 'config.php');
+                        $modules[$modulePath] = require($modulePath . DIRECTORY_SEPARATOR . 'config.php');
                     } catch (\Exception $ex) {
                     }
                 }
