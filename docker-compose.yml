@@ -20,6 +20,7 @@ services:
         tag: "frontend"
     restart: always
     volumes:
+      - /opt/composer:/root/.composer
       - /opt/apps/yiizh.com/uploads:/app/src/frontend/web/uploads
       - /opt/apps/yiizh.com/modules:/app/src/modules
     env_file: .env
