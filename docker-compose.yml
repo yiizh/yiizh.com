@@ -1,0 +1,24 @@
+version: '2'
+services:
+  logger:
+    build: ./deploy/log/
+    restart: always
+    volumes:
+      - /var/log/yiizh.com/:/var/log/docker/
+    ports:
+      - 10100:514
+  frontend:
+    build: .
+    ports:
+      - "127.0.0.1:10101:80"
+    depends_on:
+      - logger
+    logging:
+      driver: "syslog"
+      options:
+        syslog-address: "tcp://127.0.0.1:10100"
+        tag: "frontend"
+    restart: always
+    volumes:
+      - /opt/apps/yiizh.com/uploads:/app/src/frontend/web/uploads
+      - /opt/apps/yiizh.com/modules:/app/src/modules
