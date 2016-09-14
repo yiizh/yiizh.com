@@ -2,6 +2,12 @@ FROM yiizh/php7
 
 MAINTAINER Di Zhang <zhangdi_me@163.com>
 
+ARG APP_ENV
+ARG MYSQL_HOST
+ARG MYSQL_DB
+ARG MYSQL_USER
+ARG MYSQL_PASS
+
 COPY . /app
 
 RUN cd /app && \
