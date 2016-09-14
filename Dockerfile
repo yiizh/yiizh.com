@@ -8,6 +8,8 @@ ARG MYSQL_DB
 ARG MYSQL_USER
 ARG MYSQL_PASS
 
+VOLUME ['/root/.composer']
+
 COPY . /app
 
 RUN cd /app && \
