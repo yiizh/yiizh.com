@@ -26,4 +26,4 @@ RUN sed -i "s/\/var\/www\/html/\/app\/src\/frontend\/web/g"  /etc/apache2/sites-
 
 RUN chmod +x /app/deploy/run.sh
 
-CMD ['/app/deploy/run.sh']
+ENTRYPOINT ['/app/deploy/run.sh']
