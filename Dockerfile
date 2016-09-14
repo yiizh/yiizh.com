@@ -14,7 +14,7 @@ WORKDIR /app
 
 COPY . /app
 
-RUN ln -s /app/deploy/run /usr/local/bin/run
+RUN chmod +x /app/deploy/run && ln -s /app/deploy/run /usr/local/bin/run
 
 RUN chmod -R 777 /app/src/frontend/runtime \
     /app/src/frontend/web/assets \
