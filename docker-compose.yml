@@ -24,3 +24,8 @@ services:
       - /opt/apps/yiizh.com/uploads:/app/src/frontend/web/uploads
       - /opt/apps/yiizh.com/modules:/app/src/modules
     env_file: .env
+    dns:
+      - 223.5.5.5
+      - 223.6.6.6
+      - 8.8.8.8
+      - 8.4.4.4
