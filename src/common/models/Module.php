@@ -5,6 +5,7 @@ namespace common\models;
 use common\components\ModuleClient;
 use common\models\base\BaseModule;
 use common\models\query\ModuleQuery;
+use yii\helpers\FileHelper;
 use yii\helpers\Json;
 
 /**
@@ -83,8 +84,21 @@ class Module extends BaseModule
         $this->trigger(self::EVENT_INSTALL);
     }
 
+    public function getModulePath()
+    {
+        return \Yii::getAlias(\Yii::$app->params['moduleAutoloadPath'] . '/' . $this->moduleId . '-' . $this->version);;
+    }
+
+    /**
+     * @return bool
+     */
     public function uninstall()
     {
+        if (!$this->delete()) {
+            return false;
+        }
+
+        FileHelper::removeDirectory($this->getModulePath());
 
         $this->afterUninstall();
         return true;

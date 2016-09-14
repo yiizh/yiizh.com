@@ -33,7 +33,9 @@ $this->title = '已安装 - 模块';
                     .addClass('disabled');
             },
             success: function (rs) {
-                location.reload();
+                if (rs.success) {
+                    location.reload();
+                }
             }
         });
     });

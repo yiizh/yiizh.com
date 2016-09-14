@@ -7,12 +7,10 @@
 
 namespace frontend\controllers\manage;
 
-
 use common\components\ModuleClient;
 use common\models\Module;
 use frontend\components\BaseFrontendController;
 use yii\helpers\ArrayHelper;
-use yii\helpers\FileHelper;
 use yii\web\Response;
 
 class ModuleController extends BaseFrontendController
@@ -103,30 +101,16 @@ class ModuleController extends BaseFrontendController
     {
         \Yii::$app->response->format = Response::FORMAT_JSON;
         $module = $this->findModule($id);
-        $resp = [];
+        $resp = [
+            'success' => true
+        ];
 
-        // 下载
-        $modulePath = \Yii::getAlias('@root/modules/installed/' . $module->moduleId . '-' . $module->version);
-        try {
-            if (file_exists($modulePath)) {
-                FileHelper::removeDirectory($modulePath);
-                $resp = [
-                    'success' => true
-                ];
-            } else {
-                $resp = [
-                    'success' => false
-                ];
-            }
-
-        } catch (\ErrorException $e) {
+        if (!$module->uninstall()) {
             $resp = [
-                'success' => false
+                'success' => false,
             ];
         }
-        if ($resp['success']) {
-            $module->delete();
-        }
+
         return $resp;
     }
 
