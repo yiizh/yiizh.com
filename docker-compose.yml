@@ -22,3 +22,9 @@ services:
     volumes:
       - /opt/apps/yiizh.com/uploads:/app/src/frontend/web/uploads
       - /opt/apps/yiizh.com/modules:/app/src/modules
+    environment:
+      - MYSQL_HOST=localhost
+      - MYSQL_DB=yiizh_com
+      - MYSQL_USER=root
+      - MYSQL_PASS=root
+      - APP_ENV=prod
