@@ -10,6 +10,7 @@
         "yiisoft/yii2-authclient": "*",
         "yiisoft/yii2-swiftmailer": "*",
         "yiizh/yii2-fontawesome": "*",
+        "yii2tech/sitemap": "*",
         "vlucas/phpdotenv": "*"
     },
     "require-dev": {

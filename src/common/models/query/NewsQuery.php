@@ -1,6 +1,7 @@
 <?php
 
 namespace common\models\query;
+
 use common\models\News;
 
 /**
@@ -27,5 +28,15 @@ class NewsQuery extends \yii\db\ActiveQuery
     public function one($db = null)
     {
         return parent::one($db);
+    }
+
+    /**
+     * @return static
+     */
+    public function published()
+    {
+        return $this->andWhere([
+            '[[status]]' => News::STATUS_PUBLISHED,
+        ]);
     }
 }

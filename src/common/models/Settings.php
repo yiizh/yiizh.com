@@ -3,7 +3,6 @@
 namespace common\models;
 
 use common\models\base\BaseSettings;
-use Yii;
 use yii\helpers\Json;
 
 /**
@@ -14,6 +13,7 @@ class Settings extends BaseSettings
     const WEIBO_APP_SECRET = 'weibo-app_secret';
 
     const SITE_NAME = 'site-name';
+    const SITE_URL = 'site-url';
     const SITE_KEYWORDS = 'site-keywords';
     const SITE_DESCRIPTION = 'site-description';
 
@@ -66,6 +66,7 @@ class Settings extends BaseSettings
     {
         return [
             static::findOneByCode(self::SITE_NAME),
+            static::findOneByCode(self::SITE_URL),
             static::findOneByCode(self::SITE_DESCRIPTION),
             static::findOneByCode(self::SITE_KEYWORDS),
         ];

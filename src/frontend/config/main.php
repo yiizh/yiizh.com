@@ -24,6 +24,7 @@ $config = [
             'enableAutoLogin' => true,
         ],
         'urlManager' => [
+            'class' => 'yii\web\UrlManager',
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => require(__DIR__ . '/routes.php'),
