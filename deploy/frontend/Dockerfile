@@ -14,13 +14,14 @@ VOLUME ["/opt/composer/cache"]
 
 WORKDIR $APP_PATH
 
-COPY . $APP_PATH
+COPY ../ $APP_PATH
 
-RUN chmod +x $APP_PATH/deploy/run && ln -s $APP_PATH/deploy/run /usr/local/bin/run
+RUN chmod +x $APP_PATH/deploy/frontend/run && ln -s $APP_PATH/deploy/frontend/run /usr/local/bin/run
 
 RUN chmod -R 777 $APP_PATH/src/frontend/runtime \
     $APP_PATH/src/frontend/web/assets \
     $APP_PATH/src/frontend/web/uploads \
+    $APP_PATH/src/frontend/web/sitemaps \
     $APP_PATH/src/console/runtime \
     $APP_PATH/modules
 

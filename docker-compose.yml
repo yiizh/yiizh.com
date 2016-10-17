@@ -8,7 +8,7 @@ services:
     ports:
       - 10100:514
   frontend:
-    build: .
+    build: ./deploy/frontend/
     ports:
       - "127.0.0.1:10101:80"
     depends_on:
@@ -23,9 +23,31 @@ services:
       - /opt/composer/cache:/opt/composer/cache
       - /opt/apps/yiizh.com/uploads:/app/src/frontend/web/uploads
       - /opt/apps/yiizh.com/modules:/app/modules
+      - /opt/apps/yiizh.com/sitemaps:/app/src/frontend/web/sitemaps
     env_file: .env
     dns:
       - 223.5.5.5
       - 223.6.6.6
       - 8.8.8.8
       - 8.4.4.4
+  crontab:
+      build: ./deploy/crontab/
+      depends_on:
+        - logger
+      logging:
+        driver: "syslog"
+        options:
+          syslog-address: "tcp://127.0.0.1:10100"
+          tag: "crontab"
+      restart: always
+      volumes:
+        - /opt/composer/cache:/opt/composer/cache
+        - /opt/apps/yiizh.com/uploads:/app/src/frontend/web/uploads
+        - /opt/apps/yiizh.com/modules:/app/modules
+        - /opt/apps/yiizh.com/sitemaps:/app/src/frontend/web/sitemaps
+      env_file: .env
+      dns:
+        - 223.5.5.5
+        - 223.6.6.6
+        - 8.8.8.8
+        - 8.4.4.4

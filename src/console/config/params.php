@@ -5,4 +5,16 @@
  * @license http://www.yiizh.com/license/
  */
 
-return [];
+return [
+    'crontabs'=>[
+        [
+            'name' => 'name',
+            'rule' => '* * * * *',
+            'cmd' => 'php',
+            'args' => [
+                '@root/bin/console',
+                'sitemap/generate'
+            ]
+        ]
+    ]
+];
