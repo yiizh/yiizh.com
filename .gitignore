@@ -1,0 +1,5 @@
+vendor/
+
+.vagrant/
+
+.idea/workspace.xml

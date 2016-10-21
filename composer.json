@@ -1,0 +1,29 @@
+{
+    "name": "yiizh/yiizh.com",
+    "description": "The source code of YiiZH.COM.",
+    "type": "project",
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=5.4.0",
+        "yiisoft/yii2": "2.0.10",
+        "yiizh/yii2-adminlte": "*",
+        "yiizh/yii2-fontawesome": "*",
+        "yiisoft/yii2-authclient": "*",
+        "yiisoft/yii2-swiftmailer": "*",
+        "yii2tech/sitemap": "*",
+        "vlucas/phpdotenv": "*"
+    },
+    "require-dev": {
+        "yiisoft/yii2-gii": "*",
+        "yiisoft/yii2-debug": "*"
+    },
+    "config": {
+        "process-timeout": 1800
+    },
+    "extra": {
+        "asset-installer-paths": {
+            "npm-asset-library": "vendor/npm",
+            "bower-asset-library": "vendor/bower"
+        }
+    }
+}

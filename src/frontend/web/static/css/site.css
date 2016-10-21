@@ -1,0 +1,72 @@
+html,
+body {
+  height: 100%;
+  font-family: Helvetica Neue, Helvetica, PingFang SC, "微软雅黑", Tahoma, Arial, sans-serif;
+}
+a {
+  color: #5FB878;
+}
+a:hover {
+  color: #469e5f;
+}
+.wrap {
+  min-height: 100%;
+  height: auto;
+  margin: 0 auto -60px;
+  padding: 0 0 60px;
+  background-color: #f3f3f4;
+}
+.wrap > .container {
+  padding: 70px 15px 20px;
+}
+.footer {
+  height: 60px;
+  border-top: 1px solid #ddd;
+  padding-top: 20px;
+  background-color: #393D49;
+  color: #c2c2c2;
+}
+.footer a {
+  color: #5FB878;
+}
+.footer a:hover {
+  color: #5FB878;
+}
+.jumbotron {
+  text-align: center;
+  background-color: transparent;
+}
+.jumbotron .btn {
+  font-size: 21px;
+  padding: 14px 24px;
+}
+.main-header .navbar {
+  background-color: #FFFFFF;
+  border-bottom: 5px solid #5FB878;
+}
+.main-header .navbar .navbar-header a:hover,
+.main-header .navbar .navbar-nav a:hover {
+  color: #5FB878;
+}
+.main-header .navbar .navbar-nav > li.active > a {
+  background-color: transparent;
+  color: #5FB878;
+}
+.main-header .top-user-avatar {
+  width: 20px;
+  height: 20px;
+}
+.breadcrumb {
+  background: #FFFFFF;
+}
+.box {
+  background-color: #FFFFFF;
+  color: inherit;
+  padding: 15px 20px 20px 20px;
+}
+.auth-clients {
+  padding-left: 0;
+}
+.auth-icon.weibo {
+  background: url(../images/weibo.png);
+}
