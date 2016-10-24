@@ -23,7 +23,7 @@ services:
       - /opt/composer/cache:/opt/composer/cache
       - /opt/apps/yiizh.com/uploads:/app/src/frontend/web/uploads
       - /opt/apps/yiizh.com/sitemaps:/app/src/frontend/web/sitemaps
-    env_file: .env
+    env_file: env.ini
     dns:
       - 223.5.5.5
       - 223.6.6.6
@@ -43,7 +43,7 @@ services:
         - /opt/composer/cache:/opt/composer/cache
         - /opt/apps/yiizh.com/uploads:/app/src/frontend/web/uploads
         - /opt/apps/yiizh.com/sitemaps:/app/src/frontend/web/sitemaps
-      env_file: .env
+      env_file: env.ini
       dns:
         - 223.5.5.5
         - 223.6.6.6
