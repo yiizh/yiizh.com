@@ -8,7 +8,7 @@ services:
     ports:
       - 10100:514
   frontend:
-    build: .
+    image: yiizh/yiizh.com:latest
     ports:
       - "127.0.0.1:10101:80"
     depends_on:
@@ -30,7 +30,7 @@ services:
       - 8.8.8.8
       - 8.4.4.4
   crontab:
-      build: .
+      image: yiizh/yiizh.com:latest
       depends_on:
         - logger
       logging:
