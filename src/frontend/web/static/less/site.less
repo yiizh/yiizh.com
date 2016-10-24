@@ -1,9 +1,11 @@
 @import "vars";
+@import "../../../../../vendor/bower/bootstrap/less/mixins/buttons";
 
 html,
 body {
   height: 100%;
   font-family: @font-family;
+  color: @color-text;
 }
 
 a {
@@ -36,7 +38,7 @@ a {
 
   a {
     color: @footer-link-color;
-    &:hover{
+    &:hover {
       color: @footer-link-active-color;
     }
   }
@@ -50,6 +52,42 @@ a {
 .jumbotron .btn {
   font-size: 21px;
   padding: 14px 24px;
+}
+
+.has-error {
+  .help-block,
+  .control-label,
+  .radio,
+  .checkbox,
+  .radio-inline,
+  .checkbox-inline,
+  &.radio label,
+  &.checkbox label,
+  &.radio-inline label,
+  &.checkbox-inline label {
+    color: @color-red;
+  }
+
+  .form-control {
+    border-color: @color-red;
+  }
+}
+
+.btn-primary {
+  .button-variant(@btn-primary-color; @btn-primary-bg; @btn-primary-border);
+}
+
+.btn-success {
+  .button-variant(@btn-success-color; @btn-success-bg; @btn-success-border);
+}
+
+.nav-pills {
+  > li.active > a {
+    &, &:hover {
+      background-color: @color-lightGreen;
+      color: @color-white;
+    }
+  }
 }
 
 .main-header {
@@ -71,6 +109,17 @@ a {
     }
   }
 
+  .dropdown-menu {
+    > .active > a {
+      &,
+      &:hover,
+      &:focus {
+        background-color: @color-lightGreen;
+        color: #FFF;
+      }
+    }
+  }
+
   .top-user-avatar {
     width: 20px;
     height: 20px;
@@ -86,6 +135,14 @@ a {
   background-color: @color-white;
   color: inherit;
   padding: 15px 20px 20px 20px;
+
+  &.no-padding {
+    padding: 0;
+  }
+
+  &.thin-padding {
+    padding: 8px 10px 10px 10px;
+  }
 }
 
 // auth clients
@@ -95,4 +152,15 @@ a {
 
 .auth-icon.weibo {
   background: url(../images/weibo.png);
+}
+
+// news
+.news-item {
+  .news-item-title {
+    line-height: 1.5em;
+    margin-top: 0;
+  }
+  .news-item-meta {
+    margin: 20px 0;
+  }
 }

@@ -8,7 +8,7 @@
 use common\components\SettingsManager;
 
 return [
-    'name' => 'Template',
+    'name' => 'Yii中文',
     'language' => 'zh-CN',
     'timeZone' => 'Asia/Shanghai',
     'bootstrap' => ['log'],

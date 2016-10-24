@@ -18,7 +18,13 @@ $config = [
     'modules' => [
         'dashboard' => [
             'class' => 'modules\dashboard\Module'
-        ]
+        ],
+        'user' => [
+            'class' => 'modules\user\Module'
+        ],
+        'account' => [
+            'class' => 'modules\account\Module'
+        ],
     ],
     'components' => [
         'user' => [
@@ -28,7 +34,16 @@ $config = [
             'class' => 'yii\web\UrlManager',
             'enablePrettyUrl' => true,
             'showScriptName' => false,
-            'rules' => [],
+            'rules' => [
+                // news
+                // module account
+                '/account/<controller:[\w-]+/<action:[\w-]+>' => '/account/<controller>/<action>',
+                '/account/<controller:[\w-]+>' => '/account/<controller>/index',
+                // 公共
+                '<controller:[\w-]+/<action:[\w-]+>' => '<controller>/<action>',
+                '<controller:[\w-]+>' => '<controller>/index',
+                '<controller:[\w-]+>/<id:\d+>' => '<controller>/view',
+            ],
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',

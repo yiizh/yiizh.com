@@ -5,20 +5,31 @@
  * @license http://www.yiizh.com/license/
  */
 
+use common\models\User;
 use common\widgets\Nav;
+use yii\helpers\Html;
 use yii\web\View;
 
 /**
  * @var $this View
+ * @var $identity User
  */
+$identity = Yii::$app->user->getIdentity();
 
-$rightNavItems = [
-    ['label' => '管理员', 'items' => [
-        ['label' => '修改密码', 'url' => ['/manager/account/change-password']],
+$rightNavItems[] = ['label' => '前台首页', 'url' => Yii::$app->homeUrl];
+$rightNavItems[] = [
+    'label' => Html::img($identity->getAvatarUrl(), ['class' => 'top-user-avatar', 'width' => 20, 'height' => 20]) . ' ' . $identity->name,
+    'url' => ['/account/profile'],
+    'items' => [
+        ['label' => '我的主页', 'url' => ['/user/default/index', 'userId' => $identity->id]],
+        ['label' => '个人资料', 'url' => ['/account/profile']],
         '<li class="divider"></li>',
-        ['label' => '退出', 'url' => ['/site/logout'], ['data' => ['method' => 'post']]]
-    ]],
-];
+        ['label' => '退出', 'url' => ['/site/logout'], 'linkOptions' => [
+            'data' => [
+                'method' => 'post'
+            ]
+        ]],
+    ], 'position' => 'right'];
 
 ?>
 <header class="main-header">
@@ -47,6 +58,7 @@ $rightNavItems = [
         ]) ?>
         <div class="navbar-custom-menu">
             <?= Nav::widget([
+                'encodeLabels' => false,
                 'options' => [
                     'class' => 'navbar-nav'
                 ],

@@ -11,9 +11,9 @@ use yii\web\AssetBundle;
 
 class DashboardAsset extends AssetBundle
 {
-    public $basePath = '@webroot';
-    public $baseUrl = '@web';
+    public $sourcePath = '@modules/dashboard/assets/dist';
     public $css = [
+        'css/dashboard.css'
     ];
     public $js = [
     ];

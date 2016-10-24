@@ -26,6 +26,11 @@ class RbacController extends BaseConsoleController
         $auth = Yii::$app->authManager;
         $auth->removeAll();
 
+        // 基础管理权限
+        $manage = $auth->createPermission('manage');
+        $manage->description = '基础管理权限';
+        $auth->add($manage);
+
         // 项目管理权限
         $manageProject = $auth->createPermission('manageProject');
         $manageProject->description = '管理项目';
@@ -59,6 +64,9 @@ class RbacController extends BaseConsoleController
 
         $auth->addChild($manager, $manageNews);
 
+        $auth->addChild($manager, $manage);
+
+        $auth->addChild($superManager, $manage);
         $auth->addChild($superManager, $manageNews);
         $auth->addChild($superManager, $manageProject);
         $auth->addChild($superManager, $manageSystem);

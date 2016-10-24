@@ -2,6 +2,7 @@ html,
 body {
   height: 100%;
   font-family: Helvetica Neue, Helvetica, PingFang SC, "微软雅黑", Tahoma, Arial, sans-serif;
+  color: #555555;
 }
 a {
   color: #5FB878;
@@ -40,6 +41,140 @@ a:hover {
   font-size: 21px;
   padding: 14px 24px;
 }
+.has-error .help-block,
+.has-error .control-label,
+.has-error .radio,
+.has-error .checkbox,
+.has-error .radio-inline,
+.has-error .checkbox-inline,
+.has-error.radio label,
+.has-error.checkbox label,
+.has-error.radio-inline label,
+.has-error.checkbox-inline label {
+  color: #FF5722;
+}
+.has-error .form-control {
+  border-color: #FF5722;
+}
+.btn-primary {
+  color: #fff;
+  background-color: #6c8ebe;
+  border-color: #5a80b6;
+}
+.btn-primary:focus,
+.btn-primary.focus {
+  color: #fff;
+  background-color: #4c73ab;
+  border-color: #2c4465;
+}
+.btn-primary:hover {
+  color: #fff;
+  background-color: #4c73ab;
+  border-color: #416393;
+}
+.btn-primary:active,
+.btn-primary.active,
+.open > .dropdown-toggle.btn-primary {
+  color: #fff;
+  background-color: #4c73ab;
+  border-color: #416393;
+}
+.btn-primary:active:hover,
+.btn-primary.active:hover,
+.open > .dropdown-toggle.btn-primary:hover,
+.btn-primary:active:focus,
+.btn-primary.active:focus,
+.open > .dropdown-toggle.btn-primary:focus,
+.btn-primary:active.focus,
+.btn-primary.active.focus,
+.open > .dropdown-toggle.btn-primary.focus {
+  color: #fff;
+  background-color: #416393;
+  border-color: #2c4465;
+}
+.btn-primary:active,
+.btn-primary.active,
+.open > .dropdown-toggle.btn-primary {
+  background-image: none;
+}
+.btn-primary.disabled:hover,
+.btn-primary[disabled]:hover,
+fieldset[disabled] .btn-primary:hover,
+.btn-primary.disabled:focus,
+.btn-primary[disabled]:focus,
+fieldset[disabled] .btn-primary:focus,
+.btn-primary.disabled.focus,
+.btn-primary[disabled].focus,
+fieldset[disabled] .btn-primary.focus {
+  background-color: #6c8ebe;
+  border-color: #5a80b6;
+}
+.btn-primary .badge {
+  color: #6c8ebe;
+  background-color: #fff;
+}
+.btn-success {
+  color: #fff;
+  background-color: #5FB878;
+  border-color: #4eb069;
+}
+.btn-success:focus,
+.btn-success.focus {
+  color: #fff;
+  background-color: #469e5f;
+  border-color: #275734;
+}
+.btn-success:hover {
+  color: #fff;
+  background-color: #469e5f;
+  border-color: #3b8550;
+}
+.btn-success:active,
+.btn-success.active,
+.open > .dropdown-toggle.btn-success {
+  color: #fff;
+  background-color: #469e5f;
+  border-color: #3b8550;
+}
+.btn-success:active:hover,
+.btn-success.active:hover,
+.open > .dropdown-toggle.btn-success:hover,
+.btn-success:active:focus,
+.btn-success.active:focus,
+.open > .dropdown-toggle.btn-success:focus,
+.btn-success:active.focus,
+.btn-success.active.focus,
+.open > .dropdown-toggle.btn-success.focus {
+  color: #fff;
+  background-color: #3b8550;
+  border-color: #275734;
+}
+.btn-success:active,
+.btn-success.active,
+.open > .dropdown-toggle.btn-success {
+  background-image: none;
+}
+.btn-success.disabled:hover,
+.btn-success[disabled]:hover,
+fieldset[disabled] .btn-success:hover,
+.btn-success.disabled:focus,
+.btn-success[disabled]:focus,
+fieldset[disabled] .btn-success:focus,
+.btn-success.disabled.focus,
+.btn-success[disabled].focus,
+fieldset[disabled] .btn-success.focus {
+  background-color: #5FB878;
+  border-color: #4eb069;
+}
+.btn-success .badge {
+  color: #5FB878;
+  background-color: #fff;
+}
+.nav-pills > li.active > a,
+.nav-pills > li.active > a:hover {
+  background-color: #5FB878;
+  color: #FFFFFF;
+}
 .main-header .navbar {
   background-color: #FFFFFF;
   border-bottom: 5px solid #5FB878;
@@ -51,6 +186,12 @@ a:hover {
 .main-header .navbar .navbar-nav > li.active > a {
   background-color: transparent;
   color: #5FB878;
+}
+.main-header .dropdown-menu > .active > a,
+.main-header .dropdown-menu > .active > a:hover,
+.main-header .dropdown-menu > .active > a:focus {
+  background-color: #5FB878;
+  color: #FFF;
 }
 .main-header .top-user-avatar {
   width: 20px;
@@ -64,9 +205,22 @@ a:hover {
   color: inherit;
   padding: 15px 20px 20px 20px;
 }
+.box.no-padding {
+  padding: 0;
+}
+.box.thin-padding {
+  padding: 8px 10px 10px 10px;
+}
 .auth-clients {
   padding-left: 0;
 }
 .auth-icon.weibo {
   background: url(../images/weibo.png);
+}
+.news-item .news-item-title {
+  line-height: 1.5em;
+  margin-top: 0;
+}
+.news-item .news-item-meta {
+  margin: 20px 0;
 }

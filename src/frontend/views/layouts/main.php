@@ -26,14 +26,16 @@ $identity = $user->getIdentity();
 $mainItems = [];
 $rightItems = [];
 $mainItems[] = ['label' => '头条', 'url' => ['/news/index']];
+$mainItems[] = ['label' => '网址导航', 'url' => 'http://i.yiizh.com', 'linkOptions' => ['target' => '_blank']];
 
+$rightItems[] = ['label' => '控制台', 'url' => ['/dashboard/default/index'], 'visible' => $user->can('manage')];
 if (Yii::$app->user->isGuest) {
     $rightItems[] = ['label' => '登录', 'url' => ['/site/login']];
     $rightItems[] = ['label' => '注册', 'url' => ['/site/register']];
 } else {
     $rightItems[] = ['label' => Html::img($identity->getAvatarUrl(), ['class' => 'top-user-avatar']) . ' ' . $identity->name, 'url' => ['/account/profile'], 'items' => [
         ['label' => '我的主页', 'url' => ['/user/default/index', 'userId' => $identity->id]],
-        ['label' => '个人资料', 'url' => ['/account/profile']],
+        ['label' => '个人资料', 'url' => ['/account/profile/index']],
         '<li class="divider"></li>',
         ['label' => '退出', 'url' => ['/site/logout'], 'linkOptions' => [
             'data' => [
@@ -52,7 +54,7 @@ AppAsset::register($this);
         <meta charset="<?= Yii::$app->charset ?>">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <?= Html::csrfMetaTags() ?>
-        <title><?= Html::encode($this->title) ?></title>
+        <title><?= Html::encode($this->title . '_' . Yii::$app->name) ?></title>
         <?php $this->head() ?>
     </head>
     <body>
@@ -100,7 +102,9 @@ AppAsset::register($this);
             <p class="pull-right"><?= Yii::powered() ?></p>
         </div>
     </footer>
-
+    <script type="text/javascript">
+        with (document)0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
+    </script>
     <?php $this->endBody() ?>
     </body>
     </html>

@@ -27,7 +27,7 @@ class CrontabController extends Controller
     public function init()
     {
         parent::init();
-        $this->crontabs = \Yii::$app->params['crontabs'];
+        $this->crontabs = ArrayHelper::getValue(\Yii::$app->params, 'crontabs', []);
     }
 
     public function actionStartup()

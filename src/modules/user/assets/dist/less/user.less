@@ -1,0 +1,59 @@
+/**
+ * user
+ */
+.user-layout {
+  .user-layout-header {
+    background-image: url(../images/user-layout-header-bg.jpg);
+    background-size: cover;
+    background-position: center center;
+    text-align: center;
+    color: #ffffff;
+    padding: 30px 0 0 0;
+
+    .user-layout-header-avatar {
+      margin-top: 30px;
+      width: 120px;
+    }
+  }
+
+  .user-layout-header-toolbar {
+    margin-top: 30px;
+  }
+
+  .navbar-default {
+    text-align: center;
+    margin-top: 30px;
+    border-radius: 0 !important;
+    border: none;
+    background-color: rgba(0, 0, 0, .5);
+
+    .navbar-center {
+      float: none !important;
+
+      li {
+        float: none !important;
+        display: inline-block;
+      }
+    }
+
+    .nav {
+      > li {
+        > a {
+          border-bottom: 3px solid transparent;
+          color: #FFFFFF !important;
+
+          &:hover,
+          & :focus {
+            color: #FFFFFF !important;
+            background: rgba(0, 0, 0, .55);
+          }
+        }
+        &.active a {
+          background: transparent;
+          border-bottom: 3px solid #d34615;
+          color: #FFFFFF !important;
+        }
+      }
+    }
+  }
+}

@@ -66,19 +66,19 @@ class AuthHandler
                     Alert::set('success', Yii::t('app', '已绑定 {client} 账号.', [
                         'client' => $this->client->getTitle()
                     ]));
-                    return Yii::$app->response->redirect(['/openid/index']);
+                    return Yii::$app->response->redirect(['/account/openid/index']);
                 } else {
                     Alert::set('error', Yii::t('app', 'Unable to link {client} account: {errors}', [
                         'client' => $this->client->getTitle(),
                         'errors' => json_encode($auth->getErrors()),
                     ]));
-                    return Yii::$app->response->redirect(['/openid/index']);
+                    return Yii::$app->response->redirect(['/account/openid/index']);
                 }
             } else { // there's existing auth
                 Alert::set('error', Yii::t('app', '绑定 {client} 帐号失败. 已绑定其他帐号.', [
                     'client' => $this->client->getTitle()
                 ]));
-                return Yii::$app->response->redirect(['/openid/index']);
+                return Yii::$app->response->redirect(['/account/openid/index']);
             }
         }
     }

@@ -1,0 +1,46 @@
+/**
+ * user
+ */
+.user-layout .user-layout-header {
+  background-image: url(../images/user-layout-header-bg.jpg);
+  background-size: cover;
+  background-position: center center;
+  text-align: center;
+  color: #ffffff;
+  padding: 30px 0 0 0;
+}
+.user-layout .user-layout-header .user-layout-header-avatar {
+  margin-top: 30px;
+  width: 120px;
+}
+.user-layout .user-layout-header-toolbar {
+  margin-top: 30px;
+}
+.user-layout .navbar-default {
+  text-align: center;
+  margin-top: 30px;
+  border-radius: 0 !important;
+  border: none;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.user-layout .navbar-default .navbar-center {
+  float: none !important;
+}
+.user-layout .navbar-default .navbar-center li {
+  float: none !important;
+  display: inline-block;
+}
+.user-layout .navbar-default .nav > li > a {
+  border-bottom: 3px solid transparent;
+  color: #FFFFFF !important;
+}
+.user-layout .navbar-default .nav > li > a:hover,
+.user-layout .navbar-default .nav > li > a :focus {
+  color: #FFFFFF !important;
+  background: rgba(0, 0, 0, 0.55);
+}
+.user-layout .navbar-default .nav > li.active a {
+  background: transparent;
+  border-bottom: 3px solid #d34615;
+  color: #FFFFFF !important;
+}

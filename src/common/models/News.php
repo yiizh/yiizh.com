@@ -5,6 +5,7 @@ namespace common\models;
 use common\models\base\BaseNews;
 use common\models\query\NewsQuery;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Url;
 
 /**
  * @property User $user
@@ -93,5 +94,14 @@ class News extends BaseNews
             $activity->objectId = $this->id;
             $activity->save();
         }
+    }
+
+    /**
+     * @param bool $scheme
+     * @return string
+     */
+    public function getUrl($scheme = false)
+    {
+        return Url::to(['/news/view', 'id' => $this->id], $scheme);
     }
 }
