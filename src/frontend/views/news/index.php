@@ -11,7 +11,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="news-index">
     <div class="row">
-        <div class="col-xs-9">
+        <div class="col-md-9">
             <div class="box">
                 <div class="box-body">
                     <?= ListView::widget([
@@ -23,9 +23,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     ]) ?>
                 </div>
             </div>
-
         </div>
-        <div class="col-xs-3">
+        <div class="col-md-3 hidden-xs hidden-sm">
             <div class="box">
                 <div class="box-body">
                     <p>好文章，要分享。</p>

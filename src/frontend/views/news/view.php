@@ -54,11 +54,11 @@ $this->params['breadcrumbs'][] = $this->title;
 <?php JsBlock::end() ?>
 <div class="news-view">
     <div class="row">
-        <div class="col-xs-9">
+        <div class="col-md-9">
             <div class="box">
                 <div class="box-body">
                     <div class="row news-item">
-                        <div class="col-xs-2 text-right">
+                        <div class="col-md-2 hidden-xs hidden-sm text-right">
                             <p>
                                 <a href="<?= $user->getUrl() ?>"><img src="<?= $user->getAvatarUrl() ?>"
                                                                       class="img-thumbnail"></a>
@@ -67,10 +67,11 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <a href="<?= $user->getUrl() ?>">@<?= $user->name ?></a>
                             </p>
                         </div>
-                        <div class="col-xs-10">
+                        <div class="col-md-10">
                             <h3 class="news-item-title"><?= $model->title ?></h3>
                             <p class="news-item-meta">
                                 <time class="text-muted"><?= $formatter->asRelativeTime($model->createdAt) ?></time>
+                                <a class="hidden-md" href="<?= $user->getUrl() ?>">@<?= $user->name ?></a>
                             </p>
                             <div>
                                 <div class="bdsharebuttonbox">
@@ -89,7 +90,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
             </div>
         </div>
-        <div class="col-xs-3">
+        <div class="col-md-3 hidden-xs hidden-sm">
             <div class="box">
                 <div class="box-body">
                     <p>好文章，要分享。</p>
