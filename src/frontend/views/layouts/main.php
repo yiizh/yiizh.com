@@ -35,16 +35,19 @@ if (Yii::$app->user->isGuest) {
     $rightItems[] = ['label' => '登录', 'url' => ['/site/login']];
     $rightItems[] = ['label' => '注册', 'url' => ['/site/register']];
 } else {
-    $rightItems[] = ['label' => Html::img($identity->getAvatarUrl(), ['class' => 'top-user-avatar']) . ' ' . $identity->name, 'url' => ['/account/profile'], 'items' => [
-        ['label' => '我的主页', 'url' => ['/user/default/index', 'userId' => $identity->id]],
-        ['label' => '个人资料', 'url' => ['/account/profile/index']],
-        '<li class="divider"></li>',
-        ['label' => '退出', 'url' => ['/site/logout'], 'linkOptions' => [
-            'data' => [
-                'method' => 'post'
-            ]
-        ]],
-    ], 'position' => 'right'];
+    $rightItems[] = [
+        'label' => Html::img($identity->getAvatarUrl()) . ' ' . $identity->name,
+        'options' => ['class' => 'top-user-avatar'],
+        'url' => ['/account/profile'], 'items' => [
+            ['label' => '我的主页', 'url' => ['/user/default/index', 'userId' => $identity->id]],
+            ['label' => '个人资料', 'url' => ['/account/profile/index']],
+            '<li class="divider"></li>',
+            ['label' => '退出', 'url' => ['/site/logout'], 'linkOptions' => [
+                'data' => [
+                    'method' => 'post'
+                ]
+            ]],
+        ], 'position' => 'right'];
 }
 
 AppAsset::register($this);
@@ -62,8 +65,6 @@ AppAsset::register($this);
     </head>
     <body>
     <?php $this->beginBody() ?>
-
-
     <div class="wrap">
         <header class="main-header">
             <?php

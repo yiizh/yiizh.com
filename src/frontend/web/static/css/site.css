@@ -206,9 +206,12 @@ fieldset[disabled] .btn-success.focus {
   background-color: #5FB878;
   color: #FFF;
 }
-.main-header .top-user-avatar {
-  width: 20px;
-  height: 20px;
+.main-header .top-user-avatar a {
+  padding: 10px 15px;
+}
+.main-header .top-user-avatar a img {
+  height: 30px;
+  width: 30px;
 }
 .breadcrumb {
   background: #FFFFFF;
