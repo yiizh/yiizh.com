@@ -1,4 +1,9 @@
 <?php
+/**
+ * @link http://www.yiizh.com/
+ * @copyright Copyright (c) 2016 yiizh.com
+ * @license http://www.yiizh.com/license/
+ */
 
 namespace common\models;
 
@@ -16,6 +21,8 @@ class Settings extends BaseSettings
     const SITE_URL = 'site-url';
     const SITE_KEYWORDS = 'site-keywords';
     const SITE_DESCRIPTION = 'site-description';
+
+    const TONGJI_CNZZ = "tongji-cnzz";
 
     /**
      * @param mixed $value

@@ -13,6 +13,7 @@ use common\widgets\Nav;
 use modules\dashboard\Controller;
 use Yii;
 use yii\base\Model;
+use yii\helpers\Html;
 
 class SystemController extends Controller
 {
@@ -22,6 +23,7 @@ class SystemController extends Controller
         Nav::setMenu('main-sidebar', [
             ['label' => '站点设置', 'url' => ['system/index']],
             ['label' => '微博设置', 'url' => ['system/weibo']],
+            ['label' => '统计代码', 'url' => ['system/tongji']],
         ]);
     }
 
@@ -63,6 +65,26 @@ class SystemController extends Controller
         }
 
         return $this->render('weibo', [
+            'settings' => $settings
+        ]);
+    }
+
+    public function actionTongji(){
+        $settings = [
+            Settings::findOneByCode(Settings::TONGJI_CNZZ),
+        ];
+
+        if (Model::loadMultiple($settings, Yii::$app->request->post()) && Model::validateMultiple($settings)) {
+            foreach ($settings as $setting) {
+                $setting->save(false);
+            }
+            Alert::set('success', '保存成功');
+            return $this->refresh();
+        }
+
+        echo Html::errorSummary($settings);
+
+        return $this->render('tongji', [
             'settings' => $settings
         ]);
     }

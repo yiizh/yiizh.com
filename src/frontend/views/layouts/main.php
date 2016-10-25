@@ -5,6 +5,7 @@
  * @license http://www.yiizh.com/license/
  */
 
+use common\models\Settings;
 use common\widgets\Alert;
 use frontend\assets\AppAsset;
 use yii\bootstrap\Nav;
@@ -97,7 +98,12 @@ AppAsset::register($this);
 
     <footer class="footer">
         <div class="container">
-            <p class="pull-left">&copy; yiizh.com <?= date('Y') ?></p>
+            <p class="pull-left">
+                <span class="copyright">&copy; yiizh.com <?= date('Y') ?></span>
+                <?php if (($cnzz = Settings::get(Settings::TONGJI_CNZZ)) != ''): ?>
+                    <span>&bull; <?= $cnzz ?></span>
+                <?php endif; ?>
+            </p>
 
             <p class="pull-right"><?= Yii::powered() ?></p>
         </div>
