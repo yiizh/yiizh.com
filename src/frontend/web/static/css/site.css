@@ -175,6 +175,12 @@ fieldset[disabled] .btn-success.focus {
   background-color: #5FB878;
   color: #FFFFFF;
 }
+.main-header .navbar-header .navbar-brand {
+  padding: 10px 15px;
+}
+.main-header .navbar-header .navbar-brand .logo {
+  height: 30px;
+}
 .main-header .navbar {
   background-color: #FFFFFF;
   border-bottom: 5px solid #5FB878;

@@ -11,6 +11,7 @@ use frontend\assets\AppAsset;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\web\View;
 use yii\widgets\Breadcrumbs;
 
@@ -54,6 +55,7 @@ AppAsset::register($this);
     <head>
         <meta charset="<?= Yii::$app->charset ?>">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" href="<?= Url::to('@web/favicon.ico') ?>" type="image/x-icon"/>
         <?= Html::csrfMetaTags() ?>
         <title><?= Html::encode($this->title . '_' . Yii::$app->name) ?></title>
         <?php $this->head() ?>
@@ -67,7 +69,7 @@ AppAsset::register($this);
             <?php
             NavBar::begin([
                 'id' => 'navbar-top',
-                'brandLabel' => 'Yii &bull; 中文',
+                'brandLabel' => Html::img('@web/static/images/logo-with-text.png', ['class' => 'logo']),
                 'brandUrl' => Yii::$app->homeUrl,
                 'options' => [
                     'class' => 'navbar-default navbar-fixed-top',
