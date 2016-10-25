@@ -7,9 +7,11 @@
 
 use common\models\News;
 use common\models\User;
+use common\widgets\DuoShuo;
 use common\widgets\JsBlock;
 use yii\helpers\Html;
 use yii\helpers\HtmlPurifier;
+use yii\helpers\Json;
 use yii\helpers\StringHelper;
 use yii\web\View;
 
@@ -87,6 +89,12 @@ $this->params['breadcrumbs'][] = $this->title;
                             <p><?= Html::a($model->link, $model->link, ['target' => '_blank']) ?></p>
                         </div>
                     </div>
+                    <hr>
+                    <?= DuoShuo::widget([
+                        'threadKey' => Json::encode(['env' => getenv('APP_ENV'), 'type' => 'news', 'id' => $model->id]),
+                        'title' => $model->title,
+                        'url' => $model->getUrl(true)
+                    ]) ?>
                 </div>
             </div>
         </div>
