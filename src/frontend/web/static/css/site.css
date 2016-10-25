@@ -179,7 +179,7 @@ fieldset[disabled] .btn-success.focus {
 }
 .nav-pills > li.active > a,
 .nav-pills > li.active > a:hover {
-  background-color: #5FB878;
+  background-color: #e67e22;
   color: #FFFFFF;
 }
 .main-header .navbar-header .navbar-brand {
