@@ -72,7 +72,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <div class="col-md-10">
                             <h3 class="news-item-title"><?= $model->title ?></h3>
                             <p class="news-item-meta">
-                                <time class="text-muted"><?= $formatter->asRelativeTime($model->createdAt) ?></time>
+                                <time><?= $formatter->asRelativeTime($model->createdAt) ?></time>
                                 <a class="hidden-md" href="<?= $user->getUrl() ?>">@<?= $user->name ?></a>
                             </p>
                             <div>
