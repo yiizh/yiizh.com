@@ -13,19 +13,14 @@ $params = array_merge(
 $config = [
     'id' => APP_FRONTEND,
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log', 'settings'],
-    'controllerNamespace' => 'frontend\controllers',
-    'modules' => [
-        'dashboard' => [
-            'class' => 'modules\dashboard\Module'
-        ],
-        'user' => [
-            'class' => 'modules\user\Module'
-        ],
-        'account' => [
-            'class' => 'modules\account\Module'
-        ],
+    'bootstrap' => [
+        'log',
+        'settings',
+        'modules\user\Bootstrap',
+        'modules\account\Bootstrap',
+        'modules\dashboard\Bootstrap',
     ],
+    'controllerNamespace' => 'frontend\controllers',
     'components' => [
         'user' => [
             'identityClass' => 'common\models\User'
@@ -35,14 +30,6 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                // news
-                // module account
-                '/account/<controller:[\w-]+/<action:[\w-]+>' => '/account/<controller>/<action>',
-                '/account/<controller:[\w-]+>' => '/account/<controller>/index',
-                // 公共
-                '<controller:[\w-]+/<action:[\w-]+>' => '<controller>/<action>',
-                '<controller:[\w-]+>' => '<controller>/index',
-                '<controller:[\w-]+>/<id:\d+>' => '<controller>/view',
             ],
         ],
         'cache' => [
