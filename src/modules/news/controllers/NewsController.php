@@ -1,6 +1,6 @@
 <?php
 
-namespace frontend\controllers;
+namespace modules\news\controllers;
 
 use common\models\News;
 use common\widgets\Alert;

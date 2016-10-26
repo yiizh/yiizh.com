@@ -16,9 +16,9 @@ use yiizh\redactor\Redactor;
  * @var $model News
  */
 
-$this->title = '投稿';
+$this->title = '分享';
 
-$this->params['breadcrumbs'][] = ['label'=>'资讯','url'=>['/news/index']];
+$this->params['breadcrumbs'][] = ['label' => '资讯', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="news-suggest">
@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <?= $form->field($model, 'title') ?>
 
-            <?= $form->field($model, 'summary')->widget(Redactor::className(),[
+            <?= $form->field($model, 'summary')->widget(Redactor::className(), [
 
             ]) ?>
 

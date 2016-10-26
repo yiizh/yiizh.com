@@ -27,7 +27,7 @@ $identity = $user->getIdentity();
 
 $mainItems = [];
 $rightItems = [];
-$mainItems[] = ['label' => '头条', 'url' => ['/news/index']];
+$mainItems[] = ['label' => '头条', 'url' => ['/news/news/index']];
 $mainItems[] = ['label' => '网址导航', 'url' => 'http://i.yiizh.com', 'linkOptions' => ['target' => '_blank']];
 
 $rightItems[] = ['label' => '控制台', 'url' => ['/dashboard/default/index'], 'visible' => $user->can('manage')];

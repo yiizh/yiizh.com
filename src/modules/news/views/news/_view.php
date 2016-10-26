@@ -20,10 +20,10 @@ $user = $model->user;
 $formatter = Yii::$app->formatter;
 ?>
 <div class="news-item">
-        <h3 class="news-item-title"><?= Html::a($model->title, ['/news/view', 'id' => $model->id]) ?></h3>
-        <p class="news-item-meta">
-            <time><?= $formatter->asRelativeTime($model->createdAt) ?></time>
-            <a href="<?= $user->getUrl() ?>">@<?= $user->name ?></a>
-        </p>
-        <p class="news-item-summary"><?= HtmlPurifier::process($model->summary) ?></p>
+    <h3 class="news-item-title"><?= Html::a($model->title, $model->getUrl()) ?></h3>
+    <p class="news-item-meta">
+        <time><?= $formatter->asRelativeTime($model->createdAt) ?></time>
+        <a href="<?= $user->getUrl() ?>">@<?= $user->name ?></a>
+    </p>
+    <p class="news-item-summary"><?= HtmlPurifier::process($model->summary) ?></p>
 </div>

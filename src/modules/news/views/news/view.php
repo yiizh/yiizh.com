@@ -35,7 +35,7 @@ $this->registerMetaTag([
     'content' => $model->title
 ]);
 
-$this->params['breadcrumbs'][] = ['label' => '资讯', 'url' => ['/news/index']];
+$this->params['breadcrumbs'][] = ['label' => '资讯', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <?php JsBlock::begin() ?>
@@ -103,7 +103,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="box-body">
                     <p>好文章，要分享。</p>
                     <p>
-                        <?= Html::a('推荐文章', ['/news/suggest'], ['class' => 'btn btn-block btn-success']) ?>
+                        <?= Html::a('立刻分享', ['suggest'], ['class' => 'btn btn-block btn-success']) ?>
                     </p>
                 </div>
             </div>

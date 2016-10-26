@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="box-body">
                     <p>好文章，要分享。</p>
                     <p>
-                        <?= Html::a('投稿', ['/news/suggest'], ['class' => 'btn btn-block btn-success']) ?>
+                        <?= Html::a('立刻分享', ['suggest'], ['class' => 'btn btn-block btn-success']) ?>
                     </p>
                 </div>
             </div>

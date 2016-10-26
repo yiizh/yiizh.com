@@ -59,7 +59,7 @@ class SiteController extends BaseFrontendController
 
     public function actionIndex()
     {
-        return $this->redirect(['/news/index']);
+        return $this->redirect(['/news/news/index']);
     }
 
     /**

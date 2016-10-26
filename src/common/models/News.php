@@ -102,6 +102,6 @@ class News extends BaseNews
      */
     public function getUrl($scheme = false)
     {
-        return Url::to(['/news/view', 'id' => $this->id], $scheme);
+        return Url::to(['/news/news/view', 'id' => $this->id], $scheme);
     }
 }
