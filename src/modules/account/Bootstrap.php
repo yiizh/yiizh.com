@@ -7,20 +7,29 @@
 
 namespace modules\account;
 
+use common\components\AddUrlRulesInterface;
 use yii\base\BootstrapInterface;
 
-class Bootstrap implements BootstrapInterface
+class Bootstrap implements BootstrapInterface, AddUrlRulesInterface
 {
+    /**
+     * @inheritdoc
+     */
     public function bootstrap($app)
     {
         $app->setModule('account', [
             'class' => Module::className(),
         ]);
+    }
 
-        $app->getUrlManager()->addRules([
+    /**
+     * @inheritdoc
+     */
+    public function addUrlRulesTo($urlManager)
+    {
+        $urlManager->addRules([
             '/account/<controller:[\w-]+/<action:[\w-]+>' => '/account/<controller>/<action>',
             '/account/<controller:[\w-]+>' => '/account/<controller>/index',
         ]);
     }
-
 }

@@ -5,32 +5,22 @@
  * @license http://www.yiizh.com/license/
  */
 
-namespace modules\user;
+namespace frontend;
 
 use common\components\AddUrlRulesInterface;
 use yii\base\BootstrapInterface;
 
 class Bootstrap implements BootstrapInterface, AddUrlRulesInterface
 {
-    /**
-     * @inheritdoc
-     */
-    public function bootstrap($app)
-    {
-        $app->setModule('user', [
-            'class' => Module::className(),
-        ]);
-    }
-
-    /**
-     * @inheritDoc
-     */
     public function addUrlRulesTo($urlManager)
     {
         $urlManager->addRules([
-            '/user/<userId:\d+>' => '/user/default/index',
+            '/' => '/site/index'
         ]);
     }
 
+    public function bootstrap($app)
+    {
+    }
 
 }

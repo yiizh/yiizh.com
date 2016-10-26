@@ -16,9 +16,11 @@ $config = [
     'bootstrap' => [
         'log',
         'settings',
+        'frontend\Bootstrap',
         'modules\user\Bootstrap',
         'modules\account\Bootstrap',
         'modules\dashboard\Bootstrap',
+        'common\components\UrlManagerBootstrap'
     ],
     'controllerNamespace' => 'frontend\controllers',
     'components' => [

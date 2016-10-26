@@ -8,7 +8,7 @@
 namespace console\controllers;
 
 
-use common\helpers\UrlManagerHelper;
+use common\components\UrlManagerBootstrap;
 use common\models\News;
 use console\components\BaseConsoleController;
 use yii2tech\sitemap\File;
@@ -20,6 +20,22 @@ class SitemapController extends BaseConsoleController
     public $generatePath = '@frontend/web/sitemaps';
 
     protected $urls = [];
+
+    public function init()
+    {
+        parent::init();
+        require(__DIR__ . '/../../frontend/config/bootstrap.php');
+
+        $config = \yii\helpers\ArrayHelper::merge(
+            require(__DIR__ . '/../../common/config/main.php'),
+            require(__DIR__ . '/../../frontend/config/main.php')
+        );
+
+        $application = new \yii\web\Application($config);
+
+        $urlBoot = new UrlManagerBootstrap();
+        $urlBoot->bootstrap($application);
+    }
 
     /**
      * @param array|string $url
@@ -34,9 +50,9 @@ class SitemapController extends BaseConsoleController
     public function actionGenerate()
     {
         // 独立页面
-        $this->addUrl($this->createUrl(['/site/index']), ['priority' => '1', 'changeFrequency' => File::CHECK_FREQUENCY_DAILY]);
-        $this->addUrl($this->createUrl(['/site/register']), ['priority' => '1', 'changeFrequency' => File::CHECK_FREQUENCY_DAILY]);
-        $this->addUrl($this->createUrl(['/site/login']), ['priority' => '1', 'changeFrequency' => File::CHECK_FREQUENCY_DAILY]);
+        $this->addUrl(['/site/index'], ['priority' => '1', 'changeFrequency' => File::CHECK_FREQUENCY_DAILY]);
+        $this->addUrl(['/site/register'], ['priority' => '1', 'changeFrequency' => File::CHECK_FREQUENCY_DAILY]);
+        $this->addUrl(['/site/login'], ['priority' => '1', 'changeFrequency' => File::CHECK_FREQUENCY_DAILY]);
 
         // 新闻
         $this->addNews();
@@ -95,6 +111,6 @@ class SitemapController extends BaseConsoleController
      */
     public function createUrl($params)
     {
-        return UrlManagerHelper::getFrontend()->createUrl($params);
+        return \Yii::$app->urlManager->createAbsoluteUrl($params);
     }
 }
