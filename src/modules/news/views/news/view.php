@@ -70,10 +70,10 @@ $this->params['breadcrumbs'][] = $this->title;
                             </p>
                         </div>
                         <div class="col-md-10">
-                            <h3 class="news-item-title"><?= $model->title ?></h3>
+                            <h1 class="news-item-title"><?= $model->title ?></h1>
                             <p class="news-item-meta">
                                 <time><?= $formatter->asRelativeTime($model->createdAt) ?></time>
-                                <a class="hidden-md" href="<?= $user->getUrl() ?>">@<?= $user->name ?></a>
+                                <a class="visible-xs-inline visible-sm-inline" href="<?= $user->getUrl() ?>">@<?= $user->name ?></a>
                             </p>
                             <div>
                                 <div class="bdsharebuttonbox">

@@ -6,10 +6,13 @@ namespace common\models\base;
  * This is the model class for table "{{%project}}".
  *
  * @property integer $id
- * @property string $githubUrl
  * @property string $name
+ * @property string $license
  * @property string $description
- * @property string $readme
+ * @property string $homepage
+ * @property string $docUrl
+ * @property integer $viewCount
+ * @property string $deleted
  * @property integer $createdAt
  * @property integer $updatedAt
  */
@@ -29,12 +32,11 @@ class BaseProject extends \common\models\base\BaseActiveRecord
     public function rules()
     {
         return [
-            [['githubUrl'], 'required'],
-            [['readme'], 'string'],
-            [['createdAt', 'updatedAt'], 'integer'],
-            [['githubUrl'], 'string', 'max' => 200],
-            [['name'], 'string', 'max' => 100],
-            [['description'], 'string', 'max' => 500],
+            [['name', 'license', 'description', 'homepage', 'docUrl'], 'required'],
+            [['description', 'deleted'], 'string'],
+            [['viewCount', 'createdAt', 'updatedAt'], 'integer'],
+            [['name', 'homepage', 'docUrl'], 'string', 'max' => 200],
+            [['license'], 'string', 'max' => 100],
         ];
     }
 
@@ -45,10 +47,13 @@ class BaseProject extends \common\models\base\BaseActiveRecord
     {
         return [
             'id' => '主键',
-            'githubUrl' => 'GitHub URL',
-            'name' => '项目名',
-            'description' => '项目简介',
-            'readme' => 'ReadMe',
+            'name' => '项目名称',
+            'license' => '授权协议',
+            'description' => '描述',
+            'homepage' => '项目主页',
+            'docUrl' => '文档地址',
+            'viewCount' => '浏览量',
+            'deleted' => '删除标识',
             'createdAt' => '创建时间',
             'updatedAt' => '更新时间',
         ];

@@ -216,6 +216,17 @@ fieldset[disabled] .btn-success.focus {
 .breadcrumb {
   background: #FFFFFF;
 }
+.pagination > li > a,
+.pagination > li > a:hover,
+.pagination > li > a:focus {
+  color: #e67e22;
+}
+.pagination > .active > a,
+.pagination > .active > a:focus,
+.pagination > .active > a:hover {
+  background-color: #e67e22;
+  border-color: #e67e22;
+}
 .box {
   background-color: #FFFFFF;
   color: inherit;
@@ -236,6 +247,8 @@ fieldset[disabled] .btn-success.focus {
 .news-item .news-item-title {
   line-height: 1.5em;
   margin-top: 0;
+  margin-bottom: 0;
+  font-size: 24px;
 }
 .news-item .news-item-title a {
   color: #000;
@@ -244,9 +257,61 @@ fieldset[disabled] .btn-success.focus {
   color: #d67118;
 }
 .news-item .news-item-meta {
-  margin: 20px 0;
+  margin: 5px 0;
   color: #999999;
 }
 .news-item .news-item-meta a {
   color: #e67e22;
+}
+.project-item .project-item-title {
+  line-height: 1.5em;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.project-item .project-item-title a {
+  color: #000;
+}
+.project-item .project-item-title a:hover {
+  color: #d67118;
+}
+.project-item .project-item-meta {
+  margin: 5px 0;
+  color: #999999;
+}
+.project-item .project-item-meta a {
+  color: #e67e22;
+}
+.project .project-title {
+  font-size: 30px;
+}
+.project .project-meta {
+  margin: 15px 0;
+  color: #999999;
+}
+.project .project-meta a {
+  color: #e67e22;
+}
+.project .project-description {
+  padding: 30px 0;
+}
+.project .project-description,
+.project .project-description p {
+  line-height: 1.8em;
+}
+.project .project-description img {
+  max-width: 100% !important;
+}
+.project .project-attributes {
+  background: #f3f3f4;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+.project .project-attributes dl {
+  margin: 0;
+}
+.project .project-attributes dl dt {
+  width: 80px;
+}
+.project .project-attributes dl dd {
+  margin-left: 100px;
 }

@@ -21,6 +21,7 @@ $config = [
         'modules\account\Bootstrap',
         'modules\dashboard\Bootstrap',
         'modules\news\Bootstrap',
+        'modules\project\Bootstrap',
         'common\components\UrlManagerBootstrap'
     ],
     'controllerNamespace' => 'frontend\controllers',

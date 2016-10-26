@@ -25,4 +25,12 @@ class DashboardAsset extends AssetBundle
         'yiizh\adminlte\AdminLTEBlueAsset',
         'yiizh\fontawesome\FontAwesomeAsset'
     ];
+
+    public function init()
+    {
+        parent::init();
+        if (getenv('APP_ENV') == 'dev') {
+            $this->publishOptions['forceCopy'] = true;
+        }
+    }
 }
