@@ -15,6 +15,9 @@ class Bootstrap implements BootstrapInterface, AddUrlRulesInterface
     public function addUrlRulesTo($urlManager)
     {
         $urlManager->addRules([
+            '/login' => '/site/login',
+            '/logout' => '/site/logout',
+            '/register' => '/site/register',
             '/' => '/site/index'
         ]);
     }
