@@ -24,7 +24,17 @@ class SystemController extends Controller
             ['label' => '站点设置', 'url' => ['system/index']],
             ['label' => '微博设置', 'url' => ['system/weibo']],
             ['label' => '统计代码', 'url' => ['system/tongji']],
+            ['label' => '淘宝推广', 'url' => ['system/taobao-union']],
         ]);
+    }
+
+    public function accessRules()
+    {
+        $rules[] = [
+            'allow' => true,
+            'roles' => ['manageSystem']
+        ];
+        return $rules;
     }
 
     public function actionIndex()
@@ -69,7 +79,8 @@ class SystemController extends Controller
         ]);
     }
 
-    public function actionTongji(){
+    public function actionTongji()
+    {
         $settings = [
             Settings::findOneByCode(Settings::TONGJI_CNZZ),
         ];
@@ -87,5 +98,27 @@ class SystemController extends Controller
         return $this->render('tongji', [
             'settings' => $settings
         ]);
+    }
+
+    public function actionTaobaoUnion()
+    {
+        $settings = [
+            Settings::findOneByCode(Settings::TAOBAO_UNION),
+        ];
+
+        if (Model::loadMultiple($settings, Yii::$app->request->post()) && Model::validateMultiple($settings)) {
+            foreach ($settings as $setting) {
+                $setting->save(false);
+            }
+            Alert::set('success', '保存成功');
+            return $this->refresh();
+        }
+
+        echo Html::errorSummary($settings);
+
+        return $this->render('taobao-union', [
+            'settings' => $settings
+        ]);
+
     }
 }

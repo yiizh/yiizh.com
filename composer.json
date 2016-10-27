@@ -12,6 +12,7 @@
         "yiisoft/yii2-bootstrap": "*",
         "yiisoft/yii2-authclient": "*",
         "yiisoft/yii2-swiftmailer": "*",
+        "yiisoft/yii2-jui": "*",
         "yii2tech/sitemap": "*",
         "vlucas/phpdotenv": "*"
     },

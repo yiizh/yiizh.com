@@ -72,4 +72,18 @@ class BaseWebController extends Controller
         }
         return parent::beforeAction($action);
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function render($view, $params = [])
+    {
+        $renderMethod = 'render';
+        if (\Yii::$app->request->isAjax) {
+            $renderMethod = 'renderAjax';
+        }
+        return parent::$renderMethod($view, $params);
+    }
+
+
 }

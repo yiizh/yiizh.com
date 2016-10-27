@@ -353,3 +353,13 @@ fieldset[disabled] .btn-success.focus {
 .site-index .latest-news ul li a {
   color: #6c8ebe;
 }
+.ad {
+  position: relative;
+}
+.ad:before {
+  content: '广告';
+  background: #888;
+  color: #fff;
+  padding: 1px 3px;
+  text-align: left;
+}

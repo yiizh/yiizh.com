@@ -5,6 +5,7 @@
  * @license http://www.yiizh.com/license/
  */
 
+use common\models\Settings;
 use modules\dashboard\assets\DashboardAsset;
 use yii\helpers\Html;
 use yii\web\View;
@@ -38,6 +39,7 @@ Html::addCssClass($this->params['bodyAttributes']['class'], 'skin-blue');
     <?php $this->beginBody() ?>
     <?= $content ?>
     <?php $this->endBody() ?>
+    <?= Settings::get(Settings::TAOBAO_UNION) ?>
     </body>
     </html>
 <?php $this->endPage() ?>

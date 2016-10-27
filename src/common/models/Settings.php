@@ -24,6 +24,8 @@ class Settings extends BaseSettings
 
     const TONGJI_CNZZ = "tongji-cnzz";
 
+    const TAOBAO_UNION = 'taobao-union';
+
     /**
      * @param mixed $value
      * @return string

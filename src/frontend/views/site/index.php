@@ -6,6 +6,7 @@
  */
 
 use common\models\Settings;
+use common\widgets\AdPositionWidget;
 use yii\data\ActiveDataProvider;
 use yii\helpers\Html;
 use yii\web\View;
@@ -62,6 +63,10 @@ $this->registerMetaTag([
             </div>
         </div>
         <div class="col-md-4">
+                    <?= AdPositionWidget::widget([
+                        'code' => 'site-index-right-1'
+                    ]) ?>
+
         </div>
     </div>
 </div>
