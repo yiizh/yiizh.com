@@ -25,6 +25,11 @@ p {
   }
 }
 
+time {
+  color: @color-gray;
+  font-size: 14px;
+}
+
 .wrap {
   min-height: 100%;
   height: auto;
@@ -176,6 +181,7 @@ p {
   background-color: @color-white;
   color: inherit;
   padding: 15px 20px 20px 20px;
+  margin-bottom: 15px;
 
   &.no-padding {
     padding: 0;
@@ -183,6 +189,35 @@ p {
 
   &.thin-padding {
     padding: 8px 10px 10px 10px;
+  }
+
+  .box-header {
+    border-bottom: 1px solid #DDDDDD;
+    padding-bottom: 10px;
+  }
+
+  .box-title {
+    margin: 0;
+    padding: 0;
+  }
+
+  .box-header + .box-body {
+    margin-top: 10px;
+  }
+
+}
+
+.line {
+  height: 1px;
+  margin: 20px 0;
+  padding: 0;
+  background: transparent;
+  border-style: solid;
+  border-color: #DDD;
+  border-width: 0 0 1px 0;
+
+  &.line-dashed {
+    border-style: dashed;
   }
 }
 
@@ -289,6 +324,23 @@ p {
 
       dd {
         margin-left: 100px;
+      }
+    }
+  }
+}
+
+.site-index {
+  .latest-news {
+    ul li {
+      padding: 5px 0;
+      border-bottom: 1px dashed #DDD;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      a {
+        color: @color-blue;
       }
     }
   }

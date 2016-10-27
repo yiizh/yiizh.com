@@ -8,6 +8,8 @@
 namespace frontend\controllers;
 
 use common\auth\AuthHandler;
+use common\models\News;
+use common\models\Project;
 use frontend\components\BaseFrontendController;
 use frontend\forms\LoginForm;
 use frontend\forms\PasswordResetRequestForm;
@@ -17,6 +19,7 @@ use Yii;
 use yii\authclient\AuthAction;
 use yii\authclient\ClientInterface;
 use yii\base\InvalidParamException;
+use yii\data\ActiveDataProvider;
 use yii\web\BadRequestHttpException;
 use yii\web\ViewAction;
 
@@ -59,7 +62,22 @@ class SiteController extends BaseFrontendController
 
     public function actionIndex()
     {
-        return $this->redirect(['/news/news/index']);
+        $latestNewsProvider = new ActiveDataProvider([
+            'query' => News::find()->published()->orderBy(['createdAt' => SORT_DESC])->limit(5),
+            'sort' => false,
+            'pagination' => false,
+        ]);
+
+        $latestProjectProvider = new ActiveDataProvider([
+            'query' => Project::find()->active()->orderBy(['createdAt' => SORT_DESC])->limit(5),
+            'sort' => false,
+            'pagination' => false,
+        ]);
+
+        return $this->render('index', [
+            'latestNewsProvider' => $latestNewsProvider,
+            'latestProjectProvider' => $latestProjectProvider,
+        ]);
     }
 
     /**

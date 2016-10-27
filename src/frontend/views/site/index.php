@@ -5,58 +5,63 @@
  * @license http://www.yiizh.com/license/
  */
 
+use common\models\Settings;
+use yii\data\ActiveDataProvider;
+use yii\helpers\Html;
 use yii\web\View;
+use yii\widgets\ListView;
 
 /**
  * @var $this View
+ * @var $latestNewsProvider ActiveDataProvider
+ * @var $latestProjectProvider ActiveDataProvider
  */
 
-$this->title = '模版';
+$this->params['pageTitle'] = 'Yii中文 - yii框架中文网站，分享和学习';
+$formatter = Yii::$app->formatter;
+
+$this->registerMetaTag([
+    'name' => 'keywords',
+    'value' => Settings::get(Settings::SITE_KEYWORDS)
+]);
+
+$this->registerMetaTag([
+    'name' => 'description',
+    'value' => Settings::get(Settings::SITE_DESCRIPTION)
+]);
 ?>
 <div class="site-index">
-
-    <div class="jumbotron">
-        <h1>恭喜!</h1>
-
-        <p class="lead">成功安装 Yii 2 模板.</p>
-
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">开始</a></p>
-    </div>
-
-    <div class="body-content">
-
-        <div class="row">
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="box">
+                <div class="box-header">
+                    <h4><?= Html::a('最新资讯', ['/news/news/index']) ?></h4>
+                </div>
+                <div class="box-body">
+                    <?= ListView::widget([
+                        'dataProvider' => $latestNewsProvider,
+                        'layout' => '{items}',
+                        'itemView' => '@modules/news/views/news/_view',
+                        'separator' => '<hr class="line line-dashed">'
+                    ]) ?>
+                </div>
             </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
+            <div class="box">
+                <div class="box-header">
+                    <h4><?= Html::a('最新收录', ['/project/project/index']) ?></h4>
+                </div>
+                <div class="box-body">
+                    <?= ListView::widget([
+                        'dataProvider' => $latestProjectProvider,
+                        'layout' => '{items}',
+                        'itemView' => '@modules/project/views/project/_view',
+                        'separator' => '<hr class="line line-dashed">'
+                    ]) ?>
+                </div>
             </div>
         </div>
-
+        <div class="col-md-4">
+        </div>
     </div>
 </div>

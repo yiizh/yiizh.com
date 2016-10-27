@@ -10,6 +10,7 @@ use common\widgets\Alert;
 use frontend\assets\AppAsset;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\web\View;
@@ -61,7 +62,7 @@ AppAsset::register($this);
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="shortcut icon" href="<?= Url::to('@web/favicon.ico') ?>" type="image/x-icon"/>
         <?= Html::csrfMetaTags() ?>
-        <title><?= Html::encode($this->title . '_' . Yii::$app->name) ?></title>
+        <title><?= Html::encode(ArrayHelper::getValue($this->params,'pageTitle',$this->title . '_' . Yii::$app->name)) ?></title>
         <?php $this->head() ?>
     </head>
     <body>
