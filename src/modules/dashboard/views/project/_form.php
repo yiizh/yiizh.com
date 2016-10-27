@@ -22,6 +22,12 @@ use yiizh\redactor\Redactor;
 
     <?= $form->field($model, 'license')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'summary')->widget(Redactor::className(),[
+        'clientOptions'=>[
+            'maxHeight'=>200
+        ]
+    ]) ?>
+
     <?= $form->field($model, 'description')->widget(Redactor::className()) ?>
 
     <?= $form->field($model, 'homepage')->textInput(['maxlength' => true]) ?>

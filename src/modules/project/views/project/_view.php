@@ -7,7 +7,7 @@
 
 use common\models\Project;
 use yii\helpers\Html;
-use yii\helpers\StringHelper;
+use yii\helpers\HtmlPurifier;
 use yii\web\View;
 
 /**
@@ -21,5 +21,5 @@ $formatter = Yii::$app->formatter;
     <p class="project-item-meta">
         <time><?= $formatter->asRelativeTime($model->createdAt) ?></time>
     </p>
-    <p class="project-item-summary"><?= StringHelper::truncateWords($model->description, 1, '', true) ?></p>
+    <p class="project-item-summary"><?= HtmlPurifier::process($model->summary) ?></p>
 </div>

@@ -8,6 +8,7 @@ namespace common\models\base;
  * @property integer $id
  * @property string $name
  * @property string $license
+ * @property string $summary
  * @property string $description
  * @property string $homepage
  * @property string $docUrl
@@ -33,7 +34,7 @@ class BaseProject extends \common\models\base\BaseActiveRecord
     {
         return [
             [['name', 'license', 'description', 'homepage', 'docUrl'], 'required'],
-            [['description', 'deleted'], 'string'],
+            [['summary', 'description', 'deleted'], 'string'],
             [['viewCount', 'createdAt', 'updatedAt'], 'integer'],
             [['name', 'homepage', 'docUrl'], 'string', 'max' => 200],
             [['license'], 'string', 'max' => 100],
@@ -49,6 +50,7 @@ class BaseProject extends \common\models\base\BaseActiveRecord
             'id' => '主键',
             'name' => '项目名称',
             'license' => '授权协议',
+            'summary' => '摘要',
             'description' => '描述',
             'homepage' => '项目主页',
             'docUrl' => '文档地址',

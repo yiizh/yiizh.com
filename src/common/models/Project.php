@@ -8,6 +8,7 @@
 namespace common\models;
 
 use common\behaviors\SoftDeleteBehavior;
+use common\helpers\StringHelper;
 use common\models\base\BaseProject;
 use yii\helpers\Url;
 
