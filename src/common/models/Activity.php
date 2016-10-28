@@ -55,7 +55,7 @@ class Activity extends BaseActivity
         }
         switch ($this->objectType) {
             case self::TYPE_NEWS:
-                $content = Html::a('[资讯]', ['/news/index/']).' ' . Html::a($object->title, ['/news/view', 'id' => $object->id]);
+                $content = Html::a('[资讯]', ['/news/news/index/']).' ' . Html::a($object->title, ['/news/news/view', 'id' => $object->id]);
                 break;
         }
         return $content;
