@@ -8,14 +8,15 @@
 namespace common\models;
 
 use common\behaviors\SoftDeleteBehavior;
-use common\helpers\StringHelper;
 use common\models\base\BaseProject;
+use common\models\query\NewsQuery;
 use yii\helpers\Url;
 
 /**
  * @method softDelete() boolean 软删除
  * @method softRestore() boolean 恢复
  * @method getIsDeleted() boolean 是否已删除
+ * @property News[] $relatedNews
  */
 class Project extends BaseProject
 {
@@ -46,5 +47,13 @@ class Project extends BaseProject
     public function getUrl($scheme = false)
     {
         return Url::to(['/project/project/view', 'id' => $this->id], $scheme);
+    }
+
+    /**
+     * @return NewsQuery
+     */
+    public function getRelatedNews()
+    {
+        return $this->hasMany(News::className(), ['projectId' => 'id']);
     }
 }

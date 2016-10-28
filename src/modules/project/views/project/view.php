@@ -5,6 +5,7 @@
  * @license http://www.yiizh.com/license/
  */
 
+use common\models\News;
 use common\models\Project;
 use common\widgets\DuoShuo;
 use common\widgets\JsBlock;
@@ -17,6 +18,7 @@ use yii\web\View;
 /**
  * @var $this View
  * @var $model Project
+ * @var $relatedNews News[]
  */
 
 $this->title = $model->name . '首页和文档_开源项目';
@@ -93,6 +95,23 @@ $this->params['breadcrumbs'][] = $model->name;
                             <?= Html::a('项目首页', $model->homepage, ['class' => 'btn btn-primary', 'target' => '_blank']) ?>
                             <?= Html::a('项目文档', $model->docUrl, ['class' => 'btn btn-primary', 'target' => '_blank']) ?>
                         </p>
+
+                        <?php if (count($relatedNews) > 0): ?>
+                            <hr class="line">
+
+                            <div class="related-news">
+                                <h4>相关资讯</h4>
+                                <ul>
+                                    <?php foreach ($relatedNews as $news): ?>
+                                        <li>
+                                            <time
+                                                class="pull-right"><?= $formatter->asRelativeTime($news->createdAt) ?></time>
+                                            <?= Html::a($news->title, $news->getUrl(), ['target' => '_blank']) ?>
+                                        </li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            </div>
+                        <?php endif; ?>
                     </div>
                     <hr>
                     <?= DuoShuo::widget([

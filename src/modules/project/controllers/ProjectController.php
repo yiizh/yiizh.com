@@ -76,9 +76,14 @@ class ProjectController extends Controller
     {
         $model = $this->findModel($id);
         $model->updateCounters(['viewCount' => 1]);
+        $relatedNews = $model->getRelatedNews()->published()
+            ->orderBy(['createdAt' => SORT_DESC])
+            ->limit(10)
+            ->all();
 
         return $this->render('view', [
             'model' => $model,
+            'relatedNews' => $relatedNews
         ]);
     }
 
