@@ -181,6 +181,9 @@ fieldset[disabled] .btn-success.focus {
   color: #8cc864;
   background-color: #fff;
 }
+.text-red {
+  color: #E72329;
+}
 .nav-pills > li.active > a,
 .nav-pills > li.active > a:hover {
   background-color: #e67e22;
@@ -290,6 +293,9 @@ fieldset[disabled] .btn-success.focus {
 }
 .news-item .news-item-meta a {
   color: #e67e22;
+}
+.news-item .news-item-content h4 {
+  font-weight: 700;
 }
 .project-item .project-item-title {
   line-height: 1.5em;

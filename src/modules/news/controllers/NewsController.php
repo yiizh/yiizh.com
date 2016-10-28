@@ -19,7 +19,7 @@ class NewsController extends BaseFrontendController
 
         $rules[] = [
             'allow' => true,
-            'actions' => ['index', 'view'],
+            'actions' => ['index', 'headline', 'view'],
         ];
 
         $rules[] = [
@@ -34,16 +34,24 @@ class NewsController extends BaseFrontendController
 
     /**
      * Lists all News models.
+     * @param int $type
      * @return mixed
      */
-    public function actionIndex()
+    public function actionIndex($type = null)
     {
+        $query = News::find()->andWhere(['status' => News::STATUS_PUBLISHED])->orderBy('createdAt DESC');
+        $typeValid = in_array($type, array_keys(News::getTypeItems()));
+        if ($typeValid) {
+            $query->andByType($type);
+        }
         $dataProvider = new ActiveDataProvider([
-            'query' => News::find()->andWhere(['status' => News::STATUS_PUBLISHED])->orderBy('createdAt DESC'),
+            'query' => $query
         ]);
 
         return $this->render('index', [
             'dataProvider' => $dataProvider,
+            'type' => $type,
+            'typeValid' => $typeValid
         ]);
     }
 

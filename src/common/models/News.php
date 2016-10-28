@@ -4,11 +4,15 @@ namespace common\models;
 
 use common\models\base\BaseNews;
 use common\models\query\NewsQuery;
+use common\models\query\ProjectQuery;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Html;
 use yii\helpers\Url;
 
 /**
  * @property User $user
+ * @property Project|null $project
+ * @property string $content
  */
 class News extends BaseNews
 {
@@ -18,6 +22,12 @@ class News extends BaseNews
 
     const SCENARIO_SUGGEST = 'suggest';
     const SCENARIO_UPDATE = 'update';
+
+    const TYPE_DEFAULT = 1;
+    const TYPE_PROJECT = 2;
+    const TYPE_HEADLINE = 3;
+
+    public $projectName;
 
     /**
      * @inheritdoc
@@ -31,8 +41,7 @@ class News extends BaseNews
     public function scenarios()
     {
         $scenarios = parent::scenarios();
-        $scenarios[self::SCENARIO_SUGGEST] = ['title', 'summary', 'link'];
-        $scenarios[self::SCENARIO_UPDATE] = ['title', 'summary', 'link', 'status'];
+        $scenarios[self::SCENARIO_SUGGEST] = ['title', 'summary', 'link', 'type'];
         return $scenarios;
     }
 
@@ -40,9 +49,54 @@ class News extends BaseNews
     {
         $rules = parent::rules();
 
+        $rules[] = ['type', 'required'];
         $rules[] = ['link', 'url'];
+        $rules[] = ['link', 'validateLink', 'skipOnEmpty' => false];
+        $rules[] = ['projectName', 'validateProject', 'skipOnEmpty' => false];
+        $rules[] = ['projectId', 'validateProject', 'skipOnEmpty' => false];
 
         return $rules;
+    }
+
+    public function validateLink($attribute, $params)
+    {
+        if (!$this->hasErrors()) {
+            if ($this->type == self::TYPE_HEADLINE && $this->link == '') {
+                $this->addError($attribute, '请填写链接地址');
+            }
+        }
+    }
+
+    public function validateProject($attribute, $params)
+    {
+        if (!$this->hasErrors()) {
+            if ($this->type == self::TYPE_PROJECT && ($this->projectId == '' || $this->projectName == '')) {
+                $this->addError($attribute, '请填写相关项目');
+            }
+        }
+    }
+
+    public function attributeLabels()
+    {
+        $labels = parent::attributeLabels();
+        $labels['projectName'] = '相关项目';
+        return $labels;
+    }
+
+    public function afterFind()
+    {
+        parent::afterFind();
+        if ($this->project) {
+            $this->projectName = $this->project->name;
+        }
+    }
+
+    /**
+     * @return ProjectQuery
+     */
+    public function getProject()
+    {
+        return $this->hasOne(Project::className(), ['id' => 'projectId']);
     }
 
     /**
@@ -76,6 +130,27 @@ class News extends BaseNews
     }
 
     /**
+     * @param int $type
+     * @return string|null
+     */
+    public static function typeLabel($type)
+    {
+        return ArrayHelper::getValue(static::getTypeItems(), $type);
+    }
+
+    /**
+     * @return array
+     */
+    public static function getTypeItems()
+    {
+        return [
+            self::TYPE_DEFAULT => '综合资讯',
+            self::TYPE_PROJECT => '开源项目更新',
+            self::TYPE_HEADLINE => '头条',
+        ];
+    }
+
+    /**
      * @return \yii\db\ActiveQuery
      */
     public function getUser()
@@ -103,5 +178,32 @@ class News extends BaseNews
     public function getUrl($scheme = false)
     {
         return Url::to(['/news/news/view', 'id' => $this->id], $scheme);
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getTypeLabel()
+    {
+        return self::typeLabel($this->type);
+    }
+
+    /**
+     * @param bool $scheme
+     * @return string
+     */
+    public function getTypeUrl($scheme = false)
+    {
+        return Url::to(['/news/news/index', 'type' => $this->type], $scheme);
+    }
+
+    /**
+     * @param bool $scheme
+     * @param array $options
+     * @return string
+     */
+    public function getTypeLink($scheme = false, $options = [])
+    {
+        return Html::a($this->getTypeLabel(), $this->getTypeUrl($scheme), $options);
     }
 }

@@ -20,6 +20,7 @@ class Bootstrap implements BootstrapInterface, AddUrlRulesInterface
         $urlManager->addRules([
             '/news/<id:\d+>' => '/news/news/view',
             '/news/suggest' => '/news/news/suggest',
+            '/news/headline' => '/news/news/headline',
             '/news' => '/news/news/index',
         ]);
     }

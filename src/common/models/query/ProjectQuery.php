@@ -14,6 +14,9 @@ namespace common\models\query;
  */
 class ProjectQuery extends \yii\db\ActiveQuery
 {
+    /**
+     * @return static
+     */
     public function active()
     {
         return $this->andWhere('[[deleted]]="N"');

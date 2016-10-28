@@ -44,6 +44,6 @@ $formatter = Yii::$app->formatter;
             <time class="text-muted"><?= $formatter->asRelativeTime($model->createdAt) ?></time>
         </p>
 
-        <p class="news-item-summary"><?= HtmlPurifier::process($model->summary) ?></p>
+        <p class="news-item-summary"><?= HtmlPurifier::process($model->content) ?></p>
     </div>
 </div>

@@ -27,7 +27,7 @@ $formatter = Yii::$app->formatter;
 
 $this->registerMetaTag([
     'name' => 'description',
-    'content' => StringHelper::truncate(strip_tags($model->summary), 200)
+    'content' => StringHelper::truncate(strip_tags($model->content), 200)
 ]);
 
 $this->registerMetaTag([
@@ -73,7 +73,8 @@ $this->params['breadcrumbs'][] = $this->title;
                             <h1 class="news-item-title"><?= $model->title ?></h1>
                             <p class="news-item-meta">
                                 <time><?= $formatter->asRelativeTime($model->createdAt) ?></time>
-                                <a class="visible-xs-inline visible-sm-inline" href="<?= $user->getUrl() ?>">@<?= $user->name ?></a>
+                                <a class="visible-xs-inline visible-sm-inline"
+                                   href="<?= $user->getUrl() ?>">@<?= $user->name ?></a>
                             </p>
                             <div>
                                 <div class="bdsharebuttonbox">
@@ -85,8 +86,31 @@ $this->params['breadcrumbs'][] = $this->title;
                                     <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
                                 </div>
                             </div>
-                            <p class="news-item-summary"><?= HtmlPurifier::process($model->summary) ?></p>
-                            <p><?= Html::a($model->link, $model->link, ['target' => '_blank']) ?></p>
+                            <div class="news-item-content">
+                                <div style="margin-bottom: 30px;">
+                                    <?= HtmlPurifier::process($model->content) ?>
+                                </div>
+
+                                <?php if ($model->link): ?>
+                                    <h4>相关链接</h4>
+                                    <p><?= Html::a($model->link, $model->link, ['target' => '_blank']) ?></p>
+                                <?php endif; ?>
+                                <?php if ($model->projectId): ?>
+                                    <h4>相关项目</h4>
+                                    <ul>
+                                        <li>
+                                            <span class="text-red"><?= $model->project->name ?></span>
+                                            的详细介绍: <?= Html::a('点击这里', $model->project->getUrl(), ['target' => '_blank']) ?>
+                                        </li>
+                                        <?php if ($model->project->docUrl): ?>
+                                            <li>
+                                                <span class="text-red"><?= $model->project->name ?></span>
+                                                的详细文档: <?= Html::a('点击这里', $model->project->docUrl, ['target' => '_blank']) ?>
+                                            </li>
+                                        <?php endif; ?>
+                                    </ul>
+                                <?php endif; ?>
+                            </div>
                         </div>
                     </div>
                     <hr>

@@ -8,9 +8,11 @@ namespace common\models\base;
  * @property integer $id
  * @property integer $userId
  * @property string $title
- * @property string $summary
+ * @property string $content
  * @property string $link
  * @property integer $status
+ * @property integer $type
+ * @property integer $projectId
  * @property integer $createdAt
  * @property integer $updatedAt
  */
@@ -30,10 +32,10 @@ class BaseNews extends \common\models\base\BaseActiveRecord
     public function rules()
     {
         return [
-            [['userId', 'status', 'createdAt', 'updatedAt'], 'integer'],
-            [['title', 'summary', 'link'], 'required'],
+            [['userId', 'status', 'type', 'projectId', 'createdAt', 'updatedAt'], 'integer'],
+            [['title'], 'required'],
+            [['content'], 'string'],
             [['title'], 'string', 'max' => 100],
-            [['summary'], 'string', 'max' => 500],
             [['link'], 'string', 'max' => 200],
         ];
     }
@@ -47,9 +49,11 @@ class BaseNews extends \common\models\base\BaseActiveRecord
             'id' => 'ID',
             'userId' => '用户 ID',
             'title' => '标题',
-            'summary' => '摘要',
+            'content' => '内容',
             'link' => '链接地址',
             'status' => '状态',
+            'type' => '分类',
+            'projectId' => '相关项目 ID',
             'createdAt' => '创建时间',
             'updatedAt' => '更新时间',
         ];

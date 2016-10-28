@@ -10,8 +10,10 @@ namespace modules\project\controllers;
 
 use common\models\Project;
 use modules\project\Controller;
+use Yii;
 use yii\data\ActiveDataProvider;
 use yii\web\NotFoundHttpException;
+use yii\web\Response;
 
 class ProjectController extends Controller
 {
@@ -21,7 +23,7 @@ class ProjectController extends Controller
 
         $rules[] = [
             'allow' => true,
-            'actions' => ['index', 'view'],
+            'actions' => ['index', 'view', 'search'],
         ];
 
         $rules[] = [
@@ -43,6 +45,27 @@ class ProjectController extends Controller
         return $this->render('index', [
             'dataProvider' => $dataProvider,
         ]);
+    }
+
+    /**
+     * @param null $term
+     * @return array
+     */
+    public function actionSearch($term = null)
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+
+        $models = Project::find()->active()->andWhere(['like', 'name', $term])->limit(10)->all();
+
+        $rs = [];
+        foreach ($models as $model) {
+            $rs[] = [
+                'id' => $model->id,
+                'label' => $model->name,
+                'value' => $model->name,
+            ];
+        }
+        return $rs;
     }
 
     /**

@@ -39,4 +39,15 @@ class NewsQuery extends \yii\db\ActiveQuery
             '[[status]]' => News::STATUS_PUBLISHED,
         ]);
     }
+
+    /**
+     * @param int $type
+     * @return static
+     */
+    public function andByType($type)
+    {
+        return $this->andWhere([
+            'type' => $type
+        ]);
+    }
 }

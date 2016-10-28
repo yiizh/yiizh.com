@@ -25,5 +25,5 @@ $formatter = Yii::$app->formatter;
         <time><?= $formatter->asRelativeTime($model->createdAt) ?></time>
         <a href="<?= $user->getUrl() ?>">@<?= $user->name ?></a>
     </p>
-    <p class="news-item-summary"><?= HtmlPurifier::process($model->summary) ?></p>
+    <p class="news-item-summary"><?= HtmlPurifier::process($model->content) ?></p>
 </div>

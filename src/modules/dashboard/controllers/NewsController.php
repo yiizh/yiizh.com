@@ -96,7 +96,6 @@ class NewsController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        $model->setScenario(News::SCENARIO_UPDATE);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Alert::set('success', '保存成功');
