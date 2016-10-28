@@ -71,12 +71,18 @@ class SitemapController extends BaseConsoleController
             ->all();
 
         $this->addUrl(['/news/news/index'], ['priority' => '1', 'changeFrequency' => File::CHECK_FREQUENCY_DAILY]);
+
+        $this->addUrl(['/news/news/index', 'type' => News::TYPE_DEFAULT], ['priority' => '1', 'changeFrequency' => File::CHECK_FREQUENCY_DAILY]);
+        $this->addUrl(['/news/news/index', 'type' => News::TYPE_PROJECT], ['priority' => '1', 'changeFrequency' => File::CHECK_FREQUENCY_DAILY]);
+        $this->addUrl(['/news/news/index', 'type' => News::TYPE_HEADLINE], ['priority' => '1', 'changeFrequency' => File::CHECK_FREQUENCY_DAILY]);
+
         foreach ($models as $model) {
             $this->addUrl($model->getUrl(true), ['priority' => '0.2']);
         }
     }
 
-    protected function addProjects(){
+    protected function addProjects()
+    {
         $models = Project::find()
             ->active()
             ->all();
@@ -126,7 +132,7 @@ class SitemapController extends BaseConsoleController
      */
     public function createUrl($params)
     {
-        if(is_string($params)){
+        if (is_string($params)) {
             return $params;
         }
         return \Yii::$app->urlManager->createAbsoluteUrl($params);
