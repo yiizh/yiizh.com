@@ -27,6 +27,7 @@ class SystemController extends Controller
             ['label' => '微博设置', 'url' => ['system/weibo']],
             ['label' => '统计代码', 'url' => ['system/tongji']],
             ['label' => '淘宝推广', 'url' => ['system/taobao-union']],
+            ['label' => '百度', 'url' => ['system/baidu']],
         ]);
     }
 
@@ -155,6 +156,26 @@ class SystemController extends Controller
         }
 
         return $this->render('block-end-body', [
+            'settings' => $settings
+        ]);
+    }
+
+    public function actionBaidu()
+    {
+        $settings = [
+            Settings::findOneByCode(Settings::BAIDU_PING_SITE),
+            Settings::findOneByCode(Settings::BAIDU_PING_TOKEN),
+        ];
+
+        if (Model::loadMultiple($settings, Yii::$app->request->post()) && Model::validateMultiple($settings)) {
+            foreach ($settings as $setting) {
+                $setting->save(false);
+            }
+            Alert::set('success', '保存成功');
+            return $this->refresh();
+        }
+
+        return $this->render('baidu', [
             'settings' => $settings
         ]);
     }

@@ -11,7 +11,7 @@ return [
     'name' => 'Yii中文',
     'language' => 'zh-CN',
     'timeZone' => 'Asia/Shanghai',
-    'bootstrap' => ['log'],
+    'bootstrap' => ['log', 'db','settings',],
     'vendorPath' => APP_ROOT . '/vendor',
     'components' => [
         'cache' => [
@@ -38,5 +38,8 @@ return [
         'authManager' => [
             'class' => 'yii\rbac\DbManager',
         ],
+        'baidu' => [
+            'class' => 'common\clients\baidu\Baidu',
+        ]
     ],
 ];

@@ -30,6 +30,10 @@ class Settings extends BaseSettings
 
     const BLOCK_END_BODY = 'block-end_body';
 
+    const BAIDU_PING_SITE = 'baidu-ping_site';
+    const BAIDU_PING_TOKEN = 'baidu-ping_token';
+
+
     /**
      * @param mixed $value
      * @return string
