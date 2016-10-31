@@ -109,6 +109,9 @@ AppAsset::register($this);
                 <?php if (($cnzz = Settings::get(Settings::TONGJI_CNZZ)) != ''): ?>
                     <span>&bull; <?= $cnzz ?></span>
                 <?php endif; ?>
+                <?php if (($beian = Settings::get(Settings::BEIAN)) != ''): ?>
+                    <span>&bull; <?= Html::a($beian, 'http://www.miibeian.gov.cn', ['target' => '_blank']) ?></span>
+                <?php endif; ?>
             </p>
 
             <p class="pull-right"><?= Yii::powered() ?></p>

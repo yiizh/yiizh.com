@@ -22,6 +22,7 @@ class SystemController extends Controller
         parent::init();
         Nav::setMenu('main-sidebar', [
             ['label' => '站点设置', 'url' => ['system/index']],
+            ['label' => '备案号', 'url' => ['system/beian']],
             ['label' => '微博设置', 'url' => ['system/weibo']],
             ['label' => '统计代码', 'url' => ['system/tongji']],
             ['label' => '淘宝推广', 'url' => ['system/taobao-union']],
@@ -114,11 +115,27 @@ class SystemController extends Controller
             return $this->refresh();
         }
 
-        echo Html::errorSummary($settings);
-
         return $this->render('taobao-union', [
             'settings' => $settings
         ]);
+    }
 
+    public function actionBeian()
+    {
+        $settings = [
+            Settings::findOneByCode(Settings::BEIAN),
+        ];
+
+        if (Model::loadMultiple($settings, Yii::$app->request->post()) && Model::validateMultiple($settings)) {
+            foreach ($settings as $setting) {
+                $setting->save(false);
+            }
+            Alert::set('success', '保存成功');
+            return $this->refresh();
+        }
+
+        return $this->render('beian', [
+            'settings' => $settings
+        ]);
     }
 }

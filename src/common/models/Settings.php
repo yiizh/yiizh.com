@@ -26,6 +26,8 @@ class Settings extends BaseSettings
 
     const TAOBAO_UNION = 'taobao-union';
 
+    const BEIAN = 'beian';
+
     /**
      * @param mixed $value
      * @return string
