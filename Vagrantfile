@@ -19,6 +19,7 @@ Vagrant.configure(2) do |config|
   # disable folder '/vagrant' (guest machine)
   config.vm.synced_folder ".", "/vagrant", disabled: true
   config.vm.synced_folder ".", "/code", type: "nfs"
+  config.vm.synced_folder "C:/Cache/composer", "/home/vagrant/.cache/composer", type: "nfs"
 
   config.vm.provision :hostmanager
   config.hostmanager.enabled = true

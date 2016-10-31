@@ -14,7 +14,9 @@
         "yiisoft/yii2-swiftmailer": "*",
         "yiisoft/yii2-jui": "*",
         "yii2tech/sitemap": "*",
-        "vlucas/phpdotenv": "*"
+        "vlucas/phpdotenv": "*",
+        "kartik-v/yii2-widget-datetimepicker": "v1.4.2",
+        "kartik-v/yii2-markdown": "*"
     },
     "require-dev": {
         "yiisoft/yii2-gii": "*",
@@ -24,6 +26,9 @@
         "process-timeout": 1800
     },
     "extra": {
+        "asset-vcs-driver-options": {
+            "github-no-api": true
+        },
         "asset-installer-paths": {
             "npm-asset-library": "vendor/npm",
             "bower-asset-library": "vendor/bower"

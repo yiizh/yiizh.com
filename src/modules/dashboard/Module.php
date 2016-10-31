@@ -26,6 +26,11 @@ class Module extends BaseModule
             'visible'=>$user->can('manageNews')
         ]);
         Nav::addMenuItem('main-navbar', [
+            'label' => '文章',
+            'url' => ['post/index'],
+            'visible'=>$user->can('managePost')
+        ]);
+        Nav::addMenuItem('main-navbar', [
             'label' => '项目',
             'url' => ['project/index'],
             'visible'=>$user->can('manageProject')

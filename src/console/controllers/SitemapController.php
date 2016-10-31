@@ -10,6 +10,7 @@ namespace console\controllers;
 
 use common\components\UrlManagerBootstrap;
 use common\models\News;
+use common\models\Post;
 use common\models\Project;
 use console\components\BaseConsoleController;
 use yii2tech\sitemap\File;
@@ -61,6 +62,9 @@ class SitemapController extends BaseConsoleController
         // 开源项目
         $this->addProjects();
 
+        // 文章
+        $this->addPosts();
+
         $this->writeFile();
     }
 
@@ -88,6 +92,20 @@ class SitemapController extends BaseConsoleController
             ->all();
 
         $this->addUrl(['/project/project/index'], ['priority' => '1', 'changeFrequency' => File::CHECK_FREQUENCY_DAILY]);
+        foreach ($models as $model) {
+            $this->addUrl($model->getUrl(true), ['priority' => '0.2']);
+        }
+    }
+
+    protected function addPosts()
+    {
+        $models = Post::find()
+            ->active()
+            ->published()
+            ->all();
+
+        $this->addUrl(['/post/post/index'], ['priority' => '1', 'changeFrequency' => File::CHECK_FREQUENCY_DAILY]);
+
         foreach ($models as $model) {
             $this->addUrl($model->getUrl(true), ['priority' => '0.2']);
         }

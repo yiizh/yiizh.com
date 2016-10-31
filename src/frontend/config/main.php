@@ -22,7 +22,13 @@ $config = [
         'modules\dashboard\Bootstrap',
         'modules\news\Bootstrap',
         'modules\project\Bootstrap',
+        'modules\post\Bootstrap',
         'common\components\UrlManagerBootstrap'
+    ],
+    'modules'=>[
+        'markdown' => [
+            'class' => 'kartik\markdown\Module',
+        ]
     ],
     'controllerNamespace' => 'frontend\controllers',
     'components' => [

@@ -30,6 +30,7 @@ $mainItems = [];
 $rightItems = [];
 $mainItems[] = ['label' => '资讯', 'url' => ['/news/news/index']];
 $mainItems[] = ['label' => '开源项目', 'url' => ['/project/project/index']];
+$mainItems[] = ['label' => '文章', 'url' => ['/post/post/index']];
 $mainItems[] = ['label' => '网址导航', 'url' => 'http://i.yiizh.com', 'linkOptions' => ['target' => '_blank']];
 
 $rightItems[] = ['label' => '控制台', 'url' => ['/dashboard/default/index'], 'visible' => $user->can('manage')];
