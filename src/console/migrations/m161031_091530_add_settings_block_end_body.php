@@ -8,15 +8,15 @@
 use common\models\Settings;
 use console\components\Migration;
 
-class m161031_084512_add_settings_beian extends Migration
+class m161031_091530_add_settings_block_end_body extends Migration
 {
     public function up()
     {
         $this->insert('{{%settings}}',
             [
-                'name' => '备案号',
-                'description' => '备案号',
-                'code' => Settings::BEIAN,
+                'name' => 'END BODY 代码块',
+                'description' => 'END BODY 代码块',
+                'code' => Settings::BLOCK_END_BODY,
                 'value' => '',
                 'isEncoded' => 0,
             ]
@@ -25,6 +25,6 @@ class m161031_084512_add_settings_beian extends Migration
 
     public function down()
     {
-        $this->delete('{{%settings}}', 'code=:code', [':code' => Settings::BEIAN]);
+        $this->delete('{{%settings}}', 'code=:code', [':code' => Settings::BLOCK_END_BODY]);
     }
 }

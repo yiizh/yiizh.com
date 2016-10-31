@@ -23,6 +23,7 @@ class SystemController extends Controller
         Nav::setMenu('main-sidebar', [
             ['label' => '站点设置', 'url' => ['system/index']],
             ['label' => '备案号', 'url' => ['system/beian']],
+            ['label' => 'End Body 代码块', 'url' => ['system/block-end-body']],
             ['label' => '微博设置', 'url' => ['system/weibo']],
             ['label' => '统计代码', 'url' => ['system/tongji']],
             ['label' => '淘宝推广', 'url' => ['system/taobao-union']],
@@ -135,6 +136,25 @@ class SystemController extends Controller
         }
 
         return $this->render('beian', [
+            'settings' => $settings
+        ]);
+    }
+
+    public function actionBlockEndBody()
+    {
+        $settings = [
+            Settings::findOneByCode(Settings::BLOCK_END_BODY),
+        ];
+
+        if (Model::loadMultiple($settings, Yii::$app->request->post()) && Model::validateMultiple($settings)) {
+            foreach ($settings as $setting) {
+                $setting->save(false);
+            }
+            Alert::set('success', '保存成功');
+            return $this->refresh();
+        }
+
+        return $this->render('block-end-body', [
             'settings' => $settings
         ]);
     }

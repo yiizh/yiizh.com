@@ -28,6 +28,8 @@ class Settings extends BaseSettings
 
     const BEIAN = 'beian';
 
+    const BLOCK_END_BODY = 'block-end_body';
+
     /**
      * @param mixed $value
      * @return string
