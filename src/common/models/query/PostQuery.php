@@ -1,6 +1,8 @@
 <?php
 
 namespace common\models\query;
+
+use common\helper\DateTime;
 use common\models\Post;
 
 /**
@@ -37,11 +39,14 @@ class PostQuery extends \yii\db\ActiveQuery
     }
 
     /**
+     * 已发布
      * @return static
      */
-    public function published(){
-        return $this->andWhere([
-            '[[publishStatus]]'=>Post::PUBLISH_STATUS_PUBLISHED,
-        ]);
+    public function published()
+    {
+        return $this->andWhere('publishDatetime <= :now', [':now' => DateTime::now()])
+            ->andWhere([
+                '[[publishStatus]]' => Post::PUBLISH_STATUS_PUBLISHED,
+            ]);
     }
 }
