@@ -7,7 +7,7 @@ domains = {
 
 Vagrant.configure(2) do |config|
 
-  config.vm.box = "yiizh/php7"
+  config.vm.box = "yiizh/php7.0"
   config.vm.hostname = "yiizh.dev"
 
   config.vm.provider "virtualbox" do |v|

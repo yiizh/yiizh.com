@@ -15,7 +15,6 @@ $config = [
     'basePath' => dirname(__DIR__),
     'bootstrap' => [
         'log',
-        'settings',
         'frontend\Bootstrap',
         'modules\user\Bootstrap',
         'modules\account\Bootstrap',

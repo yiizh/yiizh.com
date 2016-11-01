@@ -5,13 +5,12 @@
  * @license http://www.yiizh.com/license/
  */
 
-use common\components\SettingsManager;
 
 return [
     'name' => 'Yii中文',
     'language' => 'zh-CN',
     'timeZone' => 'Asia/Shanghai',
-    'bootstrap' => ['log', 'db','settings',],
+    'bootstrap' => ['log'],
     'vendorPath' => APP_ROOT . '/vendor',
     'components' => [
         'cache' => [
@@ -32,14 +31,19 @@ return [
             'tablePrefix' => 'tbl_',
             'charset' => 'utf8',
         ],
-        'settings' => [
-            'class' => SettingsManager::className()
-        ],
         'authManager' => [
             'class' => 'yii\rbac\DbManager',
         ],
         'baidu' => [
             'class' => 'common\clients\baidu\Baidu',
+        ],
+        'authClientCollection' => [
+            'class' => 'yii\authclient\Collection',
+            'clients' => [
+                'weibo' => [
+                    'class' => 'common\auth\clients\Weibo'
+                ]
+            ]
         ]
     ],
 ];

@@ -9,6 +9,7 @@
 namespace common\auth\clients;
 
 
+use common\models\Settings;
 use yii\authclient\OAuth2;
 
 class Weibo extends OAuth2
@@ -31,6 +32,12 @@ class Weibo extends OAuth2
     public function init()
     {
         parent::init();
+        if ($this->clientId == null) {
+            $this->clientId = Settings::get(Settings::WEIBO_APP_KEY);
+        }
+        if ($this->clientSecret == null) {
+            $this->clientSecret = Settings::get(Settings::WEIBO_APP_SECRET);
+        }
     }
 
     protected function initUserAttributes()
