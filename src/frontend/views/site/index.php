@@ -23,12 +23,12 @@ $formatter = Yii::$app->formatter;
 
 $this->registerMetaTag([
     'name' => 'keywords',
-    'value' => Settings::get(Settings::SITE_KEYWORDS)
+    'content' => Settings::get(Settings::SITE_KEYWORDS)
 ]);
 
 $this->registerMetaTag([
     'name' => 'description',
-    'value' => Settings::get(Settings::SITE_DESCRIPTION)
+    'content' => Settings::get(Settings::SITE_DESCRIPTION)
 ]);
 ?>
 <div class="site-index">
