@@ -9,6 +9,7 @@ namespace common\clients\baidu;
 
 use common\models\Settings;
 use yii\base\Component;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
 use yii\httpclient\Client;
 
@@ -40,13 +41,31 @@ class Baidu extends Component
 
         $resp = $request->send();
 
-        if ($resp->isOk) {
-            return Json::decode($resp->content);
-        } else {
-            return [
+        if ($resp->getIsOk()) {
+            $rs = Json::decode($resp->content);
+            $result = [
+                'spider' => 'Baidu',
+                'success' => true,
+                'remain' => ArrayHelper::getValue($rs, 'remain'),
+                'notValid' => ArrayHelper::getValue($rs, 'not_valid'),
+                'notSameSite' => ArrayHelper::getValue($rs, 'not_same_site')
+            ];
+        } elseif (strncmp('40', $resp->getStatusCode(), 2) === 0) {
+            $rs = Json::decode($resp->content);
+            $result = [
+                'spider' => 'Baidu',
                 'success' => false,
-                'message' => $resp->statusCode
+                'errorCode' => ArrayHelper::getValue($rs, 'error'),
+                'errorMessage' => ArrayHelper::getValue($rs, 'message'),
+            ];
+        } else {
+            $result = [
+                'spider' => 'Baidu',
+                'success' => false,
+                'errorCode' => $resp->getStatusCode(),
+                'errorMessage' => $resp->getContent(),
             ];
         }
+        return $result;
     }
 }

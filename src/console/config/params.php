@@ -16,6 +16,16 @@ return [
                 '@root/bin/console',
                 'sitemap/generate'
             ]
-        ]
+        ],
+        [
+            // 搜索引擎推送，白天: 08-22 点之间，每隔10分钟推送一次
+            'name' => 'spider-push',
+            'rule' => '*/10 8-22 * * *',
+            'cmd' => 'php',
+            'args' => [
+                '@root/bin/console',
+                'spider/push'
+            ]
+        ],
     ]
 ];
