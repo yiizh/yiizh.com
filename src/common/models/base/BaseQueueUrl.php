@@ -44,7 +44,7 @@ class BaseQueueUrl extends \common\models\base\BaseActiveRecord
         return [
             'id' => '主键',
             'url' => 'URL',
-            'status' => 'Status',
+            'status' => '状态',
             'pushDatetime' => '推送时间',
             'createdAt' => '创建时间',
             'updatedAt' => '更新时间',

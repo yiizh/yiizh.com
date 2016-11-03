@@ -41,6 +41,11 @@ class Module extends BaseModule
             'visible'=>$user->can('manageAd')
         ]);
         Nav::addMenuItem('main-navbar', [
+            'label' => '队列',
+            'url' => ['queue/default/index'],
+            'visible'=>$user->can('manageAd')
+        ]);
+        Nav::addMenuItem('main-navbar', [
             'label' => '系统',
             'url' => ['system/index'],
             'visible'=>$user->can('manage')

@@ -1,56 +1,40 @@
 <?php
-/**
- * @link http://www.yiizh.com/
- * @copyright Copyright (c) 2016 yiizh.com
- * @license http://www.yiizh.com/license/
- */
 
-namespace modules\dashboard\controllers;
+namespace modules\dashboard\controllers\queue;
 
-use common\models\Project;
 use common\models\QueueUrl;
-use common\widgets\Nav;
-use modules\dashboard\Controller;
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\web\NotFoundHttpException;
 
 /**
+ * UrlController implements the CRUD actions for QueueUrl model.
  */
-class ProjectController extends Controller
+class UrlController extends Controller
 {
-    public function accessRules()
+    /**
+     * @inheritdoc
+     */
+    public function verbs()
     {
-        $rules[] = [
-            'allow' => true,
-            'roles' => ['manageProject']
+        return [
+            'delete' => ['POST'],
         ];
-        return $rules;
-    }
-
-    public function init()
-    {
-        parent::init();
-        Nav::setMenu('main-sidebar', [
-            [
-                'label' => '所有项目',
-                'url' => ['index'],
-            ],
-            [
-                'label' => '添加项目',
-                'url' => ['create'],
-            ],
-        ]);
     }
 
     /**
-     * Lists all Project models.
+     * Lists all QueueUrl models.
      * @return mixed
      */
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Project::find(),
+            'query' => QueueUrl::find(),
+            'sort' => [
+                'defaultOrder' => [
+                    'createdAt' => SORT_DESC
+                ]
+            ]
         ]);
 
         return $this->render('index', [
@@ -59,7 +43,7 @@ class ProjectController extends Controller
     }
 
     /**
-     * Displays a single Project model.
+     * Displays a single QueueUrl model.
      * @param integer $id
      * @return mixed
      */
@@ -71,16 +55,15 @@ class ProjectController extends Controller
     }
 
     /**
-     * Creates a new Project model.
+     * Creates a new QueueUrl model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Project();
+        $model = new QueueUrl();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            QueueUrl::add($model->getUrl(true));
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
@@ -90,7 +73,7 @@ class ProjectController extends Controller
     }
 
     /**
-     * Updates an existing Project model.
+     * Updates an existing QueueUrl model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -109,41 +92,28 @@ class ProjectController extends Controller
     }
 
     /**
-     * Deletes an existing Project model.
+     * Deletes an existing QueueUrl model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->softDelete();
+        $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
     }
 
     /**
-     * 恢复
-     *
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionRestore($id)
-    {
-        $this->findModel($id)->softRestore();
-
-        return $this->redirect(['index']);
-    }
-
-    /**
-     * Finds the Project model based on its primary key value.
+     * Finds the QueueUrl model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Project the loaded model
+     * @return QueueUrl the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Project::findOne($id)) !== null) {
+        if (($model = QueueUrl::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

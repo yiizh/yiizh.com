@@ -9,6 +9,7 @@ namespace console\controllers;
 
 
 use common\clients\baidu\Baidu;
+use common\helper\DateTime;
 use common\models\QueueUrl;
 use console\components\BaseConsoleController;
 use yii\helpers\ArrayHelper;
@@ -43,7 +44,8 @@ class SpiderController extends BaseConsoleController
         if ($rs['success']) {
             // 推送成功
             QueueUrl::updateAll([
-                'status' => QueueUrl::STATUS_PUSHED
+                'status' => QueueUrl::STATUS_PUSHED,
+                'pushDatetime' => DateTime::now()
             ], ['in', 'id', ArrayHelper::getColumn($models, 'id')]);
             echo "推送 {$urlCount} url 到搜索引擎成功." . PHP_EOL;
             echo "当天剩余 {$rs['remain']} 可推送 url 条数 " . PHP_EOL;

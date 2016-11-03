@@ -26,6 +26,21 @@ class QueueUrl extends BaseQueueUrl
         return new \common\models\query\QueueUrlQuery(get_called_class());
     }
 
+    public function attributeLabels()
+    {
+        $labels = parent::attributeLabels();
+        $labels['statusLabel'] = '状态';
+        return $labels;
+    }
+
+    public function rules()
+    {
+        $rules = parent::rules();
+
+        $rules[] = ['url', 'url'];
+        return $rules;
+    }
+
     /**
      * @return array
      */
@@ -52,5 +67,17 @@ class QueueUrl extends BaseQueueUrl
     public function getStatusLabel()
     {
         return static::statusItemLabel($this->status);
+    }
+
+    /**
+     * @param string $url
+     * @return boolean
+     */
+    public static function add($url)
+    {
+        $model = new static();
+        $model->url = $url;
+        $model->status = self::STATUS_PENDING;
+        return $model->save();
     }
 }

@@ -56,6 +56,11 @@ class RbacController extends BaseConsoleController
         $managePost->description = '管理文章';
         $auth->add($managePost);
 
+        // 队列管理权限
+        $manageQueue = $auth->createPermission('manageQueue');
+        $manageQueue->description = '管理队列';
+        $auth->add($manageQueue);
+
         // 角色: 管理员
         $manager = $auth->createRole('manager');
         $manager->description = '管理员';
@@ -77,6 +82,7 @@ class RbacController extends BaseConsoleController
         $auth->addChild($superManager, $manageSystem);
         $auth->addChild($superManager, $manageAd);
         $auth->addChild($superManager, $managePost);
+        $auth->addChild($superManager, $manageQueue);
 
         $this->stdout('权限树已重置。' . PHP_EOL, Console::FG_GREEN);
     }

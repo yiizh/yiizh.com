@@ -16,7 +16,7 @@ class m161102_090017_create_tbl_queue_url extends Migration
         $this->createTable($this->tableName, [
             'id' => $this->primaryKey()->comment('主键'),
             'url' => $this->string(200)->notNull()->comment('URL'),
-            'status' => 'enum("pending","pushed")',
+            'status' => 'enum("pending","pushed") not null default "pending" comment "状态"',
             'pushDatetime' => $this->dateTime()->comment('推送时间'),
             'createdAt' => $this->integer()->comment('创建时间'),
             'updatedAt' => $this->integer()->comment('更新时间'),
