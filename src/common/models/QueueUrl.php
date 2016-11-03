@@ -70,14 +70,24 @@ class QueueUrl extends BaseQueueUrl
     }
 
     /**
-     * @param string $url
-     * @return boolean
+     * @param string|array $urls
+     * @return int 成功添加的 URL 条数
      */
-    public static function add($url)
+    public static function add($urls)
     {
-        $model = new static();
-        $model->url = $url;
-        $model->status = self::STATUS_PENDING;
-        return $model->save();
+        if (is_string($urls)) {
+            $urls = (array)$urls;
+        }
+        $success = 0;
+        foreach ($urls as $url) {
+            $model = new static();
+            $model->url = $url;
+            $model->status = self::STATUS_PENDING;
+            if ($model->save()) {
+                $success++;
+            }
+        }
+
+        return $success;
     }
 }
