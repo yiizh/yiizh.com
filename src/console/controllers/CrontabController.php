@@ -148,9 +148,9 @@ class CrontabController extends Controller
     {
         $data = Json::decode($data);
         if ($data['success']) {
-            echo "执行 \"{$task_id}\" 成功: " . PHP_EOL . $data['message'] . PHP_EOL;
+            echo "执行 Task #\"{$task_id}\" 成功: " . PHP_EOL . $data['message'] . PHP_EOL;
         } else {
-            echo "执行 \"{$task_id}\" 失败: " . PHP_EOL . $data['message'] . PHP_EOL;
+            echo "执行 Task #\"{$task_id}\" 失败: " . PHP_EOL . $data['message'] . PHP_EOL;
         }
     }
 
