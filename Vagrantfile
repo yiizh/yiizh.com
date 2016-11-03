@@ -17,8 +17,7 @@ Vagrant.configure(2) do |config|
   config.vm.network 'private_network', type: "dhcp"
 
   # disable folder '/vagrant' (guest machine)
-  config.vm.synced_folder ".", "/vagrant", disabled: true
-  config.vm.synced_folder ".", "/code", type: "nfs"
+  config.vm.synced_folder ".", "/vagrant", type: "nfs"
   config.vm.synced_folder "C:/Cache/composer", "/home/vagrant/.cache/composer", type: "nfs"
 
   config.vm.provision :hostmanager
@@ -36,5 +35,6 @@ Vagrant.configure(2) do |config|
   end
 
   config.vm.provision 'shell', path: './vagrant/provision/once-as-root.sh'
+  config.vm.provision 'shell', path: './vagrant/provision/once-as-vagrant.sh', privileged: false
   config.vm.provision 'shell', path: './vagrant/provision/always-as-root.sh', run: 'always'
 end
