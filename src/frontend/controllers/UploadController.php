@@ -7,10 +7,11 @@
 
 namespace frontend\controllers;
 
+use common\models\File;
+use common\storage\UploadedFile;
 use frontend\components\BaseFrontendController;
 use Yii;
 use yii\web\Response;
-use yii\web\UploadedFile;
 
 class UploadController extends BaseFrontendController
 {
@@ -41,20 +42,29 @@ class UploadController extends BaseFrontendController
         $file = UploadedFile::getInstanceByName('__avatar1');
 
         if ($file && !$file->hasError) {
-            $dir = date('/Y/m/d');
+            $dir = date('Y/m/d');
             $fileName = $dir . '/' . md5(Yii::$app->security->generateRandomString()) . '.jpg';
-            $realFileName = Yii::getAlias('@webroot/uploads') . $fileName;
 
-            if (!file_exists(dirname($realFileName))) {
-                mkdir(dirname($realFileName), 0777, true);
-            }
+            if ($file->saveAs($fileName)) {
+                $model = new File();
+                $model->name = pathinfo($fileName, PATHINFO_FILENAME);
+                $model->mimeType = 'image/jpg';
+                $model->extension = 'jpg';
+                $model->path = $fileName;
+                $model->uploaderId = Yii::$app->user->id;
+                $model->size = $file->size;
 
-            if ($file->saveAs($realFileName)) {
-                $fileUrl = Yii::getAlias('@web/uploads').$fileName;
+                if (!$model->save()) {
+                    return [
+                        'success' => false,
+                        'msg' => '保存文件失败'
+                    ];
+                }
+
                 return [
                     "success" => true,
-                    "sourceUrl" => $fileUrl,
-                    "avatarUrls" => [$fileUrl]
+                    "sourceUrl" => $model->getUrl(),
+                    "avatarUrls" => [$model->getUrl()]
                 ];
             } else {
                 return [

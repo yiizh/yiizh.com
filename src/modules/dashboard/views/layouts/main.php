@@ -46,6 +46,9 @@ $this->beginContent('@modules/dashboard/views/layouts/blank.php');
     <?= $this->render('_footer', [
         'app' => $app
     ]) ?>
+    <?php if (isset($this->params['rightBar'])): ?>
+        <?= $this->render('_right', $this->params['rightBar']) ?>
+    <?php endif; ?>
 </div>
 <?php Modal::begin([
     'id' => 'modal-default',

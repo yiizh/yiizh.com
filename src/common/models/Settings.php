@@ -33,6 +33,10 @@ class Settings extends BaseSettings
     const BAIDU_PING_SITE = 'baidu-ping_site';
     const BAIDU_PING_TOKEN = 'baidu-ping_token';
 
+    const ALIYUN_ACCESS_KEY_ID = 'aliyun-access_key_id';
+    const ALIYUN_ACCESS_KEY_SECRET = 'aliyun-access_key_secret';
+    const ALIYUN_ENDPOINT = 'aliyun-endpoint';
+    const ALIYUN_BUCKET = 'aliyun-bucket';
 
     /**
      * @param mixed $value

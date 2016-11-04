@@ -16,7 +16,10 @@
         "yii2tech/sitemap": "*",
         "vlucas/phpdotenv": "*",
         "kartik-v/yii2-widget-datetimepicker": "v1.4.2",
-        "kartik-v/yii2-markdown": "*"
+        "kartik-v/yii2-markdown": "*",
+        "aliyuncs/oss-sdk-php": "~2.0",
+        "bower-asset/slimscroll": "*",
+        "bower-asset/clipboard": "*"
     },
     "require-dev": {
         "yiisoft/yii2-gii": "*",

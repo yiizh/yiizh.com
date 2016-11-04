@@ -7,6 +7,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src/console" isTestSource="false" packagePrefix="console" />
       <sourceFolder url="file://$MODULE_DIR$/src/frontend" isTestSource="false" packagePrefix="frontend" />
       <sourceFolder url="file://$MODULE_DIR$/src/modules" isTestSource="false" packagePrefix="modules" />
+      <sourceFolder url="file://$MODULE_DIR$/src/libs" isTestSource="false" packagePrefix="libs" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

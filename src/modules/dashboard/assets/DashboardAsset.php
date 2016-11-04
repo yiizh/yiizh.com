@@ -22,6 +22,7 @@ class DashboardAsset extends AssetBundle
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
         'yii\bootstrap\BootstrapPluginAsset',
+        'common\assets\slimScroll\SlimScrollAsset',
         'yiizh\adminlte\AdminLTEAsset',
         'yiizh\adminlte\AdminLTEBlueAsset',
         'yiizh\fontawesome\FontAwesomeAsset'

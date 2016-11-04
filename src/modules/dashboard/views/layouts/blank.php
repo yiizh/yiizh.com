@@ -16,6 +16,9 @@ use yii\web\View;
  */
 DashboardAsset::register($this);
 Html::addCssClass($this->params['bodyAttributes']['class'], 'skin-blue');
+if (isset($this->params['rightBar'])) {
+    Html::addCssClass($this->params['bodyAttributes']['class'], 'fixed control-sidebar-open');
+}
 ?>
 <?php $this->beginPage() ?>
     <!DOCTYPE html>

@@ -15,6 +15,10 @@ class Bootstrap implements BootstrapInterface, AddUrlRulesInterface
     public function addUrlRulesTo($urlManager)
     {
         $urlManager->addRules([
+            // 文件
+            '/file/<id:\d+>/<name:\w+>.<extension:\w+>' => '/file/view',
+            '/file/<id:\d+>/<name:\w+>' => '/file/view',
+            //
             '/login' => '/site/login',
             '/logout' => '/site/logout',
             '/register' => '/site/register',

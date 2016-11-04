@@ -23,32 +23,37 @@ class Module extends BaseModule
         Nav::addMenuItem('main-navbar', [
             'label' => '新闻',
             'url' => ['news/index'],
-            'visible'=>$user->can('manageNews')
+            'visible' => $user->can('manageNews')
         ]);
         Nav::addMenuItem('main-navbar', [
             'label' => '文章',
             'url' => ['post/index'],
-            'visible'=>$user->can('managePost')
+            'visible' => $user->can('managePost')
         ]);
         Nav::addMenuItem('main-navbar', [
             'label' => '项目',
             'url' => ['project/index'],
-            'visible'=>$user->can('manageProject')
+            'visible' => $user->can('manageProject')
         ]);
         Nav::addMenuItem('main-navbar', [
             'label' => '广告',
             'url' => ['ad/default/index'],
-            'visible'=>$user->can('manageAd')
+            'visible' => $user->can('manageAd')
+        ]);
+        Nav::addMenuItem('main-navbar', [
+            'label' => '文件',
+            'url' => ['file/index'],
+            'visible' => $user->can('manageFile')
         ]);
         Nav::addMenuItem('main-navbar', [
             'label' => '队列',
             'url' => ['queue/default/index'],
-            'visible'=>$user->can('manageAd')
+            'visible' => $user->can('manageAd')
         ]);
         Nav::addMenuItem('main-navbar', [
             'label' => '系统',
             'url' => ['system/index'],
-            'visible'=>$user->can('manage')
+            'visible' => $user->can('manage')
         ]);
 
     }

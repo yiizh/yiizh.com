@@ -5,7 +5,7 @@
  * @license http://www.yiizh.com/license/
  */
 
-namespace common\clients\baidu;
+namespace libs\baidu;
 
 use common\models\Settings;
 use yii\base\Component;

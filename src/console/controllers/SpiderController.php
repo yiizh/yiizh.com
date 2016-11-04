@@ -8,10 +8,10 @@
 namespace console\controllers;
 
 
-use common\clients\baidu\Baidu;
 use common\helper\DateTime;
 use common\models\QueueUrl;
 use console\components\BaseConsoleController;
+use libs\baidu\Baidu;
 use yii\helpers\ArrayHelper;
 
 class SpiderController extends BaseConsoleController

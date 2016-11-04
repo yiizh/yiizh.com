@@ -19,6 +19,10 @@ use yii\widgets\ActiveForm;
 $titleInputId = Html::getInputId($model, 'title');
 $slugInputId = Html::getInputId($model, 'slug');
 $slugUrl = Url::to(['slug/index']);
+
+$this->params['rightBar'] = [
+    'src' => Url::to(['file/upload-widget'])
+];
 ?>
 <?php JsBlock::begin() ?>
 <script>

@@ -17,6 +17,7 @@ Yii::setAlias('@modules', APP_SRC_ROOT . '/modules');
 Yii::setAlias('@api', APP_SRC_ROOT . '/api');
 Yii::setAlias('@console', APP_SRC_ROOT . '/console');
 Yii::setAlias('@frontend', APP_SRC_ROOT . '/frontend');
+Yii::setAlias('@libs', APP_SRC_ROOT . '/libs');
 
 if (file_exists(APP_ROOT . '/env.ini')) {
     $env = new Dotenv\Dotenv(APP_ROOT, 'env.ini');

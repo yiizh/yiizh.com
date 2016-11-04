@@ -5,12 +5,14 @@
  * @license http://www.yiizh.com/license/
  */
 
-
 return [
     'name' => 'Yii中文',
     'language' => 'zh-CN',
     'timeZone' => 'Asia/Shanghai',
-    'bootstrap' => ['log'],
+    'bootstrap' => [
+        'log',
+        'common\Bootstrap'
+    ],
     'vendorPath' => APP_ROOT . '/vendor',
     'components' => [
         'cache' => [
@@ -44,6 +46,6 @@ return [
                     'class' => 'common\auth\clients\Weibo'
                 ]
             ]
-        ]
+        ],
     ],
 ];
