@@ -44,5 +44,8 @@ return [
                 ]
             ]
         ],
+        'session' => [
+            'class' => 'yii\web\DbSession',
+        ]
     ],
 ];
