@@ -11,7 +11,8 @@ return [
     'timeZone' => 'Asia/Shanghai',
     'bootstrap' => [
         'log',
-        'common\Bootstrap'
+        'common\Bootstrap',
+        'libs\bootcdn\BootCDN',
     ],
     'vendorPath' => APP_ROOT . '/vendor',
     'components' => [
@@ -32,6 +33,9 @@ return [
             'password' => getenv('MYSQL_PASS'),
             'tablePrefix' => 'tbl_',
             'charset' => 'utf8',
+            'enableSchemaCache' => true,
+            'schemaCacheDuration' => 3600,
+            'schemaCache' => 'cache',
         ],
         'authManager' => [
             'class' => 'yii\rbac\DbManager',
