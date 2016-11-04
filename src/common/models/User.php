@@ -2,6 +2,7 @@
 
 namespace common\models;
 
+use common\behaviors\SoftDeleteBehavior;
 use common\models\base\BaseUser;
 use common\models\query\UserQuery;
 use Yii;
@@ -14,6 +15,9 @@ use yii\web\IdentityInterface;
 /**
  * This is the model class for table "{{%user}}".
  *
+ * @method softDelete() boolean 软删除
+ * @method softRestore() boolean 恢复
+ * @method getIsDeleted() boolean 是否已删除
  */
 class User extends BaseUser implements IdentityInterface
 {
@@ -30,6 +34,26 @@ class User extends BaseUser implements IdentityInterface
     public static function find()
     {
         return new UserQuery(get_called_class());
+    }
+
+    public function attributeLabels()
+    {
+        $labels = parent::attributeLabels();
+        $labels['statusLabel'] = '状态';
+        return $labels;
+    }
+
+    public function behaviors()
+    {
+        $behaviors = parent::behaviors();
+        $behaviors[] = [
+            'class' => SoftDeleteBehavior::className(),
+            'softDeleteAttribute' => 'status',
+            'deletedValue' => self::STATUS_DELETED,
+            'unDeletedValue' => self::STATUS_ACTIVE
+        ];
+
+        return $behaviors;
     }
 
     /**

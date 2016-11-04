@@ -21,6 +21,11 @@ class Module extends BaseModule
         parent::init();
         $user = \Yii::$app->user;
         Nav::addMenuItem('main-navbar', [
+            'label' => '用户',
+            'url' => ['user/index'],
+            'visible' => $user->can('manageUser')
+        ]);
+        Nav::addMenuItem('main-navbar', [
             'label' => '新闻',
             'url' => ['news/index'],
             'visible' => $user->can('manageNews')
