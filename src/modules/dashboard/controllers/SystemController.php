@@ -29,6 +29,7 @@ class SystemController extends Controller
             ['label' => '淘宝推广', 'url' => ['system/taobao-union']],
             ['label' => '百度', 'url' => ['system/baidu']],
             ['label' => '阿里云', 'url' => ['system/aliyun']],
+            ['label' => '邮件设置', 'url' => ['system/email']],
         ]);
     }
 
@@ -199,6 +200,31 @@ class SystemController extends Controller
         }
 
         return $this->render('aliyun', [
+            'settings' => $settings
+        ]);
+    }
+
+    public function actionEmail()
+    {
+        $settings = [
+            Settings::findOneByCode(Settings::EMAIL_FROM_NAME),
+            Settings::findOneByCode(Settings::EMAIL_FROM_EMAIL),
+            Settings::findOneByCode(Settings::EMAIL_SMTP_HOST),
+            Settings::findOneByCode(Settings::EMAIL_USERNAME),
+            Settings::findOneByCode(Settings::EMAIL_PASSWORD),
+            Settings::findOneByCode(Settings::EMAIL_PORT),
+            Settings::findOneByCode(Settings::EMAIL_ENCRYPTION),
+        ];
+
+        if (Model::loadMultiple($settings, Yii::$app->request->post()) && Model::validateMultiple($settings)) {
+            foreach ($settings as $setting) {
+                $setting->save(false);
+            }
+            Alert::set('success', '保存成功');
+            return $this->refresh();
+        }
+
+        return $this->render('email', [
             'settings' => $settings
         ]);
     }

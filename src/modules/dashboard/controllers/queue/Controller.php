@@ -18,6 +18,9 @@ class Controller extends \modules\dashboard\Controller
         Nav::setMenu('main-sidebar', [
             ['label' => 'URL 推送', 'url' => ['queue/url/index']],
             ['label' => '新增 URL 推送', 'url' => ['queue/url/create']],
+            '<li class="divider"></li>',
+            ['label' => '邮件队列', 'url' => ['queue/mail/index']],
+            ['label' => '新增邮件队列', 'url' => ['queue/mail/create']],
         ]);
     }
 

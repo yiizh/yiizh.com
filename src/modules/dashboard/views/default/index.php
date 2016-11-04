@@ -11,7 +11,7 @@ use yii\web\View;
  * @var $this View
  */
 
-$this->title = '模版';
+$this->title = '管理首页';
 ?>
 <div class="site-index">
 

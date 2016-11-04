@@ -34,6 +34,7 @@ $this->beginContent('@modules/dashboard/views/layouts/blank.php');
                     'class' => 'breadcrumb',
                     'style' => 'float: none; position: static;'
                 ],
+                'homeLink' => ['label' => '首页', 'url' => ['/dashboard/default/index']],
                 'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
             ]) ?>
         </section>

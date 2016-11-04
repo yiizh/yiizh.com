@@ -38,6 +38,14 @@ class Settings extends BaseSettings
     const ALIYUN_ENDPOINT = 'aliyun-endpoint';
     const ALIYUN_BUCKET = 'aliyun-bucket';
 
+    const EMAIL_FROM_NAME = 'email-from_name';
+    const EMAIL_FROM_EMAIL = 'email-from_email';
+    const EMAIL_SMTP_HOST = 'email-smtp_host';
+    const EMAIL_USERNAME = 'email-username';
+    const EMAIL_PASSWORD = 'email-password';
+    const EMAIL_PORT = 'email-port';
+    const EMAIL_ENCRYPTION = 'email-encryption';
+
     /**
      * @param mixed $value
      * @return string

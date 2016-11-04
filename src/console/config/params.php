@@ -27,5 +27,15 @@ return [
                 'spider/push'
             ]
         ],
+        [
+            // 邮件发送，白天: 08-22 点之间，每隔15分钟发送一次
+            'name' => 'spider-push',
+            'rule' => '*/15 8-22 * * *',
+            'cmd' => 'php',
+            'args' => [
+                '@root/bin/console',
+                'mail/auto-send'
+            ]
+        ],
     ]
 ];

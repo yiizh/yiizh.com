@@ -18,7 +18,7 @@ class Controller extends \modules\dashboard\Controller
         Nav::setMenu('main-sidebar', [
             ['label' => '广告位', 'url' => ['ad/position/index']],
             ['label' => '新增广告位', 'url' => ['ad/position/create']],
-            '<li class="divider"><hr></li>',
+            '<li class="divider"></li>',
             ['label' => '广告', 'url' => ['ad/ad/index']],
             ['label' => '新增广告', 'url' => ['ad/ad/create']],
         ]);
