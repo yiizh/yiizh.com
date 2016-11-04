@@ -7,8 +7,8 @@
 
 namespace libs\baidu;
 
-use common\models\Settings;
 use yii\base\Component;
+use yii\base\InvalidConfigException;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
 use yii\httpclient\Client;
@@ -23,10 +23,10 @@ class Baidu extends Component
         parent::init();
 
         if ($this->pingSite == null) {
-            $this->pingSite = Settings::get(Settings::BAIDU_PING_SITE);
+            throw new InvalidConfigException('请配置 "pingSite".');
         }
         if ($this->pingToken == null) {
-            $this->pingToken = Settings::get(Settings::BAIDU_PING_TOKEN);
+            throw new InvalidConfigException('请配置 "pingToken".');
         }
     }
 

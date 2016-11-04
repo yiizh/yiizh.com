@@ -7,8 +7,8 @@
 
 namespace console\controllers;
 
-use common\clients\baidu\Baidu;
 use console\components\BaseConsoleController;
+use libs\baidu\Baidu;
 
 class BaiduController extends BaseConsoleController
 {

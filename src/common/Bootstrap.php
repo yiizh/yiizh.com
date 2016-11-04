@@ -10,6 +10,7 @@ namespace common;
 use common\models\Settings;
 use common\storage\LocalStorage;
 use libs\aliyun\AliyunStorage;
+use libs\baidu\Baidu;
 use yii\base\Application;
 use yii\base\BootstrapInterface;
 use yii\swiftmailer\Mailer;
@@ -49,6 +50,12 @@ class Bootstrap implements BootstrapInterface
                 'port' => Settings::get(Settings::EMAIL_PORT),
                 'encryption' => Settings::get(Settings::EMAIL_ENCRYPTION),
             ],
+        ]);
+
+        $app->set('baidu', [
+            'class' => Baidu::className(),
+            'pingSite' => Settings::get(Settings::BAIDU_PING_SITE),
+            'pingToken' => Settings::get(Settings::BAIDU_PING_TOKEN)
         ]);
     }
 

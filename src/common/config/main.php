@@ -36,9 +36,6 @@ return [
         'authManager' => [
             'class' => 'yii\rbac\DbManager',
         ],
-        'baidu' => [
-            'class' => 'common\clients\baidu\Baidu',
-        ],
         'authClientCollection' => [
             'class' => 'yii\authclient\Collection',
             'clients' => [
