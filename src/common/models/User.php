@@ -267,7 +267,7 @@ class User extends BaseUser implements IdentityInterface
         if ($this->avatar == null) {
             return Url::to('@web/static/images/default-avatar.jpg');
         } else {
-            return Url::to('@web' . $this->avatar);
+            return $this->avatar;
         }
     }
 
