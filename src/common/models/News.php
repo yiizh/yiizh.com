@@ -2,6 +2,7 @@
 
 namespace common\models;
 
+use common\behaviors\NewsBehavior;
 use common\models\base\BaseNews;
 use common\models\query\NewsQuery;
 use common\models\query\ProjectQuery;
@@ -26,6 +27,8 @@ class News extends BaseNews
     const TYPE_DEFAULT = 1;
     const TYPE_PROJECT = 2;
     const TYPE_HEADLINE = 3;
+
+    const EVENT_AFTER_PUBLISH = 'afterPublish';
 
     public $projectName;
 
@@ -89,6 +92,15 @@ class News extends BaseNews
         if ($this->project) {
             $this->projectName = $this->project->name;
         }
+    }
+
+    public function behaviors()
+    {
+        $behaviors = parent::behaviors();
+        $behaviors[] = [
+            'class' => NewsBehavior::className()
+        ];
+        return $behaviors;
     }
 
     /**
@@ -161,14 +173,11 @@ class News extends BaseNews
     public function afterSave($insert, $changedAttributes)
     {
         parent::afterSave($insert, $changedAttributes);
-        if (ArrayHelper::getValue($changedAttributes, 'status') != self::STATUS_PUBLISHED && $this->status == self::STATUS_PUBLISHED) {
-            // 创建作者动态
-            $activity = new Activity();
-            $activity->userId = $this->userId;
-            $activity->objectType = Activity::TYPE_NEWS;
-            $activity->objectId = $this->id;
-            $activity->save();
+        $oldStatus = ArrayHelper::getValue($changedAttributes, 'status');
+        if ($oldStatus != self::STATUS_PUBLISHED && $this->status == self::STATUS_PUBLISHED) {
+            $this->trigger(self::EVENT_AFTER_PUBLISH);
         }
+
     }
 
     /**
