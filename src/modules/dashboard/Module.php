@@ -56,6 +56,16 @@ class Module extends BaseModule
             'visible' => $user->can('manageAd')
         ]);
         Nav::addMenuItem('main-navbar', [
+            'label' => '内部订阅',
+            'url' => ['subscription/index'],
+            'visible' => $user->can('manageSubscription')
+        ]);
+        Nav::addMenuItem('main-navbar', [
+            'label' => '内容池',
+            'url' => ['content/content/index'],
+            'visible' => $user->can('manageContentPool')
+        ]);
+        Nav::addMenuItem('main-navbar', [
             'label' => '系统',
             'url' => ['system/index'],
             'visible' => $user->can('manage')

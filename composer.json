@@ -19,7 +19,8 @@
         "kartik-v/yii2-markdown": "*",
         "aliyuncs/oss-sdk-php": "~2.0",
         "bower-asset/slimscroll": "*",
-        "bower-asset/clipboard": "*"
+        "bower-asset/clipboard": "*",
+        "zendframework/zend-feed": "*"
     },
     "require-dev": {
         "yiisoft/yii2-gii": "*",

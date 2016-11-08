@@ -71,3 +71,46 @@
         .on('click', '[data-toggle="ajax-modal"]', clickHandler);
 
 }(jQuery);
+
++function ($) {
+    'use strict';
+    $.yiizh = $.yiizh == undefined ? {} : $.yiizh;
+    var AjaxPost = $.yiizh.AjaxPost = function (element) {
+        var $this = this.element = $(element);
+        var data = this.element.attr('data-data')== undefined ? '成功' : JSON.parse(this.element.attr('data-data'));
+        var url = this.element.attr('data-url');
+        var success = this.element.attr('data-success') == undefined ? '成功' : this.element.attr('data-success');
+        var postingText = this.element.attr('data-postingText') == undefined ? '正在提交...' : this.element.attr('data-postingText');
+
+        $.ajax({
+            url: url,
+            method: 'post',
+            dataType: 'json',
+            data: data,
+            beforeSend: function () {
+                $this.html('<i class="fa fa-spinner fa-spin"></i> ' + postingText);
+                $this.addClass('disabled');
+            },
+            complete: function () {
+            },
+            success: function (rs) {
+                if (rs.success) {
+                    $this.html(success);
+                    $this.removeClass('btn-default');
+                    $this.addClass('btn-success');
+                } else {
+                    $this.html(rs.errorMessage);
+                }
+            },
+            error: function () {
+                $this.html('提交失败');
+            }
+        });
+    };
+
+    var clickHandler = function (e) {
+        e.preventDefault();
+        new AjaxPost(this);
+    };
+    $(document).on('click', '[data-toggle="ajax-post"]', clickHandler);
+}(jQuery);
