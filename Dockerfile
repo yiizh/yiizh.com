@@ -29,4 +29,4 @@ RUN cd $APP_PATH && \
     composer global require "fxp/composer-asset-plugin:~1.2.0" && \
     composer install -vvv --prefer-dist --no-dev --optimize-autoloader
 
-RUN rm -rf /var/www/html && ln -s $APP_PATH/src/frontend/web /var/www/html
+RUN rm -rf $APP_PATH/env.ini && rm -rf /var/www/html && ln -s $APP_PATH/src/frontend/web /var/www/html
