@@ -34,9 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     ],
                     'from',
                     'statusLabel',
-                    'createdAt:datetime',
-                    'updatedAt:datetime',
-
+                    'publishDatetime:datetime',
                     ['class' => 'yii\grid\ActionColumn'],
                 ],
             ]); ?>

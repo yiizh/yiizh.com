@@ -6,7 +6,7 @@
  */
 
 return [
-    'crontabs'=>[
+    'crontabs' => [
         [
             'name' => 'sitemap-generator',
             // 每天早晨6点执行生成 sitemap
@@ -19,22 +19,42 @@ return [
         ],
         [
             // 搜索引擎推送，白天: 08-22 点之间，每隔10分钟推送一次
-            'name' => 'spider-push',
+            'name' => 'baidu-push',
             'rule' => '*/10 8-22 * * *',
             'cmd' => 'php',
             'args' => [
                 '@root/bin/console',
-                'spider/push'
+                'baidu/push'
             ]
         ],
         [
             // 邮件发送，白天: 08-22 点之间，每隔15分钟发送一次
-            'name' => 'spider-push',
+            'name' => 'mail-push',
             'rule' => '*/15 8-22 * * *',
             'cmd' => 'php',
             'args' => [
                 '@root/bin/console',
                 'mail/auto-send'
+            ]
+        ],
+        [
+            // 爬取订阅数据，白天: 08-22 点之间，每隔30分钟爬取一次
+            'name' => 'spider-subscription',
+            'rule' => '*/30 8-22 * * *',
+            'cmd' => 'php',
+            'args' => [
+                '@root/bin/console',
+                'spider/subscription'
+            ]
+        ],
+        [
+            // 内容池更新提醒，白天: 08-22 点之间，每隔15分钟提醒一次
+            'name' => 'content-pool-notify',
+            'rule' => '*/15 8-22 * * *',
+            'cmd' => 'php',
+            'args' => [
+                '@root/bin/console',
+                'content-pool/notify'
             ]
         ],
     ]

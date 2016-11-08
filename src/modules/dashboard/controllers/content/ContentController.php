@@ -46,7 +46,7 @@ class ContentController extends Controller
         $dataProvider = new ActiveDataProvider([
             'query' => ContentPool::find(),
             'sort' => [
-                'defaultOrder' => ['createdAt' => SORT_DESC]
+                'defaultOrder' => ['publishDatetime' => SORT_DESC]
             ]
         ]);
 

@@ -9,6 +9,7 @@ namespace common\models\base;
  * @property string $url
  * @property string $title
  * @property string $description
+ * @property string $publishDatetime
  * @property string $from
  * @property string $status
  * @property integer $createdAt
@@ -32,6 +33,7 @@ class BaseContentPool extends \common\models\base\BaseActiveRecord
         return [
             [['url'], 'required'],
             [['description', 'status'], 'string'],
+            [['publishDatetime'], 'safe'],
             [['createdAt', 'updatedAt'], 'integer'],
             [['url', 'title'], 'string', 'max' => 200],
             [['from'], 'string', 'max' => 100],
@@ -48,6 +50,7 @@ class BaseContentPool extends \common\models\base\BaseActiveRecord
             'url' => 'URL 地址',
             'title' => '标题',
             'description' => '内容',
+            'publishDatetime' => '原文发布时间',
             'from' => '来源',
             'status' => '状态',
             'createdAt' => '创建时间',

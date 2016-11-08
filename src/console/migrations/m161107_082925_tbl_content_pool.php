@@ -24,6 +24,7 @@ class m161107_082925_tbl_content_pool extends Migration
             'url' => $this->string(200)->notNull()->comment('URL 地址'),
             'title' => $this->string(200)->comment('标题'),
             'description' => $this->text()->comment('内容'),
+            'publishDatetime' => $this->dateTime()->comment('原文发布时间'),
             'from' => $this->string(100)->comment('来源'),
             'status' => 'enum("' . implode('","', $statuses) . '") not null default "' . ContentPool::STATUS_TODO . '" comment "状态"',
             'createdAt' => $this->integer()->comment('创建时间'),

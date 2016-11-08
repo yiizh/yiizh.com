@@ -7,54 +7,42 @@
 
 namespace console\controllers;
 
-
-use common\helper\DateTime;
-use common\models\QueueUrl;
+use common\models\ContentPool;
+use common\models\Subscription;
 use console\components\BaseConsoleController;
-use libs\baidu\Baidu;
-use yii\helpers\ArrayHelper;
 
+/**
+ * 爬取数据
+ *
+ */
 class SpiderController extends BaseConsoleController
 {
-    public $defaultAction = 'push';
-
-    public function actionPush($limit = 100)
+    /**
+     * 爬取订阅的数据
+     */
+    public function actionSubscription()
     {
-        $query = QueueUrl::find()
-            ->pending()
-            ->limit($limit);
-        $urlCount = $query->count();
-        if ($urlCount == 0) {
-            echo "No url to push." . PHP_EOL;
-            return self::EXIT_CODE_NORMAL;
-        }
-
-        $models = $query->all();
-        $urls = [];
+        $models = Subscription::find()->all();
+        $count = 0;
+        echo "Start fetch subscription data." . PHP_EOL;
         foreach ($models as $model) {
-            $urls[$model->id] = $model->url;
+            $channel = $model->getChannel();
+            foreach ($model->getItems() as $item) {
+                if (!ContentPool::isExistsByUrl($item->link)) {
+                    $contentPool = new ContentPool();
+                    $contentPool->title = $item->title;
+                    $contentPool->url = $item->link;
+                    $contentPool->description = $item->description;
+                    $contentPool->from = $channel->title . " <{$channel->link}>";
+                    $contentPool->status = ContentPool::STATUS_TODO;
+                    $contentPool->publishDatetime = $item->publishDatetime;
+
+                    if ($contentPool->save()) {
+                        $count++;
+                    }
+                }
+            }
         }
-
-        /**
-         * @var $baidu Baidu
-         */
-        $baidu = \Yii::$app->baidu;
-        $rs = $baidu->ping($urls);
-
-        if ($rs['success']) {
-            // 推送成功
-            QueueUrl::updateAll([
-                'status' => QueueUrl::STATUS_PUSHED,
-                'pushDatetime' => DateTime::now()
-            ], ['in', 'id', ArrayHelper::getColumn($models, 'id')]);
-            echo "推送 {$urlCount} url 到搜索引擎成功." . PHP_EOL;
-            echo "当天剩余 {$rs['remain']} 可推送 url 条数 " . PHP_EOL;
-        } else {
-            // 推送失败
-            echo "推送 {$urlCount} url 到搜索引擎失败." . PHP_EOL;
-            echo "错误代码: {$rs['errorCode']}" . PHP_EOL;
-            echo "错误信息: {$rs['errorMessage']}" . PHP_EOL;
-        }
-
+        echo "Done! {$count} contents was saved to content pool." . PHP_EOL;
     }
 }

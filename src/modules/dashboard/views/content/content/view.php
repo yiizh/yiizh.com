@@ -59,6 +59,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'title',
                     'from',
                     'statusLabel',
+                    'publishDatetime:datetime',
                     'createdAt:datetime',
                     'updatedAt:datetime',
                 ],

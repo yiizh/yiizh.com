@@ -30,6 +30,7 @@ use yii\helpers\Url;
                     'ContentPool[url]' => $model->link,
                     'ContentPool[description]' => $model->description,
                     'ContentPool[from]' => $model->channel->title . " <{$model->channel->link}>",
+                    'ContentPool[publishDatetime]' => $model->publishDatetime
                 ]
             ]]) ?>
         <?php endif; ?>
