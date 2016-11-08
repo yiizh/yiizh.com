@@ -19,4 +19,5 @@ echo "Done!"
 
 info "Init application"
 php /vagrant/bin/console migrate --interactive=0 && \
-php /vagrant/bin/console migrate --interactive=0 --migrationPath=@yii/rbac/migrations
+php /vagrant/bin/console migrate --interactive=0 --migrationPath=@yii/rbac/migrations && \
+php /vagrant/bin/console migrate --interactive=0 --migrationPath=@yii/caching/migrations

@@ -17,7 +17,7 @@ return [
     'vendorPath' => APP_ROOT . '/vendor',
     'components' => [
         'cache' => [
-            'class' => 'yii\caching\FileCache',
+            'class' => 'yii\caching\DbCache',
         ],
         'formatter' => [
             'defaultTimeZone' => 'Asia/Shanghai',
@@ -33,9 +33,6 @@ return [
             'password' => getenv('MYSQL_PASS'),
             'tablePrefix' => 'tbl_',
             'charset' => 'utf8',
-            'enableSchemaCache' => true,
-            'schemaCacheDuration' => 3600,
-            'schemaCache' => 'cache',
         ],
         'authManager' => [
             'class' => 'yii\rbac\DbManager',
