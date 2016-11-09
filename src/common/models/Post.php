@@ -2,6 +2,7 @@
 
 namespace common\models;
 
+use common\behaviors\PostBehavior;
 use common\behaviors\SoftDeleteBehavior;
 use common\models\base\BasePost;
 use kartik\markdown\Markdown;
@@ -22,6 +23,8 @@ class Post extends BasePost
     const TYPE_ORIGINAL = 1;
     const TYPE_REPOST = 2;
 
+    const EVENT_AFTER_PUBLISH = 'afterPublish';
+
     /**
      * @inheritdoc
      */
@@ -37,7 +40,9 @@ class Post extends BasePost
         $behaviors[] = [
             'class' => SoftDeleteBehavior::className()
         ];
-
+        $behaviors[] = [
+            'class' => PostBehavior::className()
+        ];
         return $behaviors;
     }
 
@@ -147,5 +152,15 @@ class Post extends BasePost
     public function getPureContent()
     {
         return preg_replace('/\s*/', '', strip_tags($this->contentHtml));
+    }
+
+    public function afterSave($insert, $changedAttributes)
+    {
+        parent::afterSave($insert, $changedAttributes);
+        $oldStatus = ArrayHelper::getValue($changedAttributes, 'publishStatus');
+        if ($oldStatus != self::PUBLISH_STATUS_PUBLISHED && $this->publishStatus == self::PUBLISH_STATUS_PUBLISHED) {
+            $this->trigger(self::EVENT_AFTER_PUBLISH);
+        }
+
     }
 }
