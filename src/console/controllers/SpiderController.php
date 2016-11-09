@@ -44,7 +44,7 @@ class SpiderController extends BaseConsoleController
                     }
                 }
             } catch (\Exception $e) {
-                echo "Exception on Subscription '{$model->channelTitle}': {$e->getMessage()}";
+                echo "Exception on Subscription '{$model->channelTitle}': {$e->getMessage()}".PHP_EOL;
             }
 
         }
