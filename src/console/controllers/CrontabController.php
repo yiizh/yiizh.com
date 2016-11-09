@@ -68,7 +68,8 @@ class CrontabController extends Controller
                         $args[] = \Yii::getAlias($param) . '=' . \Yii::getAlias($value);
                     }
                 }
-                $this->queue[$nextExecTime] = [
+                $this->queue[] = [
+                    'execTime' => $nextExecTime,
                     'rule' => $crontab['rule'],
                     'cmd' => $crontab['cmd'] . ' ' . implode(' ', $args),
                 ];
@@ -76,8 +77,7 @@ class CrontabController extends Controller
             }
             $server->tick(1000, function () use ($server) {
                 foreach ($this->queue as $key => $queue) {
-//                    echo $key . ':' . time() . PHP_EOL;
-                    if ($key == time()) {
+                    if ($queue['execTime'] == time()) {
                         $server->task(Json::encode([
                             'task' => 'cmd',
                             'params' => [
@@ -85,7 +85,8 @@ class CrontabController extends Controller
                             ]
                         ]));
                         unset($this->queue[$key]);
-                        $this->queue[$this->getNextCronTabExecTime($queue['rule'])] = [
+                        $this->queue[] = [
+                            'execTime' => $this->getNextCronTabExecTime($queue['rule']),
                             'rule' => $queue['rule'],
                             'cmd' => $queue['cmd'],
                         ];
