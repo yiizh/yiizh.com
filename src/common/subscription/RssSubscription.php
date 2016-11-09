@@ -9,13 +9,16 @@ namespace common\subscription;
 
 use modules\dashboard\models\RssChannel;
 use modules\dashboard\models\RssItem;
+use yii\base\ErrorException;
+use yii\base\InvalidConfigException;
 use yii\base\Object;
+use yii\httpclient\Client;
 use Zend\Feed\Reader\Feed\FeedInterface;
 use Zend\Feed\Reader\Reader;
 
 class RssSubscription extends Object
 {
-    public $rss = 'http://www.yiiframework.com/rss.xml/';
+    public $rss;
 
     /**
      * @var FeedInterface
@@ -25,7 +28,17 @@ class RssSubscription extends Object
     public function init()
     {
         parent::init();
-        $this->reader = Reader::importString(file_get_contents($this->rss));
+        if ($this->rss == null) {
+            throw new InvalidConfigException('请配置 "rss"。');
+        }
+        $client = new Client();
+        $resp = $client->createRequest()->setUrl($this->rss)->send();
+        if (!$resp->getIsOk()) {
+            throw new ErrorException("加载 rss '{$this->rss}' 失败");
+        } else {
+            $this->reader = Reader::importString($resp->getContent());
+        }
+
     }
 
     /**

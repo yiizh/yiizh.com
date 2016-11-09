@@ -26,22 +26,27 @@ class SpiderController extends BaseConsoleController
         $count = 0;
         echo "Start fetch subscription data." . PHP_EOL;
         foreach ($models as $model) {
-            $channel = $model->getChannel();
-            foreach ($model->getItems() as $item) {
-                if (!ContentPool::isExistsByUrl($item->link)) {
-                    $contentPool = new ContentPool();
-                    $contentPool->title = $item->title;
-                    $contentPool->url = $item->link;
-                    $contentPool->description = $item->description;
-                    $contentPool->from = $channel->title . " <{$channel->link}>";
-                    $contentPool->status = ContentPool::STATUS_TODO;
-                    $contentPool->publishDatetime = $item->publishDatetime;
+            try {
+                $channel = $model->getChannel();
+                foreach ($model->getItems() as $item) {
+                    if (!ContentPool::isExistsByUrl($item->link)) {
+                        $contentPool = new ContentPool();
+                        $contentPool->title = $item->title;
+                        $contentPool->url = $item->link;
+                        $contentPool->description = $item->description;
+                        $contentPool->from = $channel->title . " <{$channel->link}>";
+                        $contentPool->status = ContentPool::STATUS_TODO;
+                        $contentPool->publishDatetime = $item->publishDatetime;
 
-                    if ($contentPool->save()) {
-                        $count++;
+                        if ($contentPool->save()) {
+                            $count++;
+                        }
                     }
                 }
+            } catch (\Exception $e) {
+                echo "Exception on Subscription '{$model->channelTitle}': {$e->getMessage()}";
             }
+
         }
         echo "Done! {$count} contents was saved to content pool." . PHP_EOL;
     }
