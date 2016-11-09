@@ -12,6 +12,7 @@ use common\widgets\Nav;
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\web\NotFoundHttpException;
+use yii\web\Response;
 
 /**
  * ContentController implements the CRUD actions for ContentPool model.
@@ -97,9 +98,14 @@ class ContentController extends Controller
         if ($status != null) {
             $model->status = $status;
         }
-
-        if (($model->load(Yii::$app->request->post()) || $status != null) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        $request = Yii::$app->request;
+        if (($model->load($request->post()) || $status != null) && $model->save()) {
+            if ($request->isAjax) {
+                Yii::$app->response->format = Response::FORMAT_JSON;
+                return ['success' => true];
+            } else {
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
         } else {
             return $this->render('update', [
                 'model' => $model,
