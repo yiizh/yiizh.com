@@ -16,6 +16,7 @@ use yii\widgets\ListView;
  * @var $this View
  * @var $latestNewsProvider ActiveDataProvider
  * @var $latestProjectProvider ActiveDataProvider
+ * @var $latestPostProvider ActiveDataProvider
  */
 
 $this->params['pageTitle'] = 'Yii中文 - yii框架中文网站，分享和学习';
@@ -50,6 +51,20 @@ $this->registerMetaTag([
 
             <div class="box">
                 <div class="box-header">
+                    <h4><?= Html::a('最新文章', ['/post/post/index']) ?></h4>
+                </div>
+                <div class="box-body">
+                    <?= ListView::widget([
+                        'dataProvider' => $latestPostProvider,
+                        'layout' => '{items}',
+                        'itemView' => '@modules/post/views/post/_view',
+                        'separator' => '<hr class="line line-dashed">'
+                    ]) ?>
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="box-header">
                     <h4><?= Html::a('最新收录', ['/project/project/index']) ?></h4>
                 </div>
                 <div class="box-body">
@@ -63,10 +78,9 @@ $this->registerMetaTag([
             </div>
         </div>
         <div class="col-md-4">
-                    <?= AdPositionWidget::widget([
-                        'code' => 'site-index-right-1'
-                    ]) ?>
-
+            <?= AdPositionWidget::widget([
+                'code' => 'site-index-right-1'
+            ]) ?>
         </div>
     </div>
 </div>

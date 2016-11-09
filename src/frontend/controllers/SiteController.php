@@ -9,6 +9,7 @@ namespace frontend\controllers;
 
 use common\auth\AuthHandler;
 use common\models\News;
+use common\models\Post;
 use common\models\Project;
 use frontend\components\BaseFrontendController;
 use frontend\forms\LoginForm;
@@ -74,9 +75,16 @@ class SiteController extends BaseFrontendController
             'pagination' => false,
         ]);
 
+        $latestPostProvider = new ActiveDataProvider([
+            'query' => Post::find()->active()->published()->orderBy(['publishDatetime' => SORT_DESC])->limit(5),
+            'sort' => false,
+            'pagination' => false,
+        ]);
+
         return $this->render('index', [
             'latestNewsProvider' => $latestNewsProvider,
             'latestProjectProvider' => $latestProjectProvider,
+            'latestPostProvider' => $latestPostProvider,
         ]);
     }
 
