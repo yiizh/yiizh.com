@@ -9,11 +9,7 @@ return [
     'name' => 'Yii中文',
     'language' => 'zh-CN',
     'timeZone' => 'Asia/Shanghai',
-    'bootstrap' => [
-        'log',
-        'common\Bootstrap',
-        'libs\bootcdn\BootCDN',
-    ],
+    'bootstrap' => ['log', 'common\Bootstrap', 'cdn'],
     'vendorPath' => APP_ROOT . '/vendor',
     'components' => [
         'cache' => [
@@ -47,6 +43,23 @@ return [
         ],
         'session' => [
             'class' => 'yii\web\DbSession',
-        ]
+        ],
+        'cdn' => [
+            'class' => 'yiizh\cdn\CDN',
+            'assets' => [
+                [
+                    'class' => 'yii\web\JqueryAsset',
+                    'js' => [
+                        'http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js'
+                    ]
+                ],
+                [
+                    'class' => 'yii\bootstrap\BootstrapAsset',
+                    'css' => [
+                        'http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css'
+                    ]
+                ],
+            ]
+        ],
     ],
 ];

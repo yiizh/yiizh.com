@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "a0711677ab00bebe54a80e5ae2c0bcfa",
+    "content-hash": "f9b24d792944ce4e20d5a0a7b47ca08a",
     "packages": [
         {
             "name": "aliyuncs/oss-sdk-php",
@@ -1327,6 +1327,51 @@
                 "yii2"
             ],
             "time": "2016-06-03T07:22:54+00:00"
+        },
+        {
+            "name": "yiizh/yii2-cdn",
+            "version": "0.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yiizh/yii2-cdn.git",
+                "reference": "d55aed5cdf6d5cc6ee0cdfca1bacc910e8067c78"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://packagist.phpcomposer.com/files/yiizh/yii2-cdn/d55aed5cdf6d5cc6ee0cdfca1bacc910e8067c78.zip",
+                "reference": "d55aed5cdf6d5cc6ee0cdfca1bacc910e8067c78",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0",
+                "yiisoft/yii2": "~2.0.3"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "yiizh\\cdn\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Di Zhang",
+                    "email": "zhangdi_me@163.com",
+                    "role": "Lead Developer"
+                }
+            ],
+            "description": "A CDN extension for Yii2.",
+            "homepage": "https://github.com/yiizh/yii2-cdn",
+            "keywords": [
+                "assets",
+                "cdn",
+                "extension",
+                "yii2"
+            ],
+            "time": "2016-11-10T08:35:34+00:00"
         },
         {
             "name": "yiizh/yii2-fontawesome",
