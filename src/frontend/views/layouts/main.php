@@ -35,7 +35,10 @@ $mainItems[] = ['label' => '网址导航', 'url' => 'http://i.yiizh.com', 'linkO
 
 $rightItems[] = ['label' => '控制台', 'url' => ['/dashboard/default/index'], 'visible' => $user->can('manage')];
 if (Yii::$app->user->isGuest) {
-    $rightItems[] = ['label' => '登录', 'url' => ['/site/login']];
+    $rightItems[] = ['label' => '登录', 'url' => ['/site/login'], 'items' => [
+        ['label' => '使用账号登录', 'url' => ['/site/login']],
+        ['label' => Html::img('@web/static/images/weibo.png', ['width' => 16]) . ' 使用微博登录', 'url' => ['/site/auth', 'authclient' => 'weibo']],
+    ]];
     $rightItems[] = ['label' => '注册', 'url' => ['/site/register']];
 } else {
     $rightItems[] = [
