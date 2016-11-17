@@ -35,11 +35,11 @@ $mainItems[] = ['label' => '网址导航', 'url' => 'http://i.yiizh.com', 'linkO
 
 $rightItems[] = ['label' => '控制台', 'url' => ['/dashboard/default/index'], 'visible' => $user->can('manage')];
 if (Yii::$app->user->isGuest) {
-    $rightItems[] = ['label' => '登录', 'url' => ['/site/login'], 'items' => [
-        ['label' => '使用账号登录', 'url' => ['/site/login']],
-        ['label' => Html::img('@web/static/images/weibo.png', ['width' => 16]) . ' 使用微博登录', 'url' => ['/site/auth', 'authclient' => 'weibo']],
+    $rightItems[] = ['label' => '登录', 'url' => ['/site/default/login'], 'items' => [
+        ['label' => '使用账号登录', 'url' => ['/site/default/login']],
+        ['label' => Html::img('@web/static/images/weibo.png', ['width' => 16]) . ' 使用微博登录', 'url' => ['/site/default/auth', 'authclient' => 'weibo']],
     ]];
-    $rightItems[] = ['label' => '注册', 'url' => ['/site/register']];
+    $rightItems[] = ['label' => '注册', 'url' => ['/site/default/register']];
 } else {
     $rightItems[] = [
         'label' => Html::img($identity->getAvatarUrl()) . ' ' . $identity->name,
@@ -48,7 +48,7 @@ if (Yii::$app->user->isGuest) {
             ['label' => '我的主页', 'url' => ['/user/default/index', 'userId' => $identity->id]],
             ['label' => '个人资料', 'url' => ['/account/profile/index']],
             '<li class="divider"></li>',
-            ['label' => '退出', 'url' => ['/site/logout'], 'linkOptions' => [
+            ['label' => '退出', 'url' => ['/site/default/logout'], 'linkOptions' => [
                 'data' => [
                     'method' => 'post'
                 ]

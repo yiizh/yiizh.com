@@ -5,25 +5,34 @@
  * @license http://www.yiizh.com/license/
  */
 
-namespace frontend;
+namespace modules\site;
 
 use common\components\AddUrlRulesInterface;
 use yii\base\BootstrapInterface;
 
 class Bootstrap implements BootstrapInterface, AddUrlRulesInterface
 {
+    /**
+     * @inheritDoc
+     */
     public function addUrlRulesTo($urlManager)
     {
         $urlManager->addRules([
-            // 文件
-            '/file/<id:\d+>/<name:\w+>.<extension:\w+>' => '/file/view',
-            '/file/<id:\d+>/<name:\w+>' => '/file/view',
-            //
+            '/login' => '/site/default/login',
+            '/logout' => '/site/default/logout',
+            '/register' => '/site/default/register',
+            '/' => '/site/default/index'
         ]);
     }
 
+    /**
+     * @inheritDoc
+     */
     public function bootstrap($app)
     {
+        $app->setModule('site', [
+            'class' => Module::className()
+        ]);
     }
 
 }

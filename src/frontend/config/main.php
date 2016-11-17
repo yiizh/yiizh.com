@@ -16,6 +16,7 @@ $config = [
     'bootstrap' => [
         'log',
         'frontend\Bootstrap',
+        'modules\site\Bootstrap',
         'modules\user\Bootstrap',
         'modules\account\Bootstrap',
         'modules\dashboard\Bootstrap',
@@ -24,7 +25,7 @@ $config = [
         'modules\post\Bootstrap',
         'common\components\UrlManagerBootstrap'
     ],
-    'modules'=>[
+    'modules' => [
         'markdown' => [
             'class' => 'kartik\markdown\Module',
         ]
@@ -32,7 +33,8 @@ $config = [
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
         'user' => [
-            'identityClass' => 'common\models\User'
+            'identityClass' => 'common\models\User',
+            'loginUrl' => ['/site/default/login']
         ],
         'urlManager' => [
             'class' => 'yii\web\UrlManager',

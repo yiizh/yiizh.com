@@ -5,17 +5,17 @@
  * @license http://www.yiizh.com/license/
  */
 
-namespace frontend\controllers;
+namespace modules\site\controllers;
 
 use common\auth\AuthHandler;
 use common\models\News;
 use common\models\Post;
 use common\models\Project;
-use frontend\components\BaseFrontendController;
 use frontend\forms\LoginForm;
 use frontend\forms\PasswordResetRequestForm;
 use frontend\forms\RegisterForm;
 use frontend\forms\ResetPasswordForm;
+use modules\site\Controller;
 use Yii;
 use yii\authclient\AuthAction;
 use yii\authclient\ClientInterface;
@@ -24,7 +24,7 @@ use yii\data\ActiveDataProvider;
 use yii\web\BadRequestHttpException;
 use yii\web\ViewAction;
 
-class SiteController extends BaseFrontendController
+class DefaultController extends Controller
 {
     public function publicActions()
     {
@@ -63,11 +63,11 @@ class SiteController extends BaseFrontendController
 
     public function actionIndex()
     {
-        $latestNewsProvider = new ActiveDataProvider([
-            'query' => News::find()->published()->orderBy(['createdAt' => SORT_DESC])->limit(5),
-            'sort' => false,
-            'pagination' => false,
-        ]);
+        $latestNews = News::find()
+            ->published()
+            ->orderBy(['createdAt' => SORT_DESC])
+            ->limit(10)
+            ->all();
 
         $latestProjectProvider = new ActiveDataProvider([
             'query' => Project::find()->active()->orderBy(['createdAt' => SORT_DESC])->limit(5),
@@ -82,7 +82,7 @@ class SiteController extends BaseFrontendController
         ]);
 
         return $this->render('index', [
-            'latestNewsProvider' => $latestNewsProvider,
+            'latestNews' => $latestNews,
             'latestProjectProvider' => $latestProjectProvider,
             'latestPostProvider' => $latestPostProvider,
         ]);
