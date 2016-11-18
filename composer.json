@@ -21,6 +21,7 @@
         "aliyuncs/oss-sdk-php": "~2.0",
         "bower-asset/slimscroll": "*",
         "bower-asset/clipboard": "*",
+        "bower-asset/tagmanager": "*",
         "zendframework/zend-feed": "*"
     },
     "require-dev": {

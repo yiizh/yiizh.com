@@ -5,24 +5,33 @@
  * @license http://www.yiizh.com/license/
  */
 
+use common\assets\TagManager\TagManagerAsset;
 use common\models\Post;
 use common\widgets\JsBlock;
 use kartik\datetime\DateTimePicker;
 use kartik\markdown\MarkdownEditor;
 use yii\helpers\Html;
+use yii\helpers\Json;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Post */
 /* @var $form yii\widgets\ActiveForm */
+
 $titleInputId = Html::getInputId($model, 'title');
 $slugInputId = Html::getInputId($model, 'slug');
+$tagsInputId = Html::getInputId($model, 'tags');
+$tagsInputName = Html::getInputName($model, 'tags');
+
 $slugUrl = Url::to(['slug/index']);
 
 $this->params['rightBar'] = [
     'src' => Url::to(['file/upload-widget'])
 ];
+
+
+TagManagerAsset::register($this);
 ?>
 <?php JsBlock::begin() ?>
 <script>
@@ -34,6 +43,10 @@ $this->params['rightBar'] = [
                 $slug.val(rs.slug);
             });
         }
+    });
+    $('#<?=$tagsInputId?>').tagsManager({
+        prefilled: <?=Json::encode($model->tags)?>,
+        hiddenTagListName: '<?=$tagsInputName?>'
     });
 </script>
 <?php JsBlock::end() ?>
@@ -63,6 +76,13 @@ $this->params['rightBar'] = [
     <?= $form->field($model, 'contentMarkdown')->widget(MarkdownEditor::className(), [
 
     ]) ?>
+
+    <div class="form-group">
+        <?= Html::activeLabel($model, 'tags', ['class' => 'control-label']) ?>
+        <div>
+            <?= Html::textInput('', '', ['placeholder' => '标签, 点击回车或逗号添加', 'id' => $tagsInputId, 'class' => 'form-control']) ?>
+        </div>
+    </div>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? '新增' : '更新', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

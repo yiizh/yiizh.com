@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "f9b24d792944ce4e20d5a0a7b47ca08a",
+    "content-hash": "150f1bd2f0a399ffbaa3db6b66554d95",
     "packages": [
         {
             "name": "aliyuncs/oss-sdk-php",
-            "version": "v2.0.7",
+            "version": "v2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aliyun/aliyun-oss-php-sdk.git",
-                "reference": "74e427241d748af5bf0c2fa9d0b614b56bd46f9b"
+                "reference": "250c8e58836b11bdf37c1bc204b25454a0d7bff4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://packagist.phpcomposer.com/files/aliyun/aliyun-oss-php-sdk/74e427241d748af5bf0c2fa9d0b614b56bd46f9b.zip",
-                "reference": "74e427241d748af5bf0c2fa9d0b614b56bd46f9b",
+                "url": "https://packagist.phpcomposer.com/files/aliyun/aliyun-oss-php-sdk/250c8e58836b11bdf37c1bc204b25454a0d7bff4.zip",
+                "reference": "250c8e58836b11bdf37c1bc204b25454a0d7bff4",
                 "shasum": ""
             },
             "require": {
@@ -45,7 +45,7 @@
             ],
             "description": "Aliyun OSS SDK for PHP",
             "homepage": "http://www.aliyun.com/product/oss/",
-            "time": "2016-06-17T01:57:24+00:00"
+            "time": "2016-11-12T09:40:57+00:00"
         },
         {
             "name": "bower-asset/bootstrap",
@@ -303,6 +303,50 @@
                 "scrolling",
                 "slimscroll",
                 "ui"
+            ]
+        },
+        {
+            "name": "bower-asset/tagmanager",
+            "version": "v3.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/max-favilli/tagmanager.git",
+                "reference": "df9eb9935c8585a392dfc00602f890caf233fa94"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/max-favilli/tagmanager/zipball/df9eb9935c8585a392dfc00602f890caf233fa94",
+                "reference": "df9eb9935c8585a392dfc00602f890caf233fa94",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/jquery": ">=1.0.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": [
+                    "tagmanager.js",
+                    "tagmanager.css",
+                    "tagmanager.less"
+                ],
+                "bower-asset-ignore": [
+                    "**/.*",
+                    "node_modules",
+                    "bower_components",
+                    "test",
+                    "tests"
+                ]
+            },
+            "license": [
+                "MPL"
+            ],
+            "description": "A jQuery plugin to create tag input fields, which works nicely with Twitter Typeahead.js and Twitter Bootstrap",
+            "keywords": [
+                "autocomplete",
+                "bootstrap",
+                "jquery",
+                "tag",
+                "typeahead"
             ]
         },
         {
@@ -696,27 +740,22 @@
         },
         {
             "name": "michelf/php-smartypants",
-            "version": "1.7.1",
+            "version": "1.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/michelf/php-smartypants.git",
-                "reference": "07021d340f6c08e2c49c442eed3986c4b8d44c52"
+                "reference": "d1b0848f26ff6e2260da2eb75ea9175d84c53878"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://packagist.phpcomposer.com/files/michelf/php-smartypants/07021d340f6c08e2c49c442eed3986c4b8d44c52.zip",
-                "reference": "07021d340f6c08e2c49c442eed3986c4b8d44c52",
+                "url": "https://packagist.phpcomposer.com/files/michelf/php-smartypants/d1b0848f26ff6e2260da2eb75ea9175d84c53878.zip",
+                "reference": "d1b0848f26ff6e2260da2eb75ea9175d84c53878",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.0"
             },
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-lib": "1.6.x-dev"
-                }
-            },
             "autoload": {
                 "psr-0": {
                     "Michelf": ""
@@ -747,7 +786,7 @@
                 "typographer",
                 "typography"
             ],
-            "time": "2016-10-16T21:08:01+00:00"
+            "time": "2016-11-13T21:14:11+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
