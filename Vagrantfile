@@ -14,7 +14,7 @@ Vagrant.configure(2) do |config|
     v.memory = 1024
   end
 
-  config.vm.network 'private_network', type: "dhcp"
+  config.vm.network 'private_network', ip: "192.168.17.117"
 
   # disable folder '/vagrant' (guest machine)
   config.vm.synced_folder ".", "/vagrant", type: "nfs"
